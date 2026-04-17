@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bite Right Muyenga | Best Fast Food & Grill in Kampala</title>
-<meta name="description" content="Bite Right Muyenga offers the best grills, burgers, and platters in Kampala. Fresh ingredients, bold flavours. Order online or visit us near TMT supermarket.">
-<meta name="keywords" content="Bite Right Muyenga, restaurant Kampala, food delivery Kampala, best burgers Kampala, Muyenga restaurant, grill Kampala">
+<title>Bite Right | Burgers, Wraps & Platters – Muyenga, Kampala</title>
+<meta name="description" content="Bite Right is Muyenga's favourite spot for burgers, shawarma wraps, platters and more. Order on WhatsApp or visit us near TMT Supermarket, Muyenga, Kampala.">
+<meta name="keywords" content="Bite Right Muyenga, burgers Kampala, shawarma Kampala, wraps Uganda, food delivery Muyenga, best burgers Uganda, platters Kampala">
 <meta name="google-site-verification" content="googlee16f85c6ba40491a">
 <!-- Open Graph Tags -->
-<meta property="og:title" content="Bite Right Muyenga | Taste the Perfection">
-<meta property="og:description" content="Delicious grills, burgers, and platters in Muyenga, Kampala. Order via WhatsApp or call us.">
-<meta property="og:image" content="assets/Biteright.jpeg">
-<meta property="og:url" content="https://biteright.online">
-<link rel="icon" type="image/png" href="favicon.png">
+<meta property="og:title" content="Bite Right | Burgers, Wraps & Platters – Muyenga Kampala">
+<meta property="og:description" content="Burgers, shawarma wraps, platters and more in Muyenga, Kampala. Order via WhatsApp.">
+<meta property="og:image" content="assets/biteright.jpeg">
+<meta property="og:url" content="https://restaurant-demo.solomantalgo.online">
+<link rel="icon" type="image/png" href="assets/biteright.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -36,8 +36,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(15,13,10,0.9
 .nav-tel{color:var(--amber2);font-size:0.82rem;font-weight:600;text-decoration:none}
 .nav-order{background:var(--amber);color:var(--dark);padding:0.52rem 1.3rem;border-radius:50px;text-decoration:none;font-size:0.84rem;font-weight:600;transition:all 0.2s}
 .nav-order:hover{background:var(--amber2);transform:translateY(-1px)}
-.hero{position:relative;height:100vh;display:flex;align-items:center;overflow:hidden}
-.hero-video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);z-index:0;object-fit:cover}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(15,13,10,0.9) 0%,rgba(15,13,10,0.55) 55%,rgba(15,13,10,0.25) 100%)}
 .hero-content{position:relative;z-index:2;padding:9rem 5% 5rem;max-width:680px}
 .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(212,134,58,0.15);border:1px solid rgba(212,134,58,0.35);color:var(--amber2);padding:0.4rem 1.1rem;border-radius:50px;font-size:0.73rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.8rem;animation:fadeUp 0.7s ease both}
@@ -74,16 +74,6 @@ section{padding:5.5rem 5%}
 .menu-price{font-family:var(--font-h);font-size:1.2rem;color:var(--amber2);font-weight:600}
 .menu-btn{background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);color:var(--amber2);padding:0.4rem 1rem;border-radius:50px;font-size:0.76rem;font-weight:600;text-decoration:none;transition:all 0.2s;cursor:pointer;font-family:inherit}
 .menu-btn:hover{background:var(--amber);color:var(--dark)}
-.category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3rem}
-.category-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;text-align:center;cursor:pointer;transition:all 0.3s;display:flex;flex-direction:column;align-items:center;gap:1rem}
-.category-card:hover{background:var(--amber);transform:translateY(-8px);border-color:var(--amber2)}
-.category-icon{font-size:2.5rem;margin-bottom:0.5rem}
-.category-card h3{font-family:var(--font-h);font-size:1.5rem;color:var(--white)}
-.category-card:hover h3{color:var(--dark)}
-.menu-grid{display:none;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem;animation:fadeUp 0.5s ease both}
-.menu-grid.active{display:grid}
-.menu-nav-back{display:none;align-items:center;gap:0.5rem;color:var(--amber2);text-decoration:none;font-weight:600;margin-bottom:2rem;cursor:pointer}
-.menu-nav-back.active{display:flex}
 .about-bg{background:var(--cream)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
 .about-imgs{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
@@ -138,203 +128,279 @@ section{padding:5.5rem 5%}
 .fg textarea{resize:vertical;min-height:90px}
 .form-submit{width:100%;padding:0.95rem;background:var(--amber);color:var(--dark);font-weight:600;font-size:0.95rem;border:none;border-radius:50px;cursor:pointer;transition:all 0.2s;font-family:inherit;box-shadow:0 4px 20px rgba(212,134,58,0.3)}
 .form-submit:hover{background:var(--amber2);transform:translateY(-1px)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transition:all 0.6s ease-out}.reveal.visible{opacity:1;transform:translateY(0)}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;padding:3rem 5%;background:var(--dark);border-top:1px solid var(--border);flex-wrap:wrap;gap:2rem}
-.footer-brand{font-family:var(--font-h);font-size:1.8rem;color:var(--amber);font-weight:700}
-.fab-wrap{position:fixed;top:50%;right:1.5rem;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:0.8rem}
-.fab-main{width:56px;height:56px;border-radius:50%;background:var(--amber);border:none;box-shadow:0 4px 15px rgba(0,0,0,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:2}
-.fab-main.open{transform:rotate(45deg);background:#444}
-.fab-options{display:none;flex-direction:column;gap:0.8rem;animation:fadeUp 0.3s ease both}
-.fab-options.open{display:flex}
-.fab-item{display:flex;align-items:center;gap:0.8rem;text-decoration:none;transition:transform 0.2s}
-.fab-item:hover{transform:translateX(-5px)}
-.fab-lbl{background:rgba(15,13,10,0.85);backdrop-filter:blur(4px);color:white;padding:0.3rem 0.8rem;border-radius:6px;font-size:0.75rem;font-weight:500;white-space:nowrap;border:1px solid rgba(255,255,255,0.1)}
-.fab-btn{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,0.2)}
-.f-wa{background:#25D366}.f-fb{background:#1877F2}.f-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}.f-call{background:#444}
-@media(max-width:768px){
-  nav{padding:1rem}
-  .nav-links,.nav-right{display:none}
-  .hero-content{padding-top:7rem;text-align:center}
-  .hero-actions{justify-content:center}
-  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
-  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,160px)}
+footer{background:var(--dark);padding:2.2rem 5%;border-top:1px solid rgba(212,134,58,0.1)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-family:var(--font-h);color:var(--amber2);font-size:1.3rem;font-weight:600}
+footer p{color:rgba(255,255,255,0.3);font-size:0.78rem}
+footer strong{color:var(--amber2)}
+.fab-wrap { position: fixed; right: 1.2rem; top: 50%; transform: translateY(-50%); bottom: auto; z-index: 999; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+.fab-main{width:58px;height:58px;border-radius:50%;background:var(--amber);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(212,134,58,0.5);transition:transform 0.3s,background 0.3s}
+.fab-main.open{transform:rotate(45deg);background:#e53e3e}
+.fab-options{display:flex;flex-direction:column;align-items:center;gap:0.75rem;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity 0.3s,transform 0.3s}
+.fab-options.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.fab-item{display:flex;align-items:center;gap:0.7rem;text-decoration:none;position:relative}
+.fab-lbl{position:absolute;right:62px;background:var(--dark);color:var(--amber2);border:1px solid rgba(212,134,58,0.25);padding:0.35rem 0.85rem;border-radius:50px;font-size:0.76rem;font-weight:600;white-space:nowrap;pointer-events:none}
+.fab-btn{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 14px rgba(0,0,0,0.3);transition:transform 0.2s}
+.fab-btn:hover{transform:scale(1.12)}
+.f-wa{background:#25D366}.f-fb{background:#1877F2}
+.f-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.f-call{background:#e53e3e}
+.fab-options.open .fab-item:nth-child(1){transition-delay:0.04s}
+.fab-options.open .fab-item:nth-child(2){transition-delay:0.09s}
+.fab-options.open .fab-item:nth-child(3){transition-delay:0.14s}
+.fab-options.open .fab-item:nth-child(4){transition-delay:0.19s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .g-item.big{grid-column:span 2}
+  .g-item.tall{grid-row:span 1;height:200px}
   .form-row{grid-template-columns:1fr}
+  .fab-lbl{display:none}
+  section{padding:3.5rem 1.2rem}
+  nav{padding:0.9rem 1.2rem}
+  .info-strip{gap:1.2rem}
+}
+/* ── Category Modal ──────────────────────────────── */
+.cat-overlay{position:fixed;inset:0;background:rgba(15,13,10,0.85);z-index:400;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.cat-overlay.open{opacity:1;pointer-events:all}
+.cat-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-44%);z-index:401;background:var(--dark2);border:1px solid var(--border);border-radius:22px;width:min(96vw,700px);max-height:84vh;overflow-y:auto;padding:2.5rem 2rem 2rem;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.3s}
+.cat-modal.open{opacity:1;pointer-events:all;transform:translate(-50%,-50%)}
+.cat-close{position:absolute;top:1rem;right:1.2rem;background:rgba(212,134,58,0.12);border:1px solid var(--border);color:var(--amber2);width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;font-family:inherit;transition:background 0.2s}
+.cat-close:hover{background:var(--amber);color:var(--dark)}
+.cat-modal-title{font-family:var(--font-h);font-size:1.9rem;font-weight:700;color:var(--white);margin-bottom:0.3rem}
+.cat-modal-sub{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:1.8rem}
+.cat-items{display:flex;flex-direction:column;gap:0.85rem}
+/* Item row — image left, info middle, price+button right */
+.cat-item{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;align-items:stretch;gap:0}
+.cat-item-img{width:80px;min-width:80px;height:80px;flex-shrink:0;overflow:hidden}
+.cat-item-img img{width:100%;height:100%;object-fit:cover;display:block}
+.cat-item-body{flex:1;padding:0.85rem 0.9rem;display:flex;align-items:center;justify-content:space-between;gap:0.8rem;flex-wrap:wrap}
+.cat-item-info h4{font-family:var(--font-h);font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.15rem;line-height:1.2}
+.cat-item-info p{font-size:0.76rem;color:rgba(255,255,255,0.4);font-weight:300;line-height:1.4;max-width:300px}
+.cat-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;flex-shrink:0}
+.cat-price{font-family:var(--font-h);font-size:1.05rem;color:var(--amber2);font-weight:600;white-space:nowrap}
+/* Order button inherits menu-btn style — no new class needed, styled via JS template */
+@media(max-width:480px){
+  .cat-item-img{width:65px;min-width:65px;height:65px}
+  .cat-modal{padding:1.8rem 1rem 1.5rem}
 }
 </style>
 </head>
 <body>
 <nav>
-  <div class="nav-brand">Bite Right<small>Taste the Perfection</small></div>
+  <div class="nav-brand">Bite Right <small>Muyenga · Kampala</small></div>
   <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#menu">Our Menu</a></li>
+    <li><a href="#menu">Menu</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a href="tel:0760492621" class="nav-tel">0760492621</a>
+    <a href="tel:0760492621" class="nav-tel">📞 0760492621</a>
     <a href="#menu" class="nav-order">Order Now</a>
   </div>
 </nav>
-
-<header class="hero" id="home">
-  <video autoplay muted loop playsinline id="heroVideo" class="hero-video">
+<div class="hero">
+  <video class="hero-video" id="heroVid" autoplay muted playsinline>
     <source src="assets/homepagevideo.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">✨ Now Open in Muyenga</div>
-    <h1>Premium <em>Grills</em> & Urban Flavours.</h1>
-    <p class="hero-sub">Experience the best burgers, splatters, and flame-grilled delights in Kampala. Freshly prepared, daily.</p>
+    <div class="hero-badge">Burgers · Wraps · Platters & More</div>
+    <h1>Muyenga's Favourite <em>Bite Right</em> Spot</h1>
+    <p class="hero-sub">Freshly made burgers, wraps, platters and shawarma — crafted daily in Muyenga, Kampala. Order now on WhatsApp.</p>
     <div class="hero-actions">
-      <a href="#menu" class="btn-amber">Explore Menu</a>
-      <a href="#contact" class="btn-ghost">Book a Table</a>
+      <a href="https://wa.me/256760492621" class="btn-amber" target="_blank">Order on WhatsApp</a>
+      <a href="#menu" class="btn-ghost">View Menu</a>
     </div>
   </div>
-</header>
-
-<script>
-  const video = document.getElementById('heroVideo');
-  if (video) {
-    video.addEventListener('timeupdate', function() {
-      if (this.currentTime >= 40) {
-        this.currentTime = 0;
-        this.play();
-      }
-    });
-  }
-</script>
-
-<div class="info-strip">
-  <div class="info-item">📍 Muyenga near TMT</div>
-  <div class="info-item">📞 0760492621</div>
-  <div class="info-item">🕒 Open Daily til late</div>
 </div>
-
-<section id="menu" class="menu-bg">
+<div class="info-strip">
+  <div class="info-item">📍 Muyenga, near TMT Supermarket, Kampala</div>
+  <div class="info-item">🕐 Open Daily from 10:30 am</div>
+  <div class="info-item">🚗 Delivery Available</div>
+  <div class="info-item">📞 0760492621</div>
+</div>
+<section class="menu-bg" id="menu">
   <div class="container">
     <div class="menu-header reveal">
-      <span class="section-tag">Taste the best</span>
-      <h2 class="section-title">Our Signature Menu</h2>
-      <p class="section-sub">From juicy burgers to hearty platters, find your favourite Bite Right meal.</p>
+      <span class="section-tag">Our Menu</span>
+      <h2 class="section-title">Fresh, Bold & Made Daily</h2>
+      <p class="section-sub">Every dish is prepared fresh each morning using locally sourced ingredients.</p>
     </div>
-
-    <div class="menu-nav-back" id="menuBack" onclick="showCategories()">← Back to Categories</div>
-    
-    <div class="category-grid" id="categoryGrid">
-      <div class="category-card reveal" onclick="showCategory('platters')" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('assets/menuimages/category/Salads and platers.webp');background-size:cover;background-position:center">
-        <div class="category-icon">🍖</div><h3>Platters</h3>
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <div class="menu-img">
+          <img src="assets/menuimages/category/Salads and platers.webp" alt="Salads & Starters at Bite Right Muyenga" loading="lazy">
+        </div>
+        <div class="menu-body">
+          <h3>Salads & Starters</h3>
+          <p>Fresh starters and dips to kick things off</p>
+          <div class="menu-footer">
+            <span class="menu-price">From UGX 2,000</span>
+            <button class="menu-btn" onclick="openCategory('starters')">Order Now</button>
+          </div>
+        </div>
       </div>
-      <div class="category-card reveal" onclick="showCategory('burgers')" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('assets/menuimages/category/Burgers and Subs.webp');background-size:cover;background-position:center">
-        <div class="category-icon">🍔</div><h3>Burgers</h3>
+      <div class="menu-card reveal">
+        <div class="menu-img">
+          <img src="https://images.pexels.com/photos/5393043/pexels-photo-5393043.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Soup at Bite Right Muyenga" loading="lazy">
+        </div>
+        <div class="menu-body">
+          <h3>Soup</h3>
+          <p>Warm, hearty soups made fresh daily</p>
+          <div class="menu-footer">
+            <span class="menu-price">From UGX 5,000</span>
+            <button class="menu-btn" onclick="openCategory('soup')">Order Now</button>
+          </div>
+        </div>
       </div>
-      <div class="category-card reveal" onclick="showCategory('wraps')" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('assets/menuimages/category/Wraps.webp');background-size:cover;background-position:center">
-        <div class="category-icon">🌯</div><h3>Wraps</h3>
+      <div class="menu-card reveal">
+        <div class="menu-img">
+          <img src="assets/menuimages/category/Wraps.webp" alt="Wraps at Bite Right Muyenga" loading="lazy">
+          <span class="menu-badge">POPULAR</span>
+        </div>
+        <div class="menu-body">
+          <h3>Wraps</h3>
+          <p>Freshly rolled wraps and subs</p>
+          <div class="menu-footer">
+            <span class="menu-price">From UGX 10,000</span>
+            <button class="menu-btn" onclick="openCategory('wraps')">Order Now</button>
+          </div>
+        </div>
       </div>
-      <div class="category-card reveal" onclick="showCategory('starters')" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('assets/menuimages/singles/Hummus.webp');background-size:cover;background-position:center">
-        <div class="category-icon">🥗</div><h3>Starters</h3>
+      <div class="menu-card reveal">
+        <div class="menu-img">
+          <img src="assets/menuimages/singles/Mixed Platter.webp" alt="Platters at Bite Right Muyenga" loading="lazy">
+          <span class="menu-badge">SIGNATURE</span>
+        </div>
+        <div class="menu-body">
+          <h3>Platters</h3>
+          <p>Full plates loaded and ready to go</p>
+          <div class="menu-footer">
+            <span class="menu-price">From UGX 15,000</span>
+            <button class="menu-btn" onclick="openCategory('platters')">Order Now</button>
+          </div>
+        </div>
       </div>
-      <div class="category-card reveal" onclick="showCategory('sides')" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('assets/menuimages/singles/chips Wrap.webp');background-size:cover;background-position:center">
-        <div class="category-icon">🍟</div><h3>Sides</h3>
+      <div class="menu-card reveal">
+        <div class="menu-img">
+          <img src="assets/menuimages/category/Burgers and Subs.webp" alt="Burgers at Bite Right Muyenga" loading="lazy">
+        </div>
+        <div class="menu-body">
+          <h3>Burgers</h3>
+          <p>Handcrafted burgers made fresh daily</p>
+          <div class="menu-footer">
+            <span class="menu-price">From UGX 18,000</span>
+            <button class="menu-btn" onclick="openCategory('burgers')">Order Now</button>
+          </div>
+        </div>
       </div>
-      <div class="category-card reveal" onclick="showCategory('drinks')" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg');background-size:cover;background-position:center">
-        <div class="category-icon">🍹</div><h3>Juices</h3>
+      <div class="menu-card reveal">
+        <div class="menu-img">
+          <img src="assets/biteright.jpeg" alt="Drinks at Bite Right Muyenga" loading="lazy">
+        </div>
+        <div class="menu-body">
+          <h3>Juice & Drinks</h3>
+          <p>Fresh-pressed juices and cold drinks</p>
+          <div class="menu-footer">
+            <span class="menu-price">From UGX 10,000</span>
+            <button class="menu-btn" onclick="openCategory('drinks')">Order Now</button>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="menu-grid" id="menuItemsGrid"></div>
   </div>
 </section>
-
-<section id="about" class="about-bg">
-  <div class="container about-grid">
-    <div class="about-imgs reveal">
-      <div class="about-big"><img src="assets/Biteright.jpeg" alt="Bite Right Food"></div>
-      <div class="about-sm"><img src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg" alt="Grill Preparation"></div>
-      <div class="about-num"><strong>10+</strong><small>Years of Flavor Expertise</small></div>
-    </div>
-    <div class="reveal">
-      <span class="section-tag">Our Story</span>
-      <h2 class="section-title dark-title">Crafting the Perfect Bite in Muyenga.</h2>
-      <p class="section-sub dark-sub">At Bite Right, we believe in quality over everything. Every burger is hand-smashed, every chicken is slow-grilled, and every platter is a celebration of urban Kampala flavours.</p>
-      <ul class="about-pts">
-        <li>100% Fresh Ingredients sourced daily</li>
-        <li>Signature Spice Blends & House-made Sauces</li>
-        <li>Passionate Chefs dedicated to quality</li>
-      </ul>
-      <div class="about-stats">
-        <div class="a-stat"><strong>5.0</strong><span>Google Rating</span></div>
-        <div class="a-stat"><strong>1k+</strong><span>Happy Clients</span></div>
+<section class="about-bg" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs reveal">
+        <div class="about-big"><img src="assets/biteright.jpeg" alt="Bite Right Muyenga restaurant interior" loading="lazy"></div>
+        <div class="about-sm"><img src="assets/gallary/flames.jpg" alt="Grilling at Bite Right" loading="lazy"></div>
+        <div class="about-num"><strong>5+</strong><small>Muyenga · Kampala</small></div>
+      </div>
+      <div class="reveal">
+        <span class="section-tag">Our Story</span>
+        <h2 class="section-title dark-title">Made Fresh,<br>Served Right</h2>
+        <p class="section-sub dark-sub">Bite Right was born out of a simple idea — real food, made properly, served with heart. From shawarma wraps to loaded platters and handcrafted burgers, every item is prepared fresh daily in Muyenga, Kampala.</p>
+        <ul class="about-pts">
+          <li>Fresh ingredients prepared daily</li>
+          <li>Handcrafted burgers & wraps</li>
+          <li>Dine-in and takeaway available</li>
+          <li>Order in seconds via WhatsApp</li>
+          <li>Fast and friendly service</li>
+        </ul>
+        <div class="about-stats">
+          <div class="a-stat"><strong>500+</strong><span>Meals Daily</span></div>
+          <div class="a-stat"><strong>4.8★</strong><span>Rating</span></div>
+          <div class="a-stat"><strong>5 yrs</strong><span>In Business</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
 <section id="gallery">
-  <div class="gallery-grid">
-    <div class="g-item big"><img src="assets/gallary/flames.jpg" alt="Bite Right Grill"><div class="g-shine"></div></div>
-    <div class="g-item"><img src="assets/gallary/handsharwama.jpg" alt="Hand Shawarma"><div class="g-shine"></div></div>
-    <div class="g-item"><img src="assets/gallary/plates.jpg" alt="Bite Right Servings"><div class="g-shine"></div></div>
-    <div class="g-item tall"><img src="assets/Biteright.jpeg" alt="Bite Right Branding"><div class="g-shine"></div></div>
-    <div class="g-item"><img src="assets/gallary/vibes.jpg" alt="Bite Right Vibes"><div class="g-shine"></div></div>
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem">
+      <span class="section-tag">Gallery</span>
+      <h2 class="section-title">See What's Cooking</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g-item big"><img src="assets/biteright.jpeg" alt="Bite Right Muyenga loaded burger" loading="lazy"><div class="g-shine"></div></div>
+      <div class="g-item tall"><img src="assets/gallary/flames.jpg" alt="Bite Right grill in action" loading="lazy"><div class="g-shine"></div></div>
+      <div class="g-item"><img src="assets/gallary/handsharwama.jpg" alt="Bite Right loaded shawarma being held" loading="lazy"><div class="g-shine"></div></div>
+      <div class="g-item"><img src="assets/gallary/plates.jpg" alt="Bite Right Splatter serving" loading="lazy"><div class="g-shine"></div></div>
+      <div class="g-item"><img src="assets/gallary/vibes.jpg" alt="Bite Right restaurant atmosphere" loading="lazy"><div class="g-shine"></div></div>
+    </div>
   </div>
 </section>
-
 <section class="testi-bg">
   <div class="container">
     <div class="testi-header reveal">
-      <span class="section-tag">Testimonials</span>
-      <h2 class="section-title dark-title">What Our Guests Say</h2>
+      <span class="section-tag" style="color:var(--amber)">Customer Love</span>
+      <h2 class="section-title dark-title">What People Are Saying</h2>
     </div>
     <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <blockquote>"The best beef burger I've had in Kampala! The meat was so juicy and the seasoning was spot on. Definitely my new favorite spot as I live in Muyenga."</blockquote>
-        <div class="testi-author">
-          <div class="testi-name">Sarah Kato</div>
-          <div class="testi-loc">Muyenga Resident</div>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <blockquote>"The Shawarma platter is huge and delicious. Perfect for sharing with friends. The staff is very welcoming too."</blockquote>
-        <div class="testi-author">
-          <div class="testi-name">James Okello</div>
-          <div class="testi-loc">Food Blogger</div>
-        </div>
-      </div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><blockquote>"The platter here is the best in Kampala — no debate. I come every Friday with my friends. Great service and amazing vibes."</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3807571/pexels-photo-3807571.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Moses Ssentongo"></div><div><div class="testi-name">Moses Ssentongo</div><div class="testi-loc">Ntinda, Kampala</div></div></div></div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><blockquote>"We used them for a small party, everything arrived hot and on time. Their burgers are massive and so juicy. Highly recommended!"</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3782235/pexels-photo-3782235.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Patricia Nakimuli"></div><div><div class="testi-name">Patricia Nakimuli</div><div class="testi-loc">Corporate Client</div></div></div></div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><blockquote>"Ordered delivery through WhatsApp. Food arrived in 30 minutes, still hot and packed neatly. Will definitely order again!"</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Allan Kirabo"></div><div><div class="testi-name">Allan Kirabo</div><div class="testi-loc">Bukoto, Kampala</div></div></div></div>
     </div>
   </div>
 </section>
-
 <section class="contact-bg" id="contact">
   <div class="container">
     <div class="contact-grid">
       <div class="reveal">
         <span class="section-tag">Find Us</span>
         <h2 class="section-title">Visit Us or Order Online</h2>
-        <div class="contact-img"><img src="assets/Biteright.jpeg" alt="Bite Right Restaurant Muyenga" loading="lazy"></div>
+        <div class="contact-img"><img src="assets/biteright.jpeg" alt="Bite Right Muyenga restaurant entrance" loading="lazy"></div>
         <div class="c-items">
-          <div class="c-item"><div class="c-icon">📍</div><div><strong>Location</strong><span>Muyenga near TMT supermarket, Kampala</span></div></div>
+          <div class="c-item"><div class="c-icon">📍</div><div><strong>Location</strong><span>Muyenga, near TMT Supermarket, Kampala</span></div></div>
           <div class="c-item"><div class="c-icon">📞</div><div><strong>Phone / WhatsApp</strong><span>0760492621</span></div></div>
           <div class="c-item"><div class="c-icon">🕐</div><div><strong>Opening Hours</strong>
-            <span style="display:block">Mon - Wed: 10:30am – 10:30pm</span>
-            <span style="display:block">Thu: 10:30am – 10:30pm</span>
-            <span style="display:block">Fri: 10:30am – 12:30am</span>
-            <span style="display:block">Sat: 10:00am – 12:30am</span>
-            <span style="display:block">Sun: 10:30am – 10:30pm</span>
+            <span>
+              Thu: 10:30 am – 10:30 pm<br>
+              Fri: 10:30 am – 12:30 am<br>
+              Sat: 10:00 am – 12:30 am<br>
+              Sun: 10:30 am – 10:30 pm<br>
+              Mon–Wed: 10:30 am – 10:30 pm
+            </span>
           </div></div>
-          <div class="c-item"><div class="c-icon">🚗</div><div><strong>Delivery</strong><span>Fast delivery in Muyenga & surrounding areas</span></div></div>
+          <div class="c-item"><div class="c-icon">🚗</div><div><strong>Delivery</strong><span>Available · Order on WhatsApp</span></div></div>
         </div>
       </div>
       <div class="contact-form reveal">
         <h3>Reserve a Table</h3>
         <div class="form-row">
           <div class="fg"><label>Your Name</label><input type="text" id="rName" placeholder="e.g. Moses Ssentongo"></div>
-          <div class="fg"><label>Phone / WhatsApp</label><input type="tel" id="rPhone" placeholder="e.g. 0772 000 000"></div>
+          <div class="fg"><label>Phone / WhatsApp</label><input type="tel" id="rPhone" placeholder="e.g. 0760 492 621"></div>
         </div>
-        <div class="fg"><label>Number of Guests</label><select id="rGuests"><option>1 – 2 Guests</option><option>3 – 5 Guests</option><option>6 – 10 Guests</option><option>10+ Guests (Group Booking)</option><option>Corporate / Event Catering</option></select></div>
+        <div class="fg"><label>Number of Guests</label><select id="rGuests"><option>1 – 2 Guests</option><option>3 – 5 Guests</option><option>6 – 10 Guests</option><option>10+ Guests (Group Booking)</option><option>Party / Event Catering</option></select></div>
         <div class="form-row">
           <div class="fg"><label>Preferred Date</label><input type="text" id="rDate" placeholder="e.g. Saturday 19 April"></div>
           <div class="fg"><label>Preferred Time</label><input type="text" id="rTime" placeholder="e.g. 7:00pm"></div>
@@ -345,113 +411,200 @@ section{padding:5.5rem 5%}
     </div>
   </div>
 </section>
-
 <footer>
   <div class="footer-inner">
-    <div><div class="footer-brand">Bite Right</div><p style="margin-top:0.3rem">Muyenga, Kampala · Open Daily</p></div>
-    <p>© 2025 Bite Right · Website by <strong>Solo</strong></p>
+    <div><div class="footer-brand">Bite Right</div><p style="margin-top:0.3rem">Muyenga, Kampala · Open Daily from 10:30 am</p></div>
+    <p>© 2025 Bite Right · Website by <strong>Kisense Solomon</strong> · websitesbysolo.vercel.app</p>
   </div>
 </footer>
-
 <div class="fab-wrap">
   <div class="fab-options" id="fabOptions">
     <a href="https://wa.me/256760492621" target="_blank" class="fab-item"><span class="fab-lbl">Order on WhatsApp</span><div class="fab-btn f-wa"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div></a>
     <a href="https://www.facebook.com/61582511670311/" target="_blank" class="fab-item"><span class="fab-lbl">Facebook</span><div class="fab-btn f-fb"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div></a>
-    <a href="https://www.instagram.com/biterightmuyenga/" target="_blank" class="fab-item"><span class="fab-lbl">Instagram</span><div class="fab-btn f-ig"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259 0.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></a>
-    <a href="https://vt.tiktok.com/ZSHnND6nU/" target="_blank" class="fab-item"><span class="fab-lbl">TikTok</span><div class="fab-btn f-tt" style="background:#000000"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.81-.6-4.03-1.37-.01 3.9-.01 7.8-.02 11.7-.01 1.93-.65 3.96-2.11 5.25-1.47 1.3-3.63 1.83-5.54 1.39-2.1-.47-3.96-2.02-4.71-4.04-.6-1.62-.5-3.5.34-5.01.74-1.33 2.05-2.31 3.52-2.64v4.04c-.66.19-1.24.58-1.6 1.14-.54.84-.44 2.01.24 2.75.68.74 1.86.89 2.71.34s1.26-1.71 1.05-2.65c-.01-4.49-.01-8.99-.01-13.48Z"/></svg></div></a>
+    <a href="https://www.instagram.com/biterightmuyenga/" target="_blank" class="fab-item"><span class="fab-lbl">Instagram</span><div class="fab-btn f-ig"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></a>
+    <a href="https://vt.tiktok.com/ZSHnND6nU/" target="_blank" class="fab-item">
+      <span class="fab-lbl">TikTok</span>
+      <div class="fab-btn f-tt" style="background:#010101">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.18 8.18 0 004.78 1.52V6.79a4.85 4.85 0 01-1.01-.1z"/>
+        </svg>
+      </div>
+    </a>
     <a href="tel:0760492621" class="fab-item"><span class="fab-lbl">Call Us</span><div class="fab-btn f-call"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div></a>
   </div>
   <button class="fab-main" id="fabMain" onclick="toggleFab()" aria-label="Contact"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F0D0A"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></button>
 </div>
 
+<!-- Category Modals -->
+<div id="categoryOverlay" class="cat-overlay" onclick="closeCategory()"></div>
+<div id="categoryModal" class="cat-modal">
+  <button class="cat-close" onclick="closeCategory()">✕</button>
+  <h2 class="cat-modal-title" id="catTitle"></h2>
+  <p class="cat-modal-sub" id="catSub"></p>
+  <div class="cat-items" id="catItems"></div>
+</div>
+
 <script>
-const MENU_DATA = {
-  platters: [
-    { name: "Shawarma Platter", price: "26,000/=", desc: "Sliced marinated meat served with hummus, salad and bread", img: "assets/menuimages/singles/Chicken Platter.webp" },
-    { name: "Chicken Strips Platter", price: "33,000/=", desc: "Crispy chicken strips served with chips and house dip", img: "assets/menuimages/singles/Chicken Strip Platter.webp" },
-    { name: "Chicken Wings Platter", price: "33,000/=", desc: "8 pcs wings served with chips and side salad", img: "assets/menuimages/singles/Chicken Wings Platter.webp" },
-    { name: "Beef Platter", price: "26,000/=", desc: "Sliced beef served with hummus, salad and bread", img: "assets/menuimages/singles/Beef Platter.webp" },
-    { name: "Chicken Platter", price: "33,000/=", desc: "Sliced chicken served with hummus, salad and bread", img: "assets/menuimages/singles/Chicken Platter.webp" },
-    { name: "Mixed Platter", price: "33,000/=", desc: "Combination of beef and chicken with hummus and salad", img: "assets/menuimages/singles/Mixed Platter.webp" },
-    { name: "Juicy Platter", price: "33,000/=", desc: "2 skewers of juicy grilled meat with hummus and salad", img: "assets/menuimages/singles/Juicy Platter.webp" },
-    { name: "Chicken Strips (12pcs)", price: "33,000/=", desc: "12 pieces of our signature crispy chicken strips only", img: "assets/menuimages/singles/Chicken Strip Platter.webp" }
-  ],
-  burgers: [
-    { name: "Beef Burger", price: "18,000/=", desc: "Juicy beef patty with fresh lettuce, tomato and signature sauce", img: "assets/menuimages/singles/Beef Burger.webp" },
-    { name: "Cheese Burger", price: "20,000/=", desc: "Beef patty topped with melted premium cheddar cheese", img: "assets/menuimages/singles/Cheese Burger.webp" },
-    { name: "Chicken Burger", price: "18,000/=", desc: "Crispy chicken breast with spicy mayo and fresh greens", img: "assets/menuimages/singles/Chicken Burger.webp" },
-    { name: "Beef Sausage (With Chips)", price: "15,000/=", desc: "2 grilled beef sausages served with golden chips", img: "assets/menuimages/singles/Beef Sausage (With Chips).webp" },
-    { name: "Chicken Sausage (With Chips)", price: "15,000/=", desc: "2 grilled chicken sausages served with golden chips", img: "assets/menuimages/singles/Chicken Sausage (With Chips).webp" }
-  ],
-  wraps: [
-    { name: "Chicken Wrap", price: "20,000/=", desc: "Sliced grilled chicken wrapped in fresh tortilla with sauce", img: "assets/menuimages/singles/Chicken Wrap.webp" },
-    { name: "Beef Wrap", price: "18,000/=", desc: "Marinated beef with garlic sauce and pickles in a wrap", img: "assets/menuimages/singles/Beef Wrap.webp" },
-    { name: "Mixed Wrap", price: "20,000/=", desc: "A combination of beef and chicken strips in one wrap", img: "assets/menuimages/singles/Mixed Wrap.webp" },
-    { name: "Falafel Wrap", price: "15,000/=", desc: "Crispy chickpea balls with tahini sauce and salad", img: "assets/menuimages/singles/Falafel Wrap.webp" },
-    { name: "Bite Wrap", price: "15,000/=", desc: "Special Bite Right signature combination wrap", img: "assets/menuimages/singles/Bite Wrap.webp" },
-    { name: "Chips Wrap", price: "12,000/=", desc: "Golden chips wrapped with sauces and light salad", img: "assets/menuimages/singles/chips Wrap.webp" },
-    { name: "Fish Wrap", price: "18,000/=", desc: "Fresh fish fillet strips in a soft tortilla wrap", img: "assets/menuimages/singles/Fish Wrap.webp" }
-  ],
-  starters: [
-    { name: "Hummus", price: "17,000/=", desc: "Creamy chickpea dip with olive oil and spices", img: "assets/menuimages/singles/Hummus.webp" },
-    { name: "Baba Ganoush", price: "17,000/=", desc: "Smoky eggplant dip with tahini and seasonings", img: "assets/menuimages/singles/Baba Ganoush.webp" },
-    { name: "Hummus With Shawarma", price: "25,000/=", desc: "Our signature hummus topped with marinated meat", img: "assets/menuimages/singles/Hummus Platter With Shawarma.webp" },
-    { name: "Baba Ganoush With Shawarma", price: "25,000/=", desc: "Smoky eggplant dip topped with marinated meat", img: "assets/menuimages/singles/Eggplant Platter With Shawarma.webp" },
-    { name: "Green Salad", price: "12,000/=", desc: "Fresh garden vegetables with light vinaigrette", img: "assets/menuimages/singles/Green Salad.webp" },
-    { name: "Fattoush (Pomegranate)", price: "15,000/=", desc: "Mixed greens with fried bread and pomegranate dressing", img: "assets/menuimages/singles/Fattoush.webp" },
-    { name: "Chicken Shawarma Salad", price: "25,000/=", desc: "Fresh salad topped with succulent chicken shawarma", img: "assets/menuimages/singles/Chicken Shawarma Salad.webp" },
-    { name: "Juicy Salad", price: "18,000/=", desc: "A refreshing and vibrant house special salad", img: "assets/menuimages/singles/Juicy Salad.webp" },
-    { name: "Falafel (5 pcs)", price: "15,000/=", desc: "5 pieces of crispy, golden chickpea falafel balls", img: "assets/menuimages/singles/Falafel.webp" }
-  ],
-  sides: [
-    { name: "Chips", price: "12,000/=", desc: "Golden, crispy potato fries with a touch of salt", img: "assets/menuimages/singles/chips Wrap.webp" },
-    { name: "Pickles", price: "5,000/=", desc: "Assorted house-pickled vegetables", img: "assets/menuimages/singles/Pickles.webp" },
-    { name: "Garlic Sauce", price: "5,000/=", desc: "Our famous house-made creamy garlic sauce", img: "assets/menuimages/singles/Garlic Sauce.webp" },
-    { name: "Chilli Sauce", price: "5,000/=", desc: "Spicy house-made chilli sauce for the bold", img: "assets/menuimages/singles/Chilli Sauce.webp" },
-    { name: "Tahina", price: "5,000/=", desc: "Smooth and nutty sesame seed paste dip", img: "assets/menuimages/singles/Tahina.webp" }
-  ],
-  drinks: [
-    { name: "Fresh Orange Juice", price: "8,000/=", desc: "100% freshly squeezed oranges", img: "https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg" },
-    { name: "Pineapple Mint", price: "8,000/=", desc: "Fresh pineapple juice with a hint of mint", img: "https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg" },
-    { name: "Avocado Smoothie", price: "10,000/=", desc: "Creamy and rich avocado blend", img: "https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg" },
-    { name: "Bite Right Cocktail", price: "12,000/=", desc: "A mix of seasonal tropical fruits", img: "https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg" }
-  ]
+// Hero video — restart every 40 seconds
+(function(){
+  const v = document.getElementById('heroVid');
+  if (!v) return;
+  v.addEventListener('timeupdate', function(){
+    if (v.currentTime >= 40) { v.currentTime = 0; v.play(); }
+  });
+})();
+
+// ── Bite Right Menu Data ──────────────────────────
+const MENU = {
+
+  starters: {
+    title: 'Salads & Starters',
+    sub: 'Fresh starters and dips to kick things off',
+    items: [
+      { name:'Beef sausage with chips',        desc:'Served with chips',                                      price:20000, img:'assets/menuimages/singles/Beef Sausage (With Chips).webp' },
+      { name:'Chicken sausage with chips',     desc:'Served with chips',                                      price:20000, img:'assets/menuimages/singles/Chicken Sausage (With Chips).webp' },
+      { name:'Hummus',                         desc:'Classic creamy hummus dip',                              price:17000, img:'assets/menuimages/singles/Hummus.webp' },
+      { name:'Falafel',                        desc:'Crispy golden falafel balls',                            price:22000, img:'assets/menuimages/singles/Falafel.webp' },
+      { name:'Fattoush',                       desc:'Fresh fattoush salad',                                   price:17000, img:'assets/menuimages/singles/Fattoush.webp' },
+      { name:'Green salad',                    desc:'Garden fresh green salad',                               price:15000, img:'assets/menuimages/singles/Green Salad.webp' },
+      { name:'Baba Ganoush',                   desc:'Smoky roasted eggplant dip',                             price:17000, img:'assets/menuimages/singles/Baba Ganoush.webp' },
+      { name:'Tahina',                         desc:'Sesame tahini sauce',                                    price:5000,  img:'assets/menuimages/singles/Tahina.webp' },
+      { name:'Garlic sauce',                   desc:'Creamy garlic sauce',                                    price:5000,  img:'assets/menuimages/singles/Garlic Sauce.webp' },
+      { name:'Chilli sauce',                   desc:'Spicy chilli sauce',                                     price:2000,  img:'assets/menuimages/singles/Chilli Sauce.webp' },
+      { name:'Pickles',                        desc:'Mixed pickles',                                          price:5000,  img:'assets/menuimages/singles/Pickles.webp' },
+    ]
+  },
+
+  soup: {
+    title: 'Soup',
+    sub: 'Warm, hearty soups made fresh daily',
+    items: [
+      { name:'Soup',                           desc:'Classic warm soup',                                      price:5000,  img:'https://images.pexels.com/photos/5393043/pexels-photo-5393043.jpeg?w=160&h=160&fit=crop' },
+      { name:'Soup with beans',                desc:'Hearty soup with beans',                                 price:8000,  img:'https://images.pexels.com/photos/5393043/pexels-photo-5393043.jpeg?w=160&h=160&fit=crop' },
+      { name:'Soup kewala / Mulokoni',         desc:'Traditional kewala / mulokoni soup',                     price:15000, img:'https://images.pexels.com/photos/5393043/pexels-photo-5393043.jpeg?w=160&h=160&fit=crop' },
+    ]
+  },
+
+  wraps: {
+    title: 'Wraps',
+    sub: 'Freshly rolled wraps and subs',
+    items: [
+      { name:'Chicken wrap',    desc:'Garlic sauce, lettuce, tomatoes, pickles, chips',                       price:14000, img:'assets/menuimages/singles/Chicken Wrap.webp' },
+      { name:'Beef wrap',       desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',            price:14000, img:'assets/menuimages/singles/Beef Wrap.webp' },
+      { name:'Mixed wrap',      desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',            price:16000, img:'assets/menuimages/singles/Mixed Wrap.webp' },
+      { name:'Crisp wrap',      desc:'Garlic sauce, pickles, chips',                                          price:14000, img:'assets/menuimages/category/Wraps.webp' },
+      { name:'Falafel wrap',    desc:'Tomatoes, lettuce, tahina, parsley',                                    price:14000, img:'assets/menuimages/singles/Falafel Wrap.webp' },
+      { name:'Chips wrap',      desc:'Chips, tomatoes, onions, lettuce, pickles, ketchup',                    price:10000, img:'assets/menuimages/singles/chips Wrap.webp' },
+      { name:'Kufta wrap',      desc:'Kebab, lettuce, tomatoes, onions, tahina and parsley',                  price:14000, img:'assets/menuimages/category/Wraps.webp' },
+      { name:'Toowuk wrap',     desc:'Garlic sauce, lettuce, pickles and chips',                              price:16000, img:'assets/menuimages/category/Wraps.webp' },
+      { name:'Bite Right wrap', desc:'Large wrap of your choice with chips and salad',                        price:20000, img:'assets/menuimages/singles/Bite Wrap.webp' },
+      { name:'Liver sub',       desc:'Liver sub sandwich',                                                    price:14000, img:'assets/menuimages/category/Burgers and Subs.webp' },
+      { name:'Fish sub',        desc:'Roasted fish cubes, lettuce, tarter sauce, pickles, chips',             price:18000, img:'assets/menuimages/singles/Fish Wrap.webp' },
+    ]
+  },
+
+  platters: {
+    title: 'Platters',
+    sub: 'Full plates loaded and ready to go',
+    items: [
+      { name:'Chicken shawarma platter',            desc:'Chips, salad, garlic, chilli, pita bread',                    price:33000, img:'assets/menuimages/singles/Chicken Platter.webp' },
+      { name:'Beef shawarma platter',               desc:'Tahina, salad, chilli, chips, pita bread',                    price:32000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Chicken shawarma salad',              desc:'Tahina, garlic sauce, salad',                                 price:28000, img:'assets/menuimages/singles/Chicken Shawarma Salad.webp' },
+      { name:'Hummus platter with Shawarma',        desc:'Chicken or beef shawarma, salad, pita bread',                 price:34000, img:'assets/menuimages/singles/Hummus Platter With Shawarma.webp' },
+      { name:'Mixed shawarma platter',              desc:'Chicken & beef, tahina, garlic, chilli, chips, pita bread',   price:36000, img:'assets/menuimages/singles/Mixed Platter.webp' },
+      { name:'Eggplant platter with shawarma',      desc:'Salad, pita bread, garlic sauce, eggplant, chips',            price:35000, img:'assets/menuimages/singles/Eggplant Platter With Shawarma.webp' },
+      { name:'Chicken strip platter',               desc:'Salad, chips, garlic sauce, chilli',                          price:25000, img:'assets/menuimages/singles/Chicken Strip Platter.webp' },
+      { name:'Chicken wings platter',               desc:'Salad, chips, garlic sauce, chilli',                          price:24000, img:'assets/menuimages/singles/Chicken Wings Platter.webp' },
+      { name:'Fish platter',                        desc:'Salad, chips, garlic sauce, chilli',                          price:30000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'Grilled whole chicken',               desc:'Salad, chips, garlic sauce, chilli',                          price:48000, img:'assets/menuimages/singles/Chicken.webp' },
+      { name:'Grilled half chicken',                desc:'Salad, chips, garlic sauce, chilli',                          price:27000, img:'assets/menuimages/singles/Chicken.webp' },
+      { name:'Kufta plate',                         desc:'Kufta served with sides',                                     price:24000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Liver platter',                       desc:'Liver served with sides',                                     price:24000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Plate of the day — chicken',          desc:'Daily fresh chicken plate',                                   price:20000, img:'assets/menuimages/singles/Chicken Platter.webp' },
+      { name:'Plate of the day — beef',             desc:'Daily fresh beef plate',                                      price:22000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Kewala plate / Mulokoni',             desc:'Traditional kewala / mulokoni plate',                         price:35000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'Grilled whole chicken with rice',     desc:'Grilled whole chicken served with rice',                      price:60000, img:'assets/menuimages/singles/Chicken.webp' },
+      { name:'Grilled half chicken with rice',      desc:'Grilled half chicken served with rice',                       price:30000, img:'assets/menuimages/singles/Chicken.webp' },
+      { name:'Shawarma with rice',                  desc:'Shawarma served with rice',                                   price:26000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Egyptian breakfast',                  desc:'Traditional Egyptian breakfast plate',                        price:15000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'1kg Liver',                           desc:'Full kilo of fresh grilled liver',                            price:65000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Half kg Liver',                       desc:'Half kilo of fresh grilled liver',                            price:35000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'1kg Kufta',                           desc:'Full kilo of kufta',                                          price:65000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Half kg Kufta',                       desc:'Half kilo of kufta',                                          price:35000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Grilled fish fillet with salad',      desc:'Grilled fish fillet served with salad',                       price:20000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'Seek toowuk platter',                 desc:'Seek toowuk served with sides',                               price:24000, img:'assets/menuimages/singles/Chicken Platter.webp' },
+      { name:'Fish finger',                         desc:'Crispy golden fish fingers',                                  price:20000, img:'assets/menuimages/category/Salads and platers.webp' },
+    ]
+  },
+
+  burgers: {
+    title: 'Burgers',
+    sub: 'Handcrafted burgers made fresh daily',
+    items: [
+      { name:'Beef burger',           desc:'Classic beef burger',                  price:18000, img:'assets/menuimages/singles/Beef Burger.webp' },
+      { name:'Cheese burger',         desc:'Beef burger loaded with cheese',       price:20000, img:'assets/menuimages/singles/Cheese Burger.webp' },
+      { name:'Chicken burger',        desc:'Crispy chicken burger',                price:18000, img:'assets/menuimages/singles/Chicken Burger.webp' },
+      { name:'Beef burger with eggs', desc:'Beef burger topped with a fried egg',  price:22000, img:'assets/menuimages/category/Burgers and Subs.webp' },
+    ]
+  },
+
+  drinks: {
+    title: 'Juice & Drinks',
+    sub: 'Fresh-pressed juices and cold drinks',
+    items: [
+      { name:'Orange / Pineapple / Passion juice', desc:'Fresh-pressed fruit juice — choose your flavour', price:10000, img:'assets/biteright.jpeg' },
+      { name:'Avocado juice',                      desc:'Creamy fresh avocado juice',                      price:15000, img:'assets/biteright.jpeg' },
+      { name:'Cocktail',                           desc:'Mixed cocktail drink',                             price:12000, img:'assets/biteright.jpeg' },
+    ]
+  }
+
 };
 
-function showCategory(cat) {
-  const grid = document.getElementById('menuItemsGrid');
-  const catGrid = document.getElementById('categoryGrid');
-  const backBtn = document.getElementById('menuBack');
-  grid.innerHTML = '';
-  MENU_DATA[cat].forEach(item => {
-    grid.innerHTML += `
-      <div class="menu-card reveal visible">
-        <div class="menu-img"><img src="${item.img}" alt="${item.name}" loading="lazy"></div>
-        <div class="menu-body">
-          <h3>${item.name}</h3>
-          <p>${item.desc}</p>
-          <div class="menu-footer">
-            <span class="menu-price">UGX ${item.price}</span>
-            <button class="menu-btn" onclick="window.open('https://wa.me/256760492621?text=Hi, I want to order ${item.name} from Bite Right','_blank')">Order Now</button>
-          </div>
+function openCategory(key) {
+  const cat = MENU[key];
+  if (!cat) return;
+  document.getElementById('catTitle').textContent = cat.title;
+  document.getElementById('catSub').textContent   = cat.sub;
+  document.getElementById('catItems').innerHTML   = cat.items.map(item => `
+    <div class="cat-item">
+      <div class="cat-item-img">
+        <img src="${item.img}" alt="${item.name} at Bite Right Muyenga" loading="lazy"
+             onerror="this.src='assets/biteright.jpeg'">
+      </div>
+      <div class="cat-item-body">
+        <div class="cat-item-info">
+          <h4>${item.name}</h4>
+          ${item.desc ? `<p>${item.desc}</p>` : ''}
         </div>
-      </div>`;
-  });
-  catGrid.style.display = 'none';
-  grid.classList.add('active');
-  backBtn.classList.add('active');
-  document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        <div class="cat-item-right">
+          <span class="cat-price">UGX ${item.price.toLocaleString()}</span>
+          <button class="menu-btn" onclick="orderItem('${item.name.replace(/'/g,"\\'")}',${item.price})">Order</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('categoryOverlay').classList.add('open');
+  document.getElementById('categoryModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
-function showCategories() {
-  const grid = document.getElementById('menuItemsGrid');
-  const catGrid = document.getElementById('categoryGrid');
-  const backBtn = document.getElementById('menuBack');
-  grid.classList.remove('active');
-  backBtn.classList.remove('active');
-  catGrid.style.display = 'grid';
-  document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+function closeCategory() {
+  document.getElementById('categoryOverlay').classList.remove('open');
+  document.getElementById('categoryModal').classList.remove('open');
+  document.body.style.overflow = '';
 }
+
+function orderItem(name, price) {
+  const msg =
+    `Hi Bite Right! 👋\n\n` +
+    `I'd like to order:\n\n` +
+    `*${name}* — UGX ${price.toLocaleString()}\n\n` +
+    `Please confirm availability and how I can pay. Thank you! 🙏`;
+  window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCategory(); });
 
 function toggleFab(){document.getElementById('fabMain').classList.toggle('open');document.getElementById('fabOptions').classList.toggle('open')}
 
@@ -462,9 +615,19 @@ function handleReservation() {
   const date = document.getElementById('rDate').value;
   const time = document.getElementById('rTime').value;
   const notes = document.getElementById('rNotes').value;
-  if(!name || !phone || !date) { alert('Please fill in your Name, Phone and Date.'); return; }
-  const msg = `*New Table Reservation (Bite Right)*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Guests:* ${guests}\n*Date:* ${date}\n*Time:* ${time}\n*Requests:* ${notes || 'None'}`;
-  window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
+
+  if(!name || !phone || !date) {
+    alert('Please fill in your Name, Phone and Date.');
+    return;
+  }
+
+  const msg = `*New Table Reservation (Bite Right)*\n\n` +
+              `*Name:* ${name}\n*Phone:* ${phone}\n` +
+              `*Guests:* ${guests}\n*Date:* ${date}\n` +
+              `*Time:* ${time}\n*Requests:* ${notes || 'None'}`;
+
+  const whatsappUrl = `https://wa.me/256760492621?text=${encodeURIComponent(msg)}`;
+  window.open(whatsappUrl, '_blank');
 }
 
 document.addEventListener('click',function(e){if(!document.querySelector('.fab-wrap').contains(e.target)){document.getElementById('fabMain').classList.remove('open');document.getElementById('fabOptions').classList.remove('open')}});
