@@ -546,7 +546,21 @@ function handleReservation() {
   const notes  = document.getElementById('rNotes').value;
 
   if (!name || !phone || !date) { alert('Please fill in your Name, Phone and Date.'); return; }
-  const msg = `*New Table Reservation (Bite Right)*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Guests:* ${guests}\n*Date:* ${date}\n*Time:* ${time}\n*Requests:* ${notes || 'None'}`;
+  const msg =
+    `📅 *BITE RIGHT — TABLE RESERVATION*\n\n` +
+    `━━━━━━━━━━━━━━━\n` +
+    `🍽️ *RESERVATION DETAILS*\n` +
+    `• Date: ${date}\n` +
+    `• Time: ${time}\n` +
+    `• Guests: ${guests}\n\n` +
+    `━━━━━━━━━━━━━━━\n` +
+    `👤 *CUSTOMER DETAILS*\n` +
+    `• Name: ${name}\n` +
+    `• Phone: ${phone}\n` +
+    `• Special Requests: ${notes || 'None'}\n\n` +
+    `━━━━━━━━━━━━━━━\n` +
+    `⏳ *ACTION REQUIRED*\n` +
+    `Confirm availability & seating.`;
   window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
@@ -873,20 +887,25 @@ function submitOrder() {
     return;
   }
 
-  let locationDetail = 'Kampala area';
+  let locationMsg = 'Kampala area';
   if (_customerLat !== null && _customerLng !== null) {
-    const mapsLink = `https://www.google.com/maps?q=${_customerLat.toFixed(5)},${_customerLng.toFixed(5)}`;
-    locationDetail = `${mapsLink} (approx. ${Math.round(haversineKm(_customerLat, _customerLng, KAMPALA_LAT, KAMPALA_LNG))} km from Kampala centre)`;
+    locationMsg = `https://www.google.com/maps?q=${_customerLat.toFixed(5)},${_customerLng.toFixed(5)}`;
   }
 
   const msg =
-    `🛍️ *New Order — Bite Right Muyenga*\n\n` +
-    `*Item:* ${_pendingItem}\n` +
-    `*Price:* UGX ${_pendingPrice.toLocaleString()}\n\n` +
-    `*Customer Name:* ${name}\n` +
-    `*Customer Phone:* ${phone}\n` +
-    `*Location:* ${locationDetail}\n\n` +
-    `Please confirm availability and payment. Thank you! 🙏`;
+    `🟢 *BITE RIGHT — NEW ORDER ALERT*\n\n` +
+    `━━━━━━━━━━━━━━━\n` +
+    `🧾 *ORDER DETAILS*\n` +
+    `• Item: ${_pendingItem}\n` +
+    `• Price: UGX ${_pendingPrice.toLocaleString()}\n\n` +
+    `━━━━━━━━━━━━━━━\n` +
+    `👤 *CUSTOMER DETAILS*\n` +
+    `• Name: ${name}\n` +
+    `• Phone: ${phone}\n` +
+    `• Location: ${locationMsg}\n\n` +
+    `━━━━━━━━━━━━━━━\n` +
+    `⏳ *ACTION REQUIRED*\n` +
+    `Confirm availability & payment.`;
 
   hideOrderForm();
   document.body.style.overflow = '';
