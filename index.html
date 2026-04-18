@@ -133,7 +133,22 @@ footer{background:var(--dark);padding:2.2rem 5%;border-top:1px solid rgba(212,13
 .footer-brand{font-family:var(--font-h);color:var(--amber2);font-size:1.3rem;font-weight:600}
 footer p{color:rgba(255,255,255,0.3);font-size:0.78rem}
 footer strong{color:var(--amber2)}
-.fab-wrap { position: fixed; right: 1.2rem; top: 50%; transform: translateY(-50%); bottom: auto; z-index: 999; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+.fab-wrap {
+  position: fixed;
+  right: 1.2rem;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateY(-50%) translateZ(0);
+}
 .fab-main{width:58px;height:58px;border-radius:50%;background:var(--amber);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(212,134,58,0.5);transition:transform 0.3s,background 0.3s}
 .fab-main.open{transform:rotate(45deg);background:#e53e3e}
 .fab-options{display:flex;flex-direction:column;align-items:center;gap:0.75rem;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity 0.3s,transform 0.3s}
@@ -164,7 +179,7 @@ footer strong{color:var(--amber2)}
   nav{padding:0.9rem 1.2rem}
   .info-strip{gap:1.2rem}
 }
-/* ── Category Modal ──────────────────────────────── */
+/* ── Category Modal ────────────────────────────────── */
 .cat-overlay{position:fixed;inset:0;background:rgba(15,13,10,0.85);z-index:400;opacity:0;pointer-events:none;transition:opacity 0.3s}
 .cat-overlay.open{opacity:1;pointer-events:all}
 .cat-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-44%);z-index:401;background:var(--dark2);border:1px solid var(--border);border-radius:22px;width:min(96vw,700px);max-height:84vh;overflow-y:auto;padding:2.5rem 2rem 2rem;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.3s}
@@ -174,19 +189,41 @@ footer strong{color:var(--amber2)}
 .cat-modal-title{font-family:var(--font-h);font-size:1.9rem;font-weight:700;color:var(--white);margin-bottom:0.3rem}
 .cat-modal-sub{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:1.8rem}
 .cat-items{display:flex;flex-direction:column;gap:0.85rem}
-/* Item row — image left, info middle, price+button right */
-.cat-item{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;align-items:stretch;gap:0}
-.cat-item-img{width:80px;min-width:80px;height:80px;flex-shrink:0;overflow:hidden}
+.cat-item{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;align-items:stretch}
+.cat-item-img{width:82px;min-width:82px;height:82px;flex-shrink:0;overflow:hidden}
 .cat-item-img img{width:100%;height:100%;object-fit:cover;display:block}
-.cat-item-body{flex:1;padding:0.85rem 0.9rem;display:flex;align-items:center;justify-content:space-between;gap:0.8rem;flex-wrap:wrap}
-.cat-item-info h4{font-family:var(--font-h);font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.15rem;line-height:1.2}
+.cat-item-body{flex:1;padding:0.8rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:0.8rem;flex-wrap:wrap}
+.cat-item-info h4{font-family:var(--font-h);font-size:1rem;font-weight:600;color:var(--white);margin-bottom:0.12rem;line-height:1.2}
 .cat-item-info p{font-size:0.76rem;color:rgba(255,255,255,0.4);font-weight:300;line-height:1.4;max-width:300px}
 .cat-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;flex-shrink:0}
 .cat-price{font-family:var(--font-h);font-size:1.05rem;color:var(--amber2);font-weight:600;white-space:nowrap}
-/* Order button inherits menu-btn style — no new class needed, styled via JS template */
+
+/* ── Pre-Order modals (location + form) ────────────── */
+.pre-overlay{position:fixed;inset:0;background:rgba(15,13,10,0.88);z-index:500;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.pre-overlay.open{opacity:1;pointer-events:all}
+.pre-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-44%);z-index:501;background:var(--dark2);border:1px solid var(--border);border-radius:22px;width:min(94vw,460px);padding:2.4rem 2rem 2rem;text-align:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.3s}
+.pre-modal.open{opacity:1;pointer-events:all;transform:translate(-50%,-50%)}
+.pre-icon{font-size:2.6rem;margin-bottom:0.8rem}
+.pre-title{font-family:var(--font-h);font-size:1.55rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
+.pre-sub{font-size:0.88rem;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:1.4rem}
+.pre-item-preview{background:rgba(212,134,58,0.08);border:1px solid rgba(212,134,58,0.2);border-radius:12px;padding:0.7rem 1rem;margin-bottom:1.4rem;font-size:0.9rem;color:var(--amber2);font-weight:600;font-family:var(--font-h)}
+.pre-field{text-align:left;margin-bottom:1rem}
+.pre-label{display:block;font-size:0.76rem;color:rgba(255,255,255,0.45);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.4rem;font-weight:500}
+.pre-input{width:100%;padding:0.82rem 1rem;background:var(--card);border:1.5px solid var(--border);border-radius:10px;color:var(--white);font-family:inherit;font-size:0.9rem;outline:none;transition:border-color 0.2s}
+.pre-input:focus{border-color:var(--amber)}
+.pre-input::placeholder{color:rgba(255,255,255,0.25)}
+.pre-actions{display:flex;gap:0.8rem;justify-content:center;margin-top:1.4rem}
+.pre-btn-cancel{background:transparent;border:1.5px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:0.65rem 1.5rem;border-radius:50px;font-family:inherit;font-size:0.85rem;cursor:pointer;transition:all 0.2s}
+.pre-btn-cancel:hover{border-color:rgba(255,255,255,0.35);color:var(--white)}
+.pre-btn-retry{background:rgba(212,134,58,0.12);border:1px solid var(--border);color:var(--amber2);padding:0.65rem 1.5rem;border-radius:50px;font-family:inherit;font-size:0.85rem;cursor:pointer;transition:all 0.2s}
+.pre-btn-retry:hover{background:rgba(212,134,58,0.22)}
+.pre-btn-submit{background:var(--amber);color:var(--dark);padding:0.7rem 1.8rem;border-radius:50px;font-family:inherit;font-size:0.88rem;font-weight:600;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 18px rgba(212,134,58,0.3)}
+.pre-btn-submit:hover{background:var(--amber2);transform:translateY(-1px)}
+
+/* ── Responsive ──────────────────────────────────── */
 @media(max-width:480px){
-  .cat-item-img{width:65px;min-width:65px;height:65px}
-  .cat-modal{padding:1.8rem 1rem 1.5rem}
+  .cat-item-img{width:68px;min-width:68px;height:68px}
+  .cat-modal,.pre-modal{padding:1.8rem 1rem 1.5rem}
 }
 </style>
 </head>
@@ -280,7 +317,7 @@ footer strong{color:var(--amber2)}
         </div>
         <div class="menu-body">
           <h3>Platters</h3>
-          <p>Full plates loaded and ready to go</p>
+          <p>Full plates — loaded, grilled, and ready</p>
           <div class="menu-footer">
             <span class="menu-price">From UGX 15,000</span>
             <button class="menu-btn" onclick="openCategory('platters')">Order Now</button>
@@ -306,7 +343,7 @@ footer strong{color:var(--amber2)}
         </div>
         <div class="menu-body">
           <h3>Juice & Drinks</h3>
-          <p>Fresh-pressed juices and cold drinks</p>
+          <p>Fresh-pressed juices, fruits & cold drinks</p>
           <div class="menu-footer">
             <span class="menu-price">From UGX 10,000</span>
             <button class="menu-btn" onclick="openCategory('drinks')">Order Now</button>
@@ -435,7 +472,7 @@ footer strong{color:var(--amber2)}
   <button class="fab-main" id="fabMain" onclick="toggleFab()" aria-label="Contact"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F0D0A"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></button>
 </div>
 
-<!-- Category Modals -->
+<!-- Bite Right Category Modal -->
 <div id="categoryOverlay" class="cat-overlay" onclick="closeCategory()"></div>
 <div id="categoryModal" class="cat-modal">
   <button class="cat-close" onclick="closeCategory()">✕</button>
@@ -444,34 +481,101 @@ footer strong{color:var(--amber2)}
   <div class="cat-items" id="catItems"></div>
 </div>
 
+<!-- Pre-Order: Location Checker -->
+<div id="locOverlay" class="pre-overlay"></div>
+<div id="locModal" class="pre-modal">
+  <div class="pre-icon">📍</div>
+  <h3 class="pre-title">Checking your location…</h3>
+  <p class="pre-sub" id="locMsg">Please allow location access to continue.</p>
+  <div class="pre-actions">
+    <button class="pre-btn-cancel" onclick="cancelPreOrder()">Cancel</button>
+    <button class="pre-btn-retry" id="locRetryBtn" onclick="retryLocation()" style="display:none">Retry</button>
+  </div>
+</div>
+
+<!-- Pre-Order: Customer Form -->
+<div id="orderFormOverlay" class="pre-overlay"></div>
+<div id="orderFormModal" class="pre-modal">
+  <div class="pre-icon">🛍️</div>
+  <h3 class="pre-title">Almost there!</h3>
+  <p class="pre-sub">Fill in your details and we'll send your order to WhatsApp.</p>
+  <div class="pre-item-preview" id="previewItem"></div>
+  <div class="pre-field">
+    <label class="pre-label">Your Name *</label>
+    <input class="pre-input" id="orderName" type="text" placeholder="e.g. Aisha Nakamya" autocomplete="name">
+  </div>
+  <div class="pre-field">
+    <label class="pre-label">Phone / WhatsApp *</label>
+    <input class="pre-input" id="orderPhone" type="tel" placeholder="e.g. 0772 000 000" autocomplete="tel">
+  </div>
+  <div class="pre-actions">
+    <button class="pre-btn-cancel" onclick="cancelPreOrder()">Cancel</button>
+    <button class="pre-btn-submit" onclick="submitOrder()">Send Order via WhatsApp</button>
+  </div>
+</div>
+
 <script>
-// Hero video — restart every 40 seconds
-(function(){
+// ── Hero video — restart at 40 seconds ──────────────
+(function () {
   const v = document.getElementById('heroVid');
   if (!v) return;
-  v.addEventListener('timeupdate', function(){
+  v.addEventListener('timeupdate', function () {
     if (v.currentTime >= 40) { v.currentTime = 0; v.play(); }
   });
 })();
 
-// ── Bite Right Menu Data ──────────────────────────
+// ── FAB toggle ───────────────────────────────────────
+function toggleFab() {
+  document.getElementById('fabMain').classList.toggle('open');
+  document.getElementById('fabOptions').classList.toggle('open');
+}
+document.addEventListener('click', function (e) {
+  if (!document.querySelector('.fab-wrap').contains(e.target)) {
+    document.getElementById('fabMain').classList.remove('open');
+    document.getElementById('fabOptions').classList.remove('open');
+  }
+});
+
+// ── Reservation form → WhatsApp ──────────────────────
+function handleReservation() {
+  const name   = document.getElementById('rName').value;
+  const phone  = document.getElementById('rPhone').value;
+  const guests = document.getElementById('rGuests').value;
+  const date   = document.getElementById('rDate').value;
+  const time   = document.getElementById('rTime').value;
+  const notes  = document.getElementById('rNotes').value;
+
+  if (!name || !phone || !date) { alert('Please fill in your Name, Phone and Date.'); return; }
+  const msg = `*New Table Reservation (Bite Right)*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Guests:* ${guests}\n*Date:* ${date}\n*Time:* ${time}\n*Requests:* ${notes || 'None'}`;
+  window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ── Scroll-reveal observer ───────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ═══════════════════════════════════════════════════
+// BITE RIGHT MENU DATA
+// ═══════════════════════════════════════════════════
 const MENU = {
 
   starters: {
     title: 'Salads & Starters',
     sub: 'Fresh starters and dips to kick things off',
     items: [
-      { name:'Beef sausage with chips',        desc:'Served with chips',                                      price:20000, img:'assets/menuimages/singles/Beef Sausage (With Chips).webp' },
-      { name:'Chicken sausage with chips',     desc:'Served with chips',                                      price:20000, img:'assets/menuimages/singles/Chicken Sausage (With Chips).webp' },
-      { name:'Hummus',                         desc:'Classic creamy hummus dip',                              price:17000, img:'assets/menuimages/singles/Hummus.webp' },
-      { name:'Falafel',                        desc:'Crispy golden falafel balls',                            price:22000, img:'assets/menuimages/singles/Falafel.webp' },
-      { name:'Fattoush',                       desc:'Fresh fattoush salad',                                   price:17000, img:'assets/menuimages/singles/Fattoush.webp' },
-      { name:'Green salad',                    desc:'Garden fresh green salad',                               price:15000, img:'assets/menuimages/singles/Green Salad.webp' },
-      { name:'Baba Ganoush',                   desc:'Smoky roasted eggplant dip',                             price:17000, img:'assets/menuimages/singles/Baba Ganoush.webp' },
-      { name:'Tahina',                         desc:'Sesame tahini sauce',                                    price:5000,  img:'assets/menuimages/singles/Tahina.webp' },
-      { name:'Garlic sauce',                   desc:'Creamy garlic sauce',                                    price:5000,  img:'assets/menuimages/singles/Garlic Sauce.webp' },
-      { name:'Chilli sauce',                   desc:'Spicy chilli sauce',                                     price:2000,  img:'assets/menuimages/singles/Chilli Sauce.webp' },
-      { name:'Pickles',                        desc:'Mixed pickles',                                          price:5000,  img:'assets/menuimages/singles/Pickles.webp' },
+      { name:'Beef sausage with chips',     desc:'Served with chips',                      price:20000, img:'assets/menuimages/singles/Beef Sausage (With Chips).webp' },
+      { name:'Chicken sausage with chips',  desc:'Served with chips',                      price:20000, img:'assets/menuimages/singles/Chicken Sausage (With Chips).webp' },
+      { name:'Hummus',                      desc:'Classic creamy hummus dip',              price:17000, img:'assets/menuimages/singles/Hummus.webp' },
+      { name:'Falafel',                     desc:'Crispy golden falafel balls',            price:22000, img:'assets/menuimages/singles/Falafel.webp' },
+      { name:'Fattoush',                    desc:'Fresh fattoush salad',                   price:17000, img:'assets/menuimages/singles/Fattoush.webp' },
+      { name:'Green salad',                 desc:'Garden fresh green salad',               price:15000, img:'assets/menuimages/singles/Green Salad.webp' },
+      { name:'Baba Ganoush',                desc:'Smoky roasted eggplant dip',             price:17000, img:'assets/menuimages/singles/Baba Ganoush.webp' },
+      { name:'Tahina',                      desc:'Sesame tahini sauce',                    price:5000,  img:'assets/menuimages/singles/Tahina.webp' },
+      { name:'Garlic sauce',                desc:'Creamy garlic sauce',                    price:5000,  img:'assets/menuimages/singles/Garlic Sauce.webp' },
+      { name:'Chilli sauce',                desc:'Spicy chilli sauce',                     price:2000,  img:'assets/menuimages/singles/Chilli Sauce.webp' },
+      { name:'Pickles',                     desc:'Mixed pickles',                          price:5000,  img:'assets/menuimages/singles/Pickles.webp' },
     ]
   },
 
@@ -479,9 +583,9 @@ const MENU = {
     title: 'Soup',
     sub: 'Warm, hearty soups made fresh daily',
     items: [
-      { name:'Soup',                           desc:'Classic warm soup',                                      price:5000,  img:'assets/menuimages/category/soup.webp' },
-      { name:'Soup with beans',                desc:'Hearty soup with beans',                                 price:8000,  img:'assets/menuimages/singles/soup with beans.webp' },
-      { name:'Soup kewala / Mulokoni',         desc:'Traditional kewala / mulokoni soup',                     price:15000, img:'assets/menuimages/singles/soup molokoni.webp' },
+      { name:'Soup',                  desc:'Classic warm soup',                         price:5000,  img:'assets/menuimages/category/soup.webp' },
+      { name:'Soup with beans',       desc:'Hearty soup with beans',                    price:8000,  img:'assets/menuimages/singles/soup with beans.webp' },
+      { name:'Soup kewala / Mulokoni',desc:'Traditional kewala / mulokoni soup',        price:15000, img:'assets/menuimages/singles/soup molokoni.webp' },
     ]
   },
 
@@ -489,51 +593,51 @@ const MENU = {
     title: 'Wraps',
     sub: 'Freshly rolled wraps and subs',
     items: [
-      { name:'Chicken wrap',    desc:'Garlic sauce, lettuce, tomatoes, pickles, chips',                       price:14000, img:'assets/menuimages/singles/Chicken Wrap.webp' },
-      { name:'Beef wrap',       desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',            price:14000, img:'assets/menuimages/singles/Beef Wrap.webp' },
-      { name:'Mixed wrap',      desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',            price:16000, img:'assets/menuimages/singles/Mixed Wrap.webp' },
-      { name:'Crisp wrap',      desc:'Garlic sauce, pickles, chips',                                          price:14000, img:'assets/menuimages/category/Wraps.webp' },
-      { name:'Falafel wrap',    desc:'Tomatoes, lettuce, tahina, parsley',                                    price:14000, img:'assets/menuimages/singles/Falafel Wrap.webp' },
-      { name:'Chips wrap',      desc:'Chips, tomatoes, onions, lettuce, pickles, ketchup',                    price:10000, img:'assets/menuimages/singles/chips Wrap.webp' },
-      { name:'Kufta wrap',      desc:'Kebab, lettuce, tomatoes, onions, tahina and parsley',                  price:14000, img:'assets/menuimages/category/Wraps.webp' },
-      { name:'Toowuk wrap',     desc:'Garlic sauce, lettuce, pickles and chips',                              price:16000, img:'assets/menuimages/category/Wraps.webp' },
-      { name:'Bite Right wrap', desc:'Large wrap of your choice with chips and salad',                        price:20000, img:'assets/menuimages/singles/Bite Wrap.webp' },
-      { name:'Liver sub',       desc:'Liver sub sandwich',                                                    price:14000, img:'assets/menuimages/category/Burgers and Subs.webp' },
-      { name:'Fish sub',        desc:'Roasted fish cubes, lettuce, tarter sauce, pickles, chips',             price:18000, img:'assets/menuimages/singles/Fish Wrap.webp' },
+      { name:'Chicken wrap',    desc:'Garlic sauce, lettuce, tomatoes, pickles, chips',                   price:14000, img:'assets/menuimages/singles/Chicken Wrap.webp' },
+      { name:'Beef wrap',       desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',        price:14000, img:'assets/menuimages/singles/Beef Wrap.webp' },
+      { name:'Mixed wrap',      desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',        price:16000, img:'assets/menuimages/singles/Mixed Wrap.webp' },
+      { name:'Crisp wrap',      desc:'Garlic sauce, pickles, chips',                                      price:14000, img:'assets/menuimages/category/Wraps.webp' },
+      { name:'Falafel wrap',    desc:'Tomatoes, lettuce, tahina, parsley',                                price:14000, img:'assets/menuimages/singles/Falafel Wrap.webp' },
+      { name:'Chips wrap',      desc:'Chips, tomatoes, onions, lettuce, pickles, ketchup',                price:10000, img:'assets/menuimages/singles/chips Wrap.webp' },
+      { name:'Kufta wrap',      desc:'Kebab, lettuce, tomatoes, onions, tahina, parsley',                 price:14000, img:'assets/menuimages/category/Wraps.webp' },
+      { name:'Toowuk wrap',     desc:'Garlic sauce, lettuce, pickles and chips',                          price:16000, img:'assets/menuimages/category/Wraps.webp' },
+      { name:'Bite Right wrap', desc:'Large wrap of your choice with chips and salad',                    price:20000, img:'assets/menuimages/singles/Bite Wrap.webp' },
+      { name:'Liver sub',       desc:'Liver sub sandwich',                                                price:14000, img:'assets/menuimages/category/Burgers and Subs.webp' },
+      { name:'Fish sub',        desc:'Roasted fish cubes, lettuce, tarter sauce, pickles, chips',         price:18000, img:'assets/menuimages/singles/Fish Wrap.webp' },
     ]
   },
 
   platters: {
     title: 'Platters',
-    sub: 'Full plates loaded and ready to go',
+    sub: 'Full plates — loaded, grilled, and ready',
     items: [
-      { name:'Chicken shawarma platter',            desc:'Chips, salad, garlic, chilli, pita bread',                    price:33000, img:'assets/menuimages/singles/Chicken Platter.webp' },
-      { name:'Beef shawarma platter',               desc:'Tahina, salad, chilli, chips, pita bread',                    price:32000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Chicken shawarma salad',              desc:'Tahina, garlic sauce, salad',                                 price:28000, img:'assets/menuimages/singles/Chicken Shawarma Salad.webp' },
-      { name:'Hummus platter with Shawarma',        desc:'Chicken or beef shawarma, salad, pita bread',                 price:34000, img:'assets/menuimages/singles/Hummus Platter With Shawarma.webp' },
-      { name:'Mixed shawarma platter',              desc:'Chicken & beef, tahina, garlic, chilli, chips, pita bread',   price:36000, img:'assets/menuimages/singles/Mixed Platter.webp' },
-      { name:'Eggplant platter with shawarma',      desc:'Salad, pita bread, garlic sauce, eggplant, chips',            price:35000, img:'assets/menuimages/singles/Eggplant Platter With Shawarma.webp' },
-      { name:'Chicken strip platter',               desc:'Salad, chips, garlic sauce, chilli',                          price:25000, img:'assets/menuimages/singles/Chicken Strip Platter.webp' },
-      { name:'Chicken wings platter',               desc:'Salad, chips, garlic sauce, chilli',                          price:24000, img:'assets/menuimages/singles/Chicken Wings Platter.webp' },
-      { name:'Fish platter',                        desc:'Salad, chips, garlic sauce, chilli',                          price:30000, img:'assets/menuimages/category/Salads and platers.webp' },
-      { name:'Grilled whole chicken',               desc:'Salad, chips, garlic sauce, chilli',                          price:48000, img:'assets/menuimages/singles/Chicken.webp' },
-      { name:'Grilled half chicken',                desc:'Salad, chips, garlic sauce, chilli',                          price:27000, img:'assets/menuimages/singles/Chicken.webp' },
-      { name:'Kufta plate',                         desc:'Kufta served with sides',                                     price:24000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Liver platter',                       desc:'Liver served with sides',                                     price:24000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Plate of the day — chicken',          desc:'Daily fresh chicken plate',                                   price:20000, img:'assets/menuimages/singles/Chicken Platter.webp' },
-      { name:'Plate of the day — beef',             desc:'Daily fresh beef plate',                                      price:22000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Kewala plate / Mulokoni',             desc:'Traditional kewala / mulokoni plate',                         price:35000, img:'assets/menuimages/category/Salads and platers.webp' },
-      { name:'Grilled whole chicken with rice',     desc:'Grilled whole chicken served with rice',                      price:60000, img:'assets/menuimages/singles/Chicken.webp' },
-      { name:'Grilled half chicken with rice',      desc:'Grilled half chicken served with rice',                       price:30000, img:'assets/menuimages/singles/Chicken.webp' },
-      { name:'Shawarma with rice',                  desc:'Shawarma served with rice',                                   price:26000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Egyptian breakfast',                  desc:'Traditional Egyptian breakfast plate',                        price:15000, img:'assets/menuimages/category/Salads and platers.webp' },
-      { name:'1kg Liver',                           desc:'Full kilo of fresh grilled liver',                            price:65000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Half kg Liver',                       desc:'Half kilo of fresh grilled liver',                            price:35000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'1kg Kufta',                           desc:'Full kilo of kufta',                                          price:65000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Half kg Kufta',                       desc:'Half kilo of kufta',                                          price:35000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Grilled fish fillet with salad',      desc:'Grilled fish fillet served with salad',                       price:20000, img:'assets/menuimages/category/Salads and platers.webp' },
-      { name:'Seek toowuk platter',                 desc:'Seek toowuk served with sides',                               price:24000, img:'assets/menuimages/singles/Chicken Platter.webp' },
-      { name:'Fish finger',                         desc:'Crispy golden fish fingers',                                  price:20000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'Chicken shawarma platter',        desc:'Chips, salad, garlic, chilli, pita bread',                    price:33000, img:'assets/menuimages/singles/Chicken Platter.webp' },
+      { name:'Beef shawarma platter',           desc:'Tahina, salad, chilli, chips, pita bread',                    price:32000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Chicken shawarma salad',          desc:'Tahina, garlic sauce, salad',                                 price:28000, img:'assets/menuimages/singles/Chicken Shawarma Salad.webp' },
+      { name:'Hummus platter with Shawarma',    desc:'Chicken or beef shawarma, salad, pita bread',                 price:34000, img:'assets/menuimages/singles/Hummus Platter With Shawarma.webp' },
+      { name:'Mixed shawarma platter',          desc:'Chicken & beef, tahina, garlic, chilli, chips, pita bread',   price:36000, img:'assets/menuimages/singles/Mixed Platter.webp' },
+      { name:'Eggplant platter with shawarma',  desc:'Salad, pita bread, garlic sauce, eggplant, chips',            price:35000, img:'assets/menuimages/singles/Eggplant Platter With Shawarma.webp' },
+      { name:'Chicken strip platter',           desc:'Salad, chips, garlic sauce, chilli',                          price:25000, img:'assets/menuimages/singles/Chicken Strip Platter.webp' },
+      { name:'Chicken wings platter',           desc:'Salad, chips, garlic sauce, chilli',                          price:24000, img:'assets/menuimages/singles/Chicken Wings Platter.webp' },
+      { name:'Fish platter',                    desc:'Salad, chips, garlic sauce, chilli',                          price:30000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'Grilled whole chicken',           desc:'Salad, chips, garlic sauce, chilli',                          price:48000, img:'assets/menuimages/singles/Chicken.webp' },
+      { name:'Grilled half chicken',            desc:'Salad, chips, garlic sauce, chilli',                          price:27000, img:'assets/menuimages/singles/Chicken.webp' },
+      { name:'Kufta plate',                     desc:'Kufta served with sides',                                     price:24000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Liver platter',                   desc:'Liver served with sides',                                     price:24000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Plate of the day — chicken',      desc:'Daily fresh chicken plate',                                   price:20000, img:'assets/menuimages/singles/Chicken Platter.webp' },
+      { name:'Plate of the day — beef',         desc:'Daily fresh beef plate',                                      price:22000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Kewala plate / Mulokoni',         desc:'Traditional kewala / mulokoni plate',                         price:35000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'Grilled whole chicken with rice', desc:'Grilled whole chicken served with rice',                      price:60000, img:'assets/menuimages/singles/Chicken.webp' },
+      { name:'Grilled half chicken with rice',  desc:'Grilled half chicken served with rice',                       price:30000, img:'assets/menuimages/singles/Chicken.webp' },
+      { name:'Shawarma with rice',              desc:'Shawarma served with rice',                                   price:26000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Egyptian breakfast',              desc:'Traditional Egyptian breakfast plate',                        price:15000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'1kg Liver',                       desc:'Full kilo of fresh grilled liver',                            price:65000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Half kg Liver',                   desc:'Half kilo of fresh grilled liver',                            price:35000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'1kg Kufta',                       desc:'Full kilo of kufta',                                          price:65000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Half kg Kufta',                   desc:'Half kilo of kufta',                                          price:35000, img:'assets/menuimages/singles/Beef Platter.webp' },
+      { name:'Grilled fish fillet with salad',  desc:'Grilled fish fillet served with salad',                       price:20000, img:'assets/menuimages/category/Salads and platers.webp' },
+      { name:'Seek toowuk platter',             desc:'Seek toowuk with sides',                                      price:24000, img:'assets/menuimages/singles/Chicken Platter.webp' },
+      { name:'Fish finger',                     desc:'Crispy golden fish fingers',                                  price:20000, img:'assets/menuimages/category/Salads and platers.webp' },
     ]
   },
 
@@ -541,24 +645,37 @@ const MENU = {
     title: 'Burgers',
     sub: 'Handcrafted burgers made fresh daily',
     items: [
-      { name:'Beef burger',           desc:'Classic beef burger',                  price:18000, img:'assets/menuimages/singles/Beef Burger.webp' },
-      { name:'Cheese burger',         desc:'Beef burger loaded with cheese',       price:20000, img:'assets/menuimages/singles/Cheese Burger.webp' },
-      { name:'Chicken burger',        desc:'Crispy chicken burger',                price:18000, img:'assets/menuimages/singles/Chicken Burger.webp' },
-      { name:'Beef burger with eggs', desc:'Beef burger topped with a fried egg',  price:22000, img:'assets/menuimages/category/Burgers and Subs.webp' },
+      { name:'Beef burger',            desc:'Classic beef burger',                   price:18000, img:'assets/menuimages/singles/Beef Burger.webp' },
+      { name:'Cheese burger',          desc:'Beef burger loaded with cheese',        price:20000, img:'assets/menuimages/singles/Cheese Burger.webp' },
+      { name:'Chicken burger',         desc:'Crispy chicken burger',                 price:18000, img:'assets/menuimages/singles/Chicken Burger.webp' },
+      { name:'Beef burger with eggs',  desc:'Beef burger topped with a fried egg',   price:22000, img:'assets/menuimages/category/Burgers and Subs.webp' },
     ]
   },
 
   drinks: {
     title: 'Juice & Drinks',
-    sub: 'Fresh-pressed juices and cold drinks',
+    sub: 'Fresh-pressed juices, fruits & cold drinks',
     items: [
-      { name:'Orange / Pineapple / Passion juice', desc:'Fresh-pressed fruit juice — choose your flavour', price:10000, img:'assets/menuimages/category/juice.webp' },
-      { name:'Avocado juice',                      desc:'Creamy fresh avocado juice',                      price:15000, img:'assets/menuimages/category/juice.webp' },
-      { name:'Cocktail',                           desc:'Mixed cocktail drink',                             price:12000, img:'assets/menuimages/category/juice.webp' },
+      // — Juices (each independent) —
+      { name:'Orange juice',     desc:'Fresh-pressed orange juice',                      price:10000, img:'assets/menuimages/singles/orange juice.jpg' },
+      { name:'Pineapple juice',  desc:'Fresh-pressed pineapple juice',                   price:10000, img:'assets/menuimages/singles/Pineapple juice.avif' },
+      { name:'Passion juice',    desc:'Fresh-pressed passion fruit juice',               price:10000, img:'assets/menuimages/singles/Passion juice.jpg' },
+      { name:'Avocado juice',    desc:'Creamy fresh avocado juice',                      price:15000, img:'assets/menuimages/singles/Avocado juice.avif' },
+      { name:'Cocktail',         desc:'Mixed cocktail drink',                            price:12000, img:'assets/menuimages/singles/Cocktail.avif' },
+      // — Fresh fruits (available upon request) —
+      { name:'Oranges',          desc:'Fresh whole oranges — available upon request',    price:10000, img:'assets/menuimages/singles/orange juice.jpg' },
+      { name:'Mangoes',          desc:'Fresh ripe mangoes — available upon request',     price:10000, img:'assets/menuimages/singles/Mangoes.jpg' },
+      { name:'Watermelon',       desc:'Fresh cut watermelon — available upon request',   price:10000, img:'assets/menuimages/singles/Watermelon.avif' },
+      { name:'Passion fruit',    desc:'Fresh passion fruit — available upon request',    price:10000, img:'assets/menuimages/singles/Passion fruit.webp' },
+      { name:'Fruit salad',      desc:'Mixed fresh fruit salad — available upon request',price:10000, img:'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&w=160&h=160&fit=crop' },
     ]
   }
 
 };
+
+// ═══════════════════════════════════════════════════
+// CATEGORY MODAL
+// ═══════════════════════════════════════════════════
 
 function openCategory(key) {
   const cat = MENU[key];
@@ -568,8 +685,8 @@ function openCategory(key) {
   document.getElementById('catItems').innerHTML   = cat.items.map(item => `
     <div class="cat-item">
       <div class="cat-item-img">
-        <img src="${item.img}" alt="${item.name} at Bite Right Muyenga" loading="lazy"
-             onerror="this.src='assets/Biteright.jpeg'">
+        <img src="${item.img}" alt="${item.name} at Bite Right"
+             loading="lazy" onerror="this.src='assets/Biteright.jpeg'">
       </div>
       <div class="cat-item-body">
         <div class="cat-item-info">
@@ -578,11 +695,18 @@ function openCategory(key) {
         </div>
         <div class="cat-item-right">
           <span class="cat-price">UGX ${item.price.toLocaleString()}</span>
-          <button class="menu-btn" onclick="orderItem('${item.name.replace(/'/g,"\\'")}',${item.price})">Order</button>
+          <button class="menu-btn"
+            onclick="startOrder('${item.name.replace(/'/g,"\\'")}', ${item.price})">
+            Order
+          </button>
         </div>
       </div>
     </div>
   `).join('');
+
+  // Push a history state so the browser back button can close the modal
+  history.pushState({ modal: 'category' }, '');
+
   document.getElementById('categoryOverlay').classList.add('open');
   document.getElementById('categoryModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -594,45 +718,182 @@ function closeCategory() {
   document.body.style.overflow = '';
 }
 
-function orderItem(name, price) {
-  const msg =
-    `Hi Bite Right! 👋\n\n` +
-    `I'd like to order:\n\n` +
-    `*${name}* — UGX ${price.toLocaleString()}\n\n` +
-    `Please confirm availability and how I can pay. Thank you! 🙏`;
-  window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
-}
+// ── Back button closes the category modal ────────────
+window.addEventListener('popstate', function (e) {
+  if (document.getElementById('categoryModal').classList.contains('open')) {
+    closeCategory();
+  } else if (document.getElementById('locModal').classList.contains('open') ||
+             document.getElementById('orderFormModal').classList.contains('open')) {
+    cancelPreOrder();
+  }
+});
 
-// Close modal on Escape key
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCategory(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeCategory();
+    cancelPreOrder();
+  }
+});
 
-function toggleFab(){document.getElementById('fabMain').classList.toggle('open');document.getElementById('fabOptions').classList.toggle('open')}
+// ═══════════════════════════════════════════════════
+// PRE-ORDER FLOW
+// Triggered when customer taps "Order" on an item.
+// Step 1 → Location check (must be within Greater Kampala, ~40km radius)
+// Step 2 → Customer form (name + phone)
+// Step 3 → WhatsApp send
+// ═══════════════════════════════════════════════════
 
-function handleReservation() {
-  const name = document.getElementById('rName').value;
-  const phone = document.getElementById('rPhone').value;
-  const guests = document.getElementById('rGuests').value;
-  const date = document.getElementById('rDate').value;
-  const time = document.getElementById('rTime').value;
-  const notes = document.getElementById('rNotes').value;
+// Kampala city centre coordinates
+const KAMPALA_LAT  = 0.3476;
+const KAMPALA_LNG  = 32.5825;
+const MAX_RADIUS_KM = 40; // Greater Kampala delivery radius
 
-  if(!name || !phone || !date) {
-    alert('Please fill in your Name, Phone and Date.');
+let _pendingItem  = null;
+let _pendingPrice = 0;
+let _customerLat  = null;
+let _customerLng  = null;
+
+function startOrder(itemName, itemPrice) {
+  _pendingItem  = itemName;
+  _pendingPrice = itemPrice;
+  _customerLat  = null;
+  _customerLng  = null;
+
+  // Push history state so back button can cancel
+  history.pushState({ modal: 'preorder' }, '');
+
+  showLocModal('Checking your location…', 'Please allow location access to continue.');
+  document.getElementById('locRetryBtn').style.display = 'none';
+
+  if (!navigator.geolocation) {
+    showLocModal(
+      'Location not supported',
+      'Your browser does not support location services. Please use a modern browser.',
+      true
+    );
     return;
   }
 
-  const msg = `*New Table Reservation (Bite Right)*\n\n` +
-              `*Name:* ${name}\n*Phone:* ${phone}\n` +
-              `*Guests:* ${guests}\n*Date:* ${date}\n` +
-              `*Time:* ${time}\n*Requests:* ${notes || 'None'}`;
-
-  const whatsappUrl = `https://wa.me/256760492621?text=${encodeURIComponent(msg)}`;
-  window.open(whatsappUrl, '_blank');
+  navigator.geolocation.getCurrentPosition(
+    onLocationSuccess,
+    onLocationError,
+    { timeout: 12000, maximumAge: 60000 }
+  );
 }
 
-document.addEventListener('click',function(e){if(!document.querySelector('.fab-wrap').contains(e.target)){document.getElementById('fabMain').classList.remove('open');document.getElementById('fabOptions').classList.remove('open')}});
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function showLocModal(title, msg, showRetry) {
+  document.getElementById('locModal').querySelector('.pre-title').textContent = title;
+  document.getElementById('locMsg').textContent = msg;
+  document.getElementById('locRetryBtn').style.display = showRetry ? 'inline-block' : 'none';
+  document.getElementById('locOverlay').classList.add('open');
+  document.getElementById('locModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function hideLocModal() {
+  document.getElementById('locOverlay').classList.remove('open');
+  document.getElementById('locModal').classList.remove('open');
+}
+
+function retryLocation() {
+  showLocModal('Checking your location…', 'Trying again…');
+  document.getElementById('locRetryBtn').style.display = 'none';
+  navigator.geolocation.getCurrentPosition(
+    onLocationSuccess,
+    onLocationError,
+    { timeout: 12000, maximumAge: 0 }
+  );
+}
+
+function onLocationSuccess(pos) {
+  _customerLat = pos.coords.latitude;
+  _customerLng = pos.coords.longitude;
+  const dist = haversineKm(_customerLat, _customerLng, KAMPALA_LAT, KAMPALA_LNG);
+
+  if (dist > MAX_RADIUS_KM) {
+    showLocModal(
+      '😕 Outside delivery area',
+      `You appear to be ${Math.round(dist)} km from Kampala. Bite Right currently only delivers within Greater Kampala (within ${MAX_RADIUS_KM} km). Please visit us in Muyenga!`,
+      false
+    );
+    return;
+  }
+
+  // Within range — proceed to order form
+  hideLocModal();
+  showOrderForm();
+}
+
+function onLocationError(err) {
+  let msg = 'Could not get your location. ';
+  if (err.code === 1)      msg += 'Location access was denied. Please enable it in your browser settings.';
+  else if (err.code === 2) msg += 'Location unavailable. Please try again.';
+  else if (err.code === 3) msg += 'Location request timed out. Please try again.';
+  showLocModal('Location Error', msg, true);
+}
+
+function haversineKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function showOrderForm() {
+  document.getElementById('previewItem').textContent =
+    `${_pendingItem}  —  UGX ${_pendingPrice.toLocaleString()}`;
+  document.getElementById('orderName').value  = '';
+  document.getElementById('orderPhone').value = '';
+  document.getElementById('orderFormOverlay').classList.add('open');
+  document.getElementById('orderFormModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('orderName').focus(), 350);
+}
+
+function hideOrderForm() {
+  document.getElementById('orderFormOverlay').classList.remove('open');
+  document.getElementById('orderFormModal').classList.remove('open');
+}
+
+function cancelPreOrder() {
+  hideLocModal();
+  hideOrderForm();
+  document.body.style.overflow = 'hidden'; // keep category modal open
+}
+
+function submitOrder() {
+  const name  = document.getElementById('orderName').value.trim();
+  const phone = document.getElementById('orderPhone').value.trim();
+
+  if (!name || !phone) {
+    alert('Please enter both your name and phone number.');
+    return;
+  }
+
+  let locationDetail = 'Kampala area';
+  if (_customerLat !== null && _customerLng !== null) {
+    const mapsLink = `https://www.google.com/maps?q=${_customerLat.toFixed(5)},${_customerLng.toFixed(5)}`;
+    locationDetail = `${mapsLink} (approx. ${Math.round(haversineKm(_customerLat, _customerLng, KAMPALA_LAT, KAMPALA_LNG))} km from Kampala centre)`;
+  }
+
+  const msg =
+    `🛍️ *New Order — Bite Right Muyenga*\n\n` +
+    `*Item:* ${_pendingItem}\n` +
+    `*Price:* UGX ${_pendingPrice.toLocaleString()}\n\n` +
+    `*Customer Name:* ${name}\n` +
+    `*Customer Phone:* ${phone}\n` +
+    `*Location:* ${locationDetail}\n\n` +
+    `Please confirm availability and payment. Thank you! 🙏`;
+
+  hideOrderForm();
+  document.body.style.overflow = '';
+
+  window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
+}
 </script>
+
 </body>
 </html>
