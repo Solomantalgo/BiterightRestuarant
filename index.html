@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bite Right - Burgers, Wraps & Platters in Muyenga, Kampala</title>
+<title>Bite Right | Burgers, Wraps & Platters – Muyenga, Kampala</title>
 <meta name="description" content="Bite Right is Muyenga's favourite spot for burgers, shawarma wraps, platters and more. Order on WhatsApp or visit us near TMT Supermarket, Muyenga, Kampala.">
-<meta name="keywords" content="Bite Right Muyenga, burgers Kampala, shawarma Kampala, wraps Uganda, food delivery Muyenga, best burgers Uganda, platters Kampala">
+<meta name="keywords" content="Bite Right Muyenga, burgers Kampala, shawarma Kampala, wraps Uganda, food delivery Muyenga">
 <meta name="google-site-verification" content="google07116ad258bac369">
 <!-- Open Graph Tags -->
-<meta property="og:title" content="Bite Right - Burgers, Wraps & Platters in Muyenga">
+<meta property="og:title" content="Bite Right | Burgers, Wraps & Platters – Muyenga">
 <meta property="og:description" content="Burgers, shawarma wraps, platters and more in Muyenga, Kampala. Order via WhatsApp.">
 <meta property="og:image" content="assets/Biteright.jpeg">
-<meta property="og:url" content="https://biteright-restuarant.vercel.app/">
+<meta property="og:url" content="https://solomantalgo.online">
 <link rel="icon" type="image/png" href="assets/Biteright.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -138,7 +138,6 @@ footer strong{color:var(--amber2)}
   right: 1.2rem;
   top: 50%;
   bottom: auto;
-  transform: translateY(-50%);
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -179,7 +178,7 @@ footer strong{color:var(--amber2)}
   nav{padding:0.9rem 1.2rem}
   .info-strip{gap:1.2rem}
 }
-/* ── Category Modal ────────────────────────────────── */
+/* ── Category Modal ──────────────────────────────── */
 .cat-overlay{position:fixed;inset:0;background:rgba(15,13,10,0.85);z-index:400;opacity:0;pointer-events:none;transition:opacity 0.3s}
 .cat-overlay.open{opacity:1;pointer-events:all}
 .cat-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-44%);z-index:401;background:var(--dark2);border:1px solid var(--border);border-radius:22px;width:min(96vw,700px);max-height:84vh;overflow-y:auto;padding:2.5rem 2rem 2rem;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.3s}
@@ -198,7 +197,7 @@ footer strong{color:var(--amber2)}
 .cat-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;flex-shrink:0}
 .cat-price{font-family:var(--font-h);font-size:1.05rem;color:var(--amber2);font-weight:600;white-space:nowrap}
 
-/* ── Pre-Order modals (location + form) ────────────── */
+/* ── Pre-Order Modals ────────────────────────────── */
 .pre-overlay{position:fixed;inset:0;background:rgba(15,13,10,0.88);z-index:500;opacity:0;pointer-events:none;transition:opacity 0.3s}
 .pre-overlay.open{opacity:1;pointer-events:all}
 .pre-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-44%);z-index:501;background:var(--dark2);border:1px solid var(--border);border-radius:22px;width:min(94vw,460px);padding:2.4rem 2rem 2rem;text-align:center;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.3s}
@@ -269,86 +268,9 @@ footer strong{color:var(--amber2)}
       <h2 class="section-title">Fresh, Bold & Made Daily</h2>
       <p class="section-sub">Every dish is prepared fresh each morning using locally sourced ingredients.</p>
     </div>
-    <div class="menu-grid">
-      <div class="menu-card reveal">
-        <div class="menu-img">
-          <img src="assets/menuimages/category/Salads and platers.webp" alt="Salads & Starters at Bite Right Muyenga" loading="lazy">
-        </div>
-        <div class="menu-body">
-          <h3>Salads & Starters</h3>
-          <p>Fresh starters and dips to kick things off</p>
-          <div class="menu-footer">
-            <span class="menu-price">From UGX 2,000</span>
-            <button class="menu-btn" onclick="openCategory('starters')">Order Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-img">
-          <img src="assets/menuimages/category/soup.webp" alt="Soup at Bite Right Muyenga" loading="lazy">
-        </div>
-        <div class="menu-body">
-          <h3>Soup</h3>
-          <p>Warm, hearty soups made fresh daily</p>
-          <div class="menu-footer">
-            <span class="menu-price">From UGX 5,000</span>
-            <button class="menu-btn" onclick="openCategory('soup')">Order Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-img">
-          <img src="assets/menuimages/category/Wraps.webp" alt="Wraps at Bite Right Muyenga" loading="lazy">
-          <span class="menu-badge">POPULAR</span>
-        </div>
-        <div class="menu-body">
-          <h3>Wraps</h3>
-          <p>Freshly rolled wraps and subs</p>
-          <div class="menu-footer">
-            <span class="menu-price">From UGX 10,000</span>
-            <button class="menu-btn" onclick="openCategory('wraps')">Order Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-img">
-          <img src="assets/menuimages/singles/Mixed Platter.webp" alt="Platters at Bite Right Muyenga" loading="lazy">
-          <span class="menu-badge">SIGNATURE</span>
-        </div>
-        <div class="menu-body">
-          <h3>Platters</h3>
-          <p>Full plates — loaded, grilled, and ready</p>
-          <div class="menu-footer">
-            <span class="menu-price">From UGX 15,000</span>
-            <button class="menu-btn" onclick="openCategory('platters')">Order Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-img">
-          <img src="assets/menuimages/category/Burgers and Subs.webp" alt="Burgers at Bite Right Muyenga" loading="lazy">
-        </div>
-        <div class="menu-body">
-          <h3>Burgers</h3>
-          <p>Handcrafted burgers made fresh daily</p>
-          <div class="menu-footer">
-            <span class="menu-price">From UGX 18,000</span>
-            <button class="menu-btn" onclick="openCategory('burgers')">Order Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-img">
-          <img src="assets/menuimages/category/juice.webp" alt="Drinks at Bite Right Muyenga" loading="lazy">
-        </div>
-        <div class="menu-body">
-          <h3>Juice & Drinks</h3>
-          <p>Fresh-pressed juices, fruits & cold drinks</p>
-          <div class="menu-footer">
-            <span class="menu-price">From UGX 10,000</span>
-            <button class="menu-btn" onclick="openCategory('drinks')">Order Now</button>
-          </div>
-        </div>
+    <div class="menu-grid" id="menuGrid">
+      <div class="menu-loading" id="menuLoading">
+        <p style="text-align:center;color:rgba(255,255,255,0.35);font-size:0.9rem;padding:3rem 0;grid-column:1/-1">Loading menu…</p>
       </div>
     </div>
   </div>
@@ -403,9 +325,12 @@ footer strong{color:var(--amber2)}
       <h2 class="section-title dark-title">What People Are Saying</h2>
     </div>
     <div class="testi-grid">
-      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><blockquote>"The platter here is the best in Kampala — no debate. I come every Friday with my friends. Great service and amazing vibes."</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3807571/pexels-photo-3807571.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Moses Ssentongo"></div><div><div class="testi-name">Moses Ssentongo</div><div class="testi-loc">Ntinda, Kampala</div></div></div></div>
-      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><blockquote>"We used them for a small party, everything arrived hot and on time. Their burgers are massive and so juicy. Highly recommended!"</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3782235/pexels-photo-3782235.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Patricia Nakimuli"></div><div><div class="testi-name">Patricia Nakimuli</div><div class="testi-loc">Corporate Client</div></div></div></div>
-      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><blockquote>"Ordered delivery through WhatsApp. Food arrived in 30 minutes, still hot and packed neatly. Will definitely order again!"</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Allan Kirabo"></div><div><div class="testi-name">Allan Kirabo</div><div class="testi-loc">Bukoto, Kampala</div></div></div></div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★ <svg width="14" height="14" viewBox="0 0 24 24" style="margin-left:5px;vertical-align:middle;opacity:0.6"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"/></svg></div><blockquote>"The platter here is the best in Kampala — no debate. I come every Friday with my friends. Great service and amazing vibes."</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3807571/pexels-photo-3807571.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Moses Ssentongo"></div><div><div class="testi-name">Moses Ssentongo</div><div class="testi-loc">Ntinda, Kampala</div></div></div></div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★ <svg width="14" height="14" viewBox="0 0 24 24" style="margin-left:5px;vertical-align:middle;opacity:0.6"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"/></svg></div><blockquote>"We used them for a small party, everything arrived hot and on time. Their burgers are massive and so juicy. Highly recommended!"</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3782235/pexels-photo-3782235.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Patricia Nakimuli"></div><div><div class="testi-name">Patricia Nakimuli</div><div class="testi-loc">Corporate Client</div></div></div></div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★ <svg width="14" height="14" viewBox="0 0 24 24" style="margin-left:5px;vertical-align:middle;opacity:0.6"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"/></svg></div><blockquote>"Ordered delivery through WhatsApp. Food arrived in 30 minutes, still hot and packed neatly. Will definitely order again!"</blockquote><div class="testi-author"><div class="testi-av"><img src="https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop" alt="Bite Right happy customer - Allan Kirabo"></div><div><div class="testi-name">Allan Kirabo</div><div class="testi-loc">Bukoto, Kampala</div></div></div></div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:3rem">
+      <a href="https://search.google.com/local/writereview?placeid=ChIJo7p7-W7m7hcRFyZzXv_vT8A" target="_blank" class="btn-ghost" style="font-size:0.88rem;padding:0.7rem 1.8rem">Leave a Review on Google</a>
     </div>
   </div>
 </section>
@@ -451,7 +376,7 @@ footer strong{color:var(--amber2)}
 <footer>
   <div class="footer-inner">
     <div><div class="footer-brand">Bite Right</div><p style="margin-top:0.3rem">Muyenga, Kampala · Open Daily from 10:30 am</p></div>
-    <p>© 2025 Bite Right · Website by <strong>Kisense Solomon</strong> · websitesbysolo.vercel.app</p>
+    <p>© 2026 Bite Right · Website by <strong>Kisense Solomon</strong> · solomantalgo.online</p>
   </div>
 </footer>
 <div class="fab-wrap">
@@ -461,7 +386,7 @@ footer strong{color:var(--amber2)}
     <a href="https://www.instagram.com/biterightmuyenga/" target="_blank" class="fab-item"><span class="fab-lbl">Instagram</span><div class="fab-btn f-ig"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></a>
     <a href="https://vt.tiktok.com/ZSHnND6nU/" target="_blank" class="fab-item">
       <span class="fab-lbl">TikTok</span>
-      <div class="fab-btn f-tt" style="background:#010101">
+      <div class="fab-btn" style="background:#010101">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
           <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.18 8.18 0 004.78 1.52V6.79a4.85 4.85 0 01-1.01-.1z"/>
         </svg>
@@ -498,7 +423,7 @@ footer strong{color:var(--amber2)}
 <div id="orderFormModal" class="pre-modal">
   <div class="pre-icon">🛍️</div>
   <h3 class="pre-title">Almost there!</h3>
-  <p class="pre-sub">Fill in your details and we'll send your order to WhatsApp.</p>
+  <p class="pre-sub">Fill in your details and we'll send your order via WhatsApp.</p>
   <div class="pre-item-preview" id="previewItem"></div>
   <div class="pre-field">
     <label class="pre-label">Your Name *</label>
@@ -515,16 +440,297 @@ footer strong{color:var(--amber2)}
 </div>
 
 <script>
-// ── Hero video — restart at 40 seconds ──────────────
+// ─────────────────────────────────────────────────────────
+// BITE RIGHT — GOOGLE SHEETS CMS CONFIG
+// Client: paste the Google Sheet CSV URL below.
+// How to get it: File → Share → Publish to web → Sheet1 → CSV → Publish → Copy URL
+// ─────────────────────────────────────────────────────────
+const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQEkS52R_6Eigvg2aIATMc_w3j1FYzSxtM0OBhTbWcBicf4AE86R9JKXsEF8qIo9_XC91HKDAGuKtg7/pub?gid=430076408&single=true&output=csv';
+
+// ── Category display metadata (client does NOT edit this) ──
+const CATEGORY_META = {
+  starters: { title:'Salads & Starters', sub:'Fresh starters and dips to kick things off',     badge:'FRESH',      cardImg:'assets/menuimages/category/Salads and platers.webp' },
+  soup:     { title:'Soup',              sub:'Warm hearty soups made fresh daily',              badge:'DAILY',      cardImg:'assets/menuimages/category/soup.webp'          },
+  wraps:    { title:'Wraps',             sub:'Freshly rolled wraps and subs',                   badge:'POPULAR',    cardImg:'assets/menuimages/category/Wraps.webp'          },
+  platters: { title:'Platters',          sub:'Full plates — grilled, loaded, and ready',        badge:'MUST TRY',   cardImg:'assets/menuimages/category/Salads and platers.webp' },
+  burgers:  { title:'Burgers',           sub:'Handcrafted burgers made fresh daily',            badge:'BEST SELLER',cardImg:'assets/menuimages/category/Burgers and Subs.webp'  },
+  drinks:   { title:'Juice & Drinks',    sub:'Fresh-pressed juices, fruits and cold drinks',    badge:'COLD',       cardImg:'assets/menuimages/category/juice.webp'         },
+};
+
+// ── Image lookup — substring match on item name (lowercase) ──
+const IMAGE_MAP = {
+  'beef burger':           'assets/menuimages/singles/Beef Burger.webp',
+  'cheese burger':         'assets/menuimages/singles/Cheese Burger.webp',
+  'chicken burger':        'assets/menuimages/singles/Chicken Burger.webp',
+  'burger with eggs':      'assets/category/Burgers and Subs.webp',
+  'chicken wrap':          'assets/menuimages/singles/Chicken Wrap.webp',
+  'beef wrap':             'assets/menuimages/singles/Beef Wrap.webp',
+  'mixed wrap':            'assets/menuimages/singles/Mixed Wrap.webp',
+  'falafel wrap':          'assets/menuimages/singles/Falafel Wrap.webp',
+  'kufta wrap':            'assets/category/Wraps.webp',
+  'toowuk wrap':           'assets/category/Wraps.webp',
+  'bite right wrap':       'assets/menuimages/singles/Bite Wrap.webp',
+  'chips wrap':            'assets/menuimages/singles/chips Wrap.webp',
+  'crisp wrap':            'assets/category/Wraps.webp',
+  'liver sub':             'assets/category/Burgers and Subs.webp',
+  'fish sub':              'assets/menuimages/singles/Fish Wrap.webp',
+  'chicken shawarma':      'assets/menuimages/singles/Chicken Platter.webp',
+  'beef shawarma':         'assets/menuimages/singles/Beef Platter.webp',
+  'mixed shawarma':        'assets/menuimages/singles/Mixed Platter.webp',
+  'hummus platter':        'assets/menuimages/singles/Hummus Platter With Shawarma.webp',
+  'eggplant platter':      'assets/menuimages/singles/Eggplant Platter With Shawarma.webp',
+  'chicken strip':         'assets/menuimages/singles/Chicken Strip Platter.webp',
+  'chicken wings':         'assets/menuimages/singles/Chicken Wings Platter.webp',
+  'fish platter':          'assets/category/Salads and platers.webp',
+  'fish finger':           'assets/category/Salads and platers.webp',
+  'grilled whole chicken': 'assets/menuimages/singles/Chicken.webp',
+  'grilled half chicken':  'assets/menuimages/singles/Chicken.webp',
+  'grilled fish':          'assets/menuimages/singles/Fish Wrap.webp',
+  'kufta plate':           'assets/menuimages/singles/Beef Platter.webp',
+  'kufta':                 'assets/menuimages/singles/Beef Platter.webp',
+  'liver platter':         'assets/menuimages/singles/Beef Platter.webp',
+  'liver':                 'assets/menuimages/singles/Beef Platter.webp',
+  'kewala':                'assets/menuimages/singles/soup molokoni.webp',
+  'mulokoni':              'assets/menuimages/singles/soup molokoni.webp',
+  'shawarma with rice':    'assets/menuimages/singles/Beef Platter.webp',
+  'chicken with rice':     'assets/menuimages/singles/Chicken.webp',
+  'half chicken with rice':'assets/menuimages/singles/Chicken.webp',
+  'egyptian breakfast':    'assets/category/Salads and platers.webp',
+  'plate of the day':      'assets/menuimages/singles/Mixed Platter.webp',
+  'seek toowuk':           'assets/menuimages/singles/Chicken Platter.webp',
+  'hummus':                'assets/menuimages/singles/Hummus.webp',
+  'falafel':               'assets/menuimages/singles/Falafel.webp',
+  'fattoush':              'assets/menuimages/singles/Fattoush.webp',
+  'green salad':           'assets/menuimages/singles/Green Salad.webp',
+  'baba ganoush':          'assets/menuimages/singles/Baba Ganoush.webp',
+  'tahina':                'assets/menuimages/singles/Tahina.webp',
+  'garlic sauce':          'assets/menuimages/singles/Garlic Sauce.webp',
+  'chilli sauce':          'assets/menuimages/singles/Chilli Sauce.webp',
+  'pickles':               'assets/menuimages/singles/Pickles.webp',
+  'beef sausage':          'assets/menuimages/singles/Beef Sausage (With Chips).webp',
+  'chicken sausage':       'assets/menuimages/singles/Chicken Sausage (With Chips).webp',
+  'soup kewala':           'assets/menuimages/singles/soup molokoni.webp',
+  'soup with beans':       'assets/menuimages/singles/soup with beans.webp',
+  'soup':                  'assets/category/soup.webp',
+  'orange juice':          'assets/menuimages/singles/orange juice.jpg',
+  'pineapple juice':       'assets/menuimages/singles/Pineapple juice.avif',
+  'passion juice':         'assets/menuimages/singles/Passion juice.jpg',
+  'avocado juice':         'assets/menuimages/singles/Avocado juice.avif',
+  'cocktail':              'assets/menuimages/singles/Cocktail.avif',
+  'oranges':               'assets/menuimages/singles/orange juice.jpg',
+  'mangoes':               'assets/menuimages/singles/Mangoes.jpg',
+  'watermelon':            'assets/menuimages/singles/Watermelon.avif',
+  'passion fruit':         'assets/menuimages/singles/Passion fruit.webp',
+  'fruit salad':           'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&w=800&h=800&fit=crop',
+};
+
+function getItemImage(name) {
+  const lower = name.toLowerCase();
+  const sorted = Object.entries(IMAGE_MAP).sort((a, b) => b[0].length - a[0].length);
+  for (const [pattern, path] of sorted) {
+    if (lower.includes(pattern)) return path;
+  }
+  return 'assets/Biteright.jpeg';
+}
+
+// ── In-memory menu built from Sheets ──────────────────
+let MENU = {};
+
+// ── Parse CSV text → MENU object ──────────────────────
+function parseMenuCSV(csv) {
+  const VALID_KEYS = ['starters','soup','wraps','platters','burgers','drinks'];
+  const lines = csv.trim().split('\n');
+  const result = {};
+
+  lines.forEach(rawLine => {
+    const cols = [];
+    let inQuote = false, cell = '';
+    for (let i = 0; i < rawLine.length; i++) {
+        const ch = rawLine[i];
+        if (ch === '"') inQuote = !inQuote;
+        else if (ch === ',' && !inQuote) { cols.push(cell.trim()); cell = ''; }
+        else { cell += ch; }
+    }
+    cols.push(cell.trim());
+
+    if (cols.length < 5) return;
+    const catKey = cols[0].toLowerCase();
+    
+    // Only accept rows where column 1 is one of our known category keys
+    if (!VALID_KEYS.includes(catKey)) return;
+
+    const name = cols[2];
+    const desc = cols[3];
+    // Strip everything except numbers from the price (handles "20,000", "UGX 20000", etc.)
+    const priceRaw = (cols[4] || '').replace(/[^0-9]/g, '');
+    const activeRaw = (cols[5] || 'TRUE').toUpperCase().trim();
+
+    if (!catKey || !name || activeRaw === 'FALSE') return;
+
+    const price = parseInt(priceRaw, 10) || 0;
+    if (!result[catKey]) result[catKey] = { items: [] };
+    result[catKey].items.push({ name, desc, price, img: getItemImage(name) });
+  });
+
+  return result;
+}
+
+// ── Build category cards into #menuGrid ───────────────
+function buildCategoryCards(menuData) {
+  const grid = document.getElementById('menuGrid');
+  if (!grid) return;
+
+  const orderedKeys = ['starters','soup','wraps','platters','burgers','drinks'];
+  let html = '';
+
+  orderedKeys.forEach(key => {
+    const meta  = CATEGORY_META[key];
+    const cat = menuData[key];
+    if (!meta || !cat || !cat.items || cat.items.length === 0) return;
+
+    const lowestPrice = Math.min(...cat.items.map(i => i.price));
+
+    html += `
+      <div class="menu-card reveal">
+        <div class="menu-img">
+          <img src="${meta.cardImg}" alt="${meta.title} at Bite Right Muyenga"
+               loading="lazy" onerror="this.src='assets/Biteright.jpeg'">
+          <span class="menu-badge">${meta.badge}</span>
+        </div>
+        <div class="menu-body">
+          <h3>${meta.title}</h3>
+          <p>${meta.sub}</p>
+          <div class="menu-footer">
+            <span class="menu-price">From UGX ${lowestPrice.toLocaleString()}</span>
+            <button class="menu-btn" onclick="openCategory('${key}')">Order Now</button>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  grid.innerHTML = html;
+  grid.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+// ── Load menu from Google Sheets ──────────────────────
+async function loadMenu() {
+  try {
+    // Add cache-buster to prevent the browser from loading an old version of the sheet
+    const cacheBuster = `&t=${new Date().getTime()}`;
+    const resp = await fetch(SHEETS_CSV_URL + cacheBuster);
+    
+    if (!resp.ok) throw new Error(`Fetch failed: ${resp.status}`);
+    const text = await resp.text();
+    
+    console.log('✅ Menu loaded from Google Sheets');
+    MENU = parseMenuCSV(text);
+    buildCategoryCards(MENU);
+  } catch (err) {
+    console.warn('⚠️ Could not load live menu — using fallback.', err);
+    MENU = FALLBACK_MENU;
+    buildCategoryCards(MENU);
+  }
+}
+
+// ─────────────────────────────────────────────────────────
+// FALLBACK MENU (used if Sheets is unreachable)
+// ─────────────────────────────────────────────────────────
+const FALLBACK_MENU = {
+  starters: { items: [
+    {name:'Beef sausage with chips',    desc:'Served with chips',               price:20000},
+    {name:'Chicken sausage with chips', desc:'Served with chips',               price:20000},
+    {name:'Hummus',                     desc:'Classic creamy hummus dip',       price:17000},
+    {name:'Falafel',                    desc:'Crispy golden falafel balls',     price:22000},
+    {name:'Fattoush',                   desc:'Fresh fattoush salad',            price:17000},
+    {name:'Green salad',                desc:'Garden fresh green salad',        price:15000},
+    {name:'Baba Ganoush',               desc:'Smoky roasted eggplant dip',      price:17000},
+    {name:'Tahina',                     desc:'Sesame tahini sauce',             price:5000},
+    {name:'Garlic sauce',               desc:'Creamy garlic sauce',             price:5000},
+    {name:'Chilli sauce',               desc:'Spicy chilli sauce',              price:2000},
+    {name:'Pickles',                    desc:'Mixed pickles',                   price:5000},
+  ]},
+  soup: { items: [
+    {name:'Soup',                       desc:'Classic warm soup',               price:5000},
+    {name:'Soup with beans',            desc:'Hearty soup with beans',          price:8000},
+    {name:'Soup kewala / Mulokoni',     desc:'Traditional kewala / mulokoni',   price:15000},
+  ]},
+  wraps: { items: [
+    {name:'Chicken wrap',     desc:'Garlic sauce, lettuce, tomatoes, pickles, chips',                 price:14000},
+    {name:'Beef wrap',        desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',      price:14000},
+    {name:'Mixed wrap',       desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',      price:16000},
+    {name:'Crisp wrap',       desc:'Garlic sauce, pickles, chips',                                    price:14000},
+    {name:'Falafel wrap',     desc:'Tomatoes, lettuce, tahina, parsley',                              price:14000},
+    {name:'Chips wrap',       desc:'Chips, tomatoes, onions, lettuce, pickles, ketchup',              price:10000},
+    {name:'Kufta wrap',       desc:'Kebab, lettuce, tomatoes, onions, tahina, parsley',               price:14000},
+    {name:'Toowuk wrap',      desc:'Garlic sauce, lettuce, pickles and chips',                        price:16000},
+    {name:'Bite Right wrap',  desc:'Large wrap of your choice with chips and salad',                  price:20000},
+    {name:'Liver sub',        desc:'Liver sub sandwich',                                              price:14000},
+    {name:'Fish sub',         desc:'Roasted fish cubes, lettuce, tarter sauce, pickles, chips',       price:18000},
+  ]},
+  platters: { items: [
+    {name:'Chicken shawarma platter',       desc:'Chips, salad, garlic, chilli, pita bread',                   price:33000},
+    {name:'Beef shawarma platter',          desc:'Tahina, salad, chilli, chips, pita bread',                   price:32000},
+    {name:'Chicken shawarma salad',         desc:'Tahina, garlic sauce, salad',                                price:28000},
+    {name:'Hummus platter with Shawarma',   desc:'Chicken or beef shawarma, salad, pita bread',                price:34000},
+    {name:'Mixed shawarma platter',         desc:'Chicken & beef, tahina, garlic, chilli, chips, pita bread',  price:36000},
+    {name:'Eggplant platter with shawarma', desc:'Salad, pita bread, garlic sauce, eggplant, chips',           price:35000},
+    {name:'Chicken strip platter',          desc:'Salad, chips, garlic sauce, chilli',                         price:25000},
+    {name:'Chicken wings platter',          desc:'Salad, chips, garlic sauce, chilli',                         price:24000},
+    {name:'Fish platter',                   desc:'Salad, chips, garlic sauce, chilli',                         price:30000},
+    {name:'Grilled whole chicken',          desc:'Salad, chips, garlic sauce, chilli',                         price:48000},
+    {name:'Grilled half chicken',           desc:'Salad, chips, garlic sauce, chilli',                         price:27000},
+    {name:'Kufta plate',                    desc:'Kufta served with sides',                                    price:24000},
+    {name:'Liver platter',                  desc:'Liver served with sides',                                    price:24000},
+    {name:'Plate of the day — chicken',     desc:'Daily fresh chicken plate',                                  price:20000},
+    {name:'Plate of the day — beef',        desc:'Daily fresh beef plate',                                     price:22000},
+    {name:'Kewala plate / Mulokoni',        desc:'Traditional kewala / mulokoni plate',                        price:35000},
+    {name:'Grilled whole chicken with rice',desc:'Grilled whole chicken served with rice',                     price:60000},
+    {name:'Grilled half chicken with rice', desc:'Grilled half chicken served with rice',                      price:30000},
+    {name:'Shawarma with rice',             desc:'Shawarma served with rice',                                  price:26000},
+    {name:'Egyptian breakfast',             desc:'Traditional Egyptian breakfast plate',                       price:15000},
+    {name:'1kg Liver',                      desc:'Full kilo of fresh grilled liver',                           price:65000},
+    {name:'Half kg Liver',                  desc:'Half kilo of fresh grilled liver',                           price:35000},
+    {name:'1kg Kufta',                      desc:'Full kilo of kufta',                                         price:65000},
+    {name:'Half kg Kufta',                  desc:'Half kilo of kufta',                                         price:35000},
+    {name:'Grilled fish fillet with salad', desc:'Grilled fish fillet served with salad',                      price:20000},
+    {name:'Seek toowuk platter',            desc:'Seek toowuk with sides',                                     price:24000},
+    {name:'Fish finger',                    desc:'Crispy golden fish fingers',                                  price:20000},
+  ]},
+  burgers: { items: [
+    {name:'Beef burger',           desc:'Classic beef burger',                  price:18000},
+    {name:'Cheese burger',         desc:'Beef burger loaded with cheese',       price:20000},
+    {name:'Chicken burger',        desc:'Crispy chicken burger',                price:18000},
+    {name:'Beef burger with eggs', desc:'Beef burger topped with a fried egg',  price:22000},
+  ]},
+  drinks: { items: [
+    {name:'Orange juice',    desc:'Fresh-pressed orange juice',                       price:10000},
+    {name:'Pineapple juice', desc:'Fresh-pressed pineapple juice',                    price:10000},
+    {name:'Passion juice',   desc:'Fresh-pressed passion fruit juice',               price:10000},
+    {name:'Avocado juice',   desc:'Creamy fresh avocado juice',                       price:15000},
+    {name:'Cocktail',        desc:'Mixed cocktail drink',                             price:12000},
+    {name:'Oranges',         desc:'Fresh whole oranges — available upon request',     price:10000},
+    {name:'Mangoes',         desc:'Fresh ripe mangoes — available upon request',      price:10000},
+    {name:'Watermelon',      desc:'Fresh cut watermelon — available upon request',    price:10000},
+    {name:'Passion fruit',   desc:'Fresh passion fruit — available upon request',     price:10000},
+    {name:'Fruit salad',     desc:'Mixed fresh fruit salad — available upon request', price:12000},
+  ]},
+};
+
+// Attach images to fallback
+Object.values(FALLBACK_MENU).forEach(cat => {
+  cat.items = cat.items.map(i => ({ ...i, img: getItemImage(i.name) }));
+});
+
+// ── Hero video — 40-second loop ───────────────────────
 (function () {
   const v = document.getElementById('heroVid');
   if (!v) return;
-  v.addEventListener('timeupdate', function () {
+  v.addEventListener('timeupdate', () => {
     if (v.currentTime >= 40) { v.currentTime = 0; v.play(); }
   });
 })();
 
-// ── FAB toggle ───────────────────────────────────────
+// ── FAB ───────────────────────────────────────────────
 function toggleFab() {
   document.getElementById('fabMain').classList.toggle('open');
   document.getElementById('fabOptions').classList.toggle('open');
@@ -536,16 +742,16 @@ document.addEventListener('click', function (e) {
   }
 });
 
-// ── Reservation form → WhatsApp ──────────────────────
+// ── Reservation form ──────────────────────────────────
 function handleReservation() {
-  const name   = document.getElementById('rName').value;
-  const phone  = document.getElementById('rPhone').value;
-  const guests = document.getElementById('rGuests').value;
-  const date   = document.getElementById('rDate').value;
-  const time   = document.getElementById('rTime').value;
-  const notes  = document.getElementById('rNotes').value;
-
+  const name  = document.getElementById('rName').value;
+  const phone = document.getElementById('rPhone').value;
+  const guests= document.getElementById('rGuests').value;
+  const date  = document.getElementById('rDate').value;
+  const time  = document.getElementById('rTime').value;
+  const notes = document.getElementById('rNotes').value;
   if (!name || !phone || !date) { alert('Please fill in your Name, Phone and Date.'); return; }
+  
   const msg =
     `📅 *BITE RIGHT — TABLE RESERVATION*\n\n` +
     `━━━━━━━━━━━━━━━\n` +
@@ -561,140 +767,25 @@ function handleReservation() {
     `━━━━━━━━━━━━━━━\n` +
     `⏳ *ACTION REQUIRED*\n` +
     `Confirm availability & seating.`;
+
   window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// ── Scroll-reveal observer ───────────────────────────
+// ── Scroll-reveal observer ────────────────────────────
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ═══════════════════════════════════════════════════
-// BITE RIGHT MENU DATA
-// ═══════════════════════════════════════════════════
-const MENU = {
-
-  starters: {
-    title: 'Salads & Starters',
-    sub: 'Fresh starters and dips to kick things off',
-    items: [
-      { name:'Beef sausage with chips',     desc:'Served with chips',                      price:20000, img:'assets/menuimages/singles/Beef Sausage (With Chips).webp' },
-      { name:'Chicken sausage with chips',  desc:'Served with chips',                      price:20000, img:'assets/menuimages/singles/Chicken Sausage (With Chips).webp' },
-      { name:'Hummus',                      desc:'Classic creamy hummus dip',              price:17000, img:'assets/menuimages/singles/Hummus.webp' },
-      { name:'Falafel',                     desc:'Crispy golden falafel balls',            price:22000, img:'assets/menuimages/singles/Falafel.webp' },
-      { name:'Fattoush',                    desc:'Fresh fattoush salad',                   price:17000, img:'assets/menuimages/singles/Fattoush.webp' },
-      { name:'Green salad',                 desc:'Garden fresh green salad',               price:15000, img:'assets/menuimages/singles/Green Salad.webp' },
-      { name:'Baba Ganoush',                desc:'Smoky roasted eggplant dip',             price:17000, img:'assets/menuimages/singles/Baba Ganoush.webp' },
-      { name:'Tahina',                      desc:'Sesame tahini sauce',                    price:5000,  img:'assets/menuimages/singles/Tahina.webp' },
-      { name:'Garlic sauce',                desc:'Creamy garlic sauce',                    price:5000,  img:'assets/menuimages/singles/Garlic Sauce.webp' },
-      { name:'Chilli sauce',                desc:'Spicy chilli sauce',                     price:2000,  img:'assets/menuimages/singles/Chilli Sauce.webp' },
-      { name:'Pickles',                     desc:'Mixed pickles',                          price:5000,  img:'assets/menuimages/singles/Pickles.webp' },
-    ]
-  },
-
-  soup: {
-    title: 'Soup',
-    sub: 'Warm, hearty soups made fresh daily',
-    items: [
-      { name:'Soup',                  desc:'Classic warm soup',                         price:5000,  img:'assets/menuimages/category/soup.webp' },
-      { name:'Soup with beans',       desc:'Hearty soup with beans',                    price:8000,  img:'assets/menuimages/singles/soup with beans.webp' },
-      { name:'Soup kewala / Mulokoni',desc:'Traditional kewala / mulokoni soup',        price:15000, img:'assets/menuimages/singles/soup molokoni.webp' },
-    ]
-  },
-
-  wraps: {
-    title: 'Wraps',
-    sub: 'Freshly rolled wraps and subs',
-    items: [
-      { name:'Chicken wrap',    desc:'Garlic sauce, lettuce, tomatoes, pickles, chips',                   price:14000, img:'assets/menuimages/singles/Chicken Wrap.webp' },
-      { name:'Beef wrap',       desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',        price:14000, img:'assets/menuimages/singles/Beef Wrap.webp' },
-      { name:'Mixed wrap',      desc:'Tahina, lettuce, tomatoes, onions, pickles, chips, parsley',        price:16000, img:'assets/menuimages/singles/Mixed Wrap.webp' },
-      { name:'Crisp wrap',      desc:'Garlic sauce, pickles, chips',                                      price:14000, img:'assets/menuimages/category/Wraps.webp' },
-      { name:'Falafel wrap',    desc:'Tomatoes, lettuce, tahina, parsley',                                price:14000, img:'assets/menuimages/singles/Falafel Wrap.webp' },
-      { name:'Chips wrap',      desc:'Chips, tomatoes, onions, lettuce, pickles, ketchup',                price:10000, img:'assets/menuimages/singles/chips Wrap.webp' },
-      { name:'Kufta wrap',      desc:'Kebab, lettuce, tomatoes, onions, tahina, parsley',                 price:14000, img:'assets/menuimages/category/Wraps.webp' },
-      { name:'Toowuk wrap',     desc:'Garlic sauce, lettuce, pickles and chips',                          price:16000, img:'assets/menuimages/category/Wraps.webp' },
-      { name:'Bite Right wrap', desc:'Large wrap of your choice with chips and salad',                    price:20000, img:'assets/menuimages/singles/Bite Wrap.webp' },
-      { name:'Liver sub',       desc:'Liver sub sandwich',                                                price:14000, img:'assets/menuimages/category/Burgers and Subs.webp' },
-      { name:'Fish sub',        desc:'Roasted fish cubes, lettuce, tarter sauce, pickles, chips',         price:18000, img:'assets/menuimages/singles/Fish Wrap.webp' },
-    ]
-  },
-
-  platters: {
-    title: 'Platters',
-    sub: 'Full plates — loaded, grilled, and ready',
-    items: [
-      { name:'Chicken shawarma platter',        desc:'Chips, salad, garlic, chilli, pita bread',                    price:33000, img:'assets/menuimages/singles/Chicken Platter.webp' },
-      { name:'Beef shawarma platter',           desc:'Tahina, salad, chilli, chips, pita bread',                    price:32000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Chicken shawarma salad',          desc:'Tahina, garlic sauce, salad',                                 price:28000, img:'assets/menuimages/singles/Chicken Shawarma Salad.webp' },
-      { name:'Hummus platter with Shawarma',    desc:'Chicken or beef shawarma, salad, pita bread',                 price:34000, img:'assets/menuimages/singles/Hummus Platter With Shawarma.webp' },
-      { name:'Mixed shawarma platter',          desc:'Chicken & beef, tahina, garlic, chilli, chips, pita bread',   price:36000, img:'assets/menuimages/singles/Mixed Platter.webp' },
-      { name:'Eggplant platter with shawarma',  desc:'Salad, pita bread, garlic sauce, eggplant, chips',            price:35000, img:'assets/menuimages/singles/Eggplant Platter With Shawarma.webp' },
-      { name:'Chicken strip platter',           desc:'Salad, chips, garlic sauce, chilli',                          price:25000, img:'assets/menuimages/singles/Chicken Strip Platter.webp' },
-      { name:'Chicken wings platter',           desc:'Salad, chips, garlic sauce, chilli',                          price:24000, img:'assets/menuimages/singles/Chicken Wings Platter.webp' },
-      { name:'Fish platter',                    desc:'Salad, chips, garlic sauce, chilli',                          price:30000, img:'assets/menuimages/category/Salads and platers.webp' },
-      { name:'Grilled whole chicken',           desc:'Salad, chips, garlic sauce, chilli',                          price:48000, img:'assets/menuimages/singles/Chicken.webp' },
-      { name:'Grilled half chicken',            desc:'Salad, chips, garlic sauce, chilli',                          price:27000, img:'assets/menuimages/singles/Chicken.webp' },
-      { name:'Kufta plate',                     desc:'Kufta served with sides',                                     price:24000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Liver platter',                   desc:'Liver served with sides',                                     price:24000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Plate of the day — chicken',      desc:'Daily fresh chicken plate',                                   price:20000, img:'assets/menuimages/singles/Chicken Platter.webp' },
-      { name:'Plate of the day — beef',         desc:'Daily fresh beef plate',                                      price:22000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Kewala plate / Mulokoni',         desc:'Traditional kewala / mulokoni plate',                         price:35000, img:'assets/menuimages/category/Salads and platers.webp' },
-      { name:'Grilled whole chicken with rice', desc:'Grilled whole chicken served with rice',                      price:60000, img:'assets/menuimages/singles/Chicken.webp' },
-      { name:'Grilled half chicken with rice',  desc:'Grilled half chicken served with rice',                       price:30000, img:'assets/menuimages/singles/Chicken.webp' },
-      { name:'Shawarma with rice',              desc:'Shawarma served with rice',                                   price:26000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Egyptian breakfast',              desc:'Traditional Egyptian breakfast plate',                        price:15000, img:'assets/menuimages/category/Salads and platers.webp' },
-      { name:'1kg Liver',                       desc:'Full kilo of fresh grilled liver',                            price:65000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Half kg Liver',                   desc:'Half kilo of fresh grilled liver',                            price:35000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'1kg Kufta',                       desc:'Full kilo of kufta',                                          price:65000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Half kg Kufta',                   desc:'Half kilo of kufta',                                          price:35000, img:'assets/menuimages/singles/Beef Platter.webp' },
-      { name:'Grilled fish fillet with salad',  desc:'Grilled fish fillet served with salad',                       price:20000, img:'assets/menuimages/category/Salads and platers.webp' },
-      { name:'Seek toowuk platter',             desc:'Seek toowuk with sides',                                      price:24000, img:'assets/menuimages/singles/Chicken Platter.webp' },
-      { name:'Fish finger',                     desc:'Crispy golden fish fingers',                                  price:20000, img:'assets/menuimages/category/Salads and platers.webp' },
-    ]
-  },
-
-  burgers: {
-    title: 'Burgers',
-    sub: 'Handcrafted burgers made fresh daily',
-    items: [
-      { name:'Beef burger',            desc:'Classic beef burger',                   price:18000, img:'assets/menuimages/singles/Beef Burger.webp' },
-      { name:'Cheese burger',          desc:'Beef burger loaded with cheese',        price:20000, img:'assets/menuimages/singles/Cheese Burger.webp' },
-      { name:'Chicken burger',         desc:'Crispy chicken burger',                 price:18000, img:'assets/menuimages/singles/Chicken Burger.webp' },
-      { name:'Beef burger with eggs',  desc:'Beef burger topped with a fried egg',   price:22000, img:'assets/menuimages/category/Burgers and Subs.webp' },
-    ]
-  },
-
-  drinks: {
-    title: 'Juice & Drinks',
-    sub: 'Fresh-pressed juices, fruits & cold drinks',
-    items: [
-      // — Juices (each independent) —
-      { name:'Orange juice',     desc:'Fresh-pressed orange juice',                      price:10000, img:'assets/menuimages/singles/orange juice.jpg' },
-      { name:'Pineapple juice',  desc:'Fresh-pressed pineapple juice',                   price:10000, img:'assets/menuimages/singles/Pineapple juice.avif' },
-      { name:'Passion juice',    desc:'Fresh-pressed passion fruit juice',               price:10000, img:'assets/menuimages/singles/Passion juice.jpg' },
-      { name:'Avocado juice',    desc:'Creamy fresh avocado juice',                      price:15000, img:'assets/menuimages/singles/Avocado juice.avif' },
-      { name:'Cocktail',         desc:'Mixed cocktail drink',                            price:12000, img:'assets/menuimages/singles/Cocktail.avif' },
-      // — Fresh fruits (available upon request) —
-      { name:'Mangoes',          desc:'Fresh ripe mangoes — available upon request',     price:10000, img:'assets/menuimages/singles/Mangoes.jpg' },
-      { name:'Watermelon',       desc:'Fresh cut watermelon — available upon request',   price:10000, img:'assets/menuimages/singles/Watermelon.avif' },
-      { name:'Fruit salad',      desc:'Mixed fresh fruit salad — available upon request',price:12000, img:'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&w=800&h=800&fit=crop' },
-    ]
-  }
-
-};
-
-// ═══════════════════════════════════════════════════
-// CATEGORY MODAL
-// ═══════════════════════════════════════════════════
-
+// ── Category modal ────────────────────────────────────
 function openCategory(key) {
-  const cat = MENU[key];
-  if (!cat) return;
-  document.getElementById('catTitle').textContent = cat.title;
-  document.getElementById('catSub').textContent   = cat.sub;
-  document.getElementById('catItems').innerHTML   = cat.items.map(item => `
+  const meta  = CATEGORY_META[key];
+  const items = MENU[key]?.items || FALLBACK_MENU[key]?.items || [];
+  if (!meta || items.length === 0) return;
+
+  document.getElementById('catTitle').textContent = meta.title;
+  document.getElementById('catSub').textContent   = meta.sub;
+  document.getElementById('catItems').innerHTML   = items.map(item => `
     <div class="cat-item">
       <div class="cat-item-img">
         <img src="${item.img}" alt="${item.name} at Bite Right"
@@ -713,12 +804,9 @@ function openCategory(key) {
           </button>
         </div>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 
-  // Push a history state so the browser back button can close the modal
   history.pushState({ modal: 'category' }, '');
-
   document.getElementById('categoryOverlay').classList.add('open');
   document.getElementById('categoryModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -730,35 +818,20 @@ function closeCategory() {
   document.body.style.overflow = '';
 }
 
-// ── Back button closes the category modal ────────────
-window.addEventListener('popstate', function (e) {
-  if (document.getElementById('categoryModal').classList.contains('open')) {
-    closeCategory();
-  } else if (document.getElementById('locModal').classList.contains('open') ||
-             document.getElementById('orderFormModal').classList.contains('open')) {
-    cancelPreOrder();
-  }
+// ── Back button = close modal ─────────────────────────
+window.addEventListener('popstate', () => {
+  if (document.getElementById('categoryModal').classList.contains('open')) closeCategory();
+  else if (document.getElementById('locModal').classList.contains('open') ||
+           document.getElementById('orderFormModal').classList.contains('open')) cancelPreOrder();
 });
-
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeCategory();
-    cancelPreOrder();
-  }
+  if (e.key === 'Escape') { closeCategory(); cancelPreOrder(); }
 });
 
-// ═══════════════════════════════════════════════════
-// PRE-ORDER FLOW
-// Triggered when customer taps "Order" on an item.
-// Step 1 → Location check (must be within Greater Kampala, ~40km radius)
-// Step 2 → Customer form (name + phone)
-// Step 3 → WhatsApp send
-// ═══════════════════════════════════════════════════
-
-// Kampala city centre coordinates
-const KAMPALA_LAT  = 0.3476;
+// ── Pre-order flow ─────────────────────────────────────
+const KAMPALA_LAT  =  0.3476;
 const KAMPALA_LNG  = 32.5825;
-const MAX_RADIUS_KM = 40; // Greater Kampala delivery radius
+const MAX_RADIUS_KM = 40;
 
 let _pendingItem  = null;
 let _pendingPrice = 0;
@@ -770,27 +843,14 @@ function startOrder(itemName, itemPrice) {
   _pendingPrice = itemPrice;
   _customerLat  = null;
   _customerLng  = null;
-
-  // Push history state so back button can cancel
   history.pushState({ modal: 'preorder' }, '');
-
-  showLocModal('Checking your location…', 'Please allow location access to continue.');
-  document.getElementById('locRetryBtn').style.display = 'none';
+  showLocModal('Checking your location…', 'Please allow location access to continue.', false);
 
   if (!navigator.geolocation) {
-    showLocModal(
-      'Location not supported',
-      'Your browser does not support location services. Please use a modern browser.',
-      true
-    );
+    showLocModal('Location not supported', 'Your browser does not support location services.', false);
     return;
   }
-
-  navigator.geolocation.getCurrentPosition(
-    onLocationSuccess,
-    onLocationError,
-    { timeout: 12000, maximumAge: 60000 }
-  );
+  navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, { timeout: 12000, maximumAge: 60000 });
 }
 
 function showLocModal(title, msg, showRetry) {
@@ -801,62 +861,42 @@ function showLocModal(title, msg, showRetry) {
   document.getElementById('locModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function hideLocModal() {
   document.getElementById('locOverlay').classList.remove('open');
   document.getElementById('locModal').classList.remove('open');
 }
-
 function retryLocation() {
-  showLocModal('Checking your location…', 'Trying again…');
-  document.getElementById('locRetryBtn').style.display = 'none';
-  navigator.geolocation.getCurrentPosition(
-    onLocationSuccess,
-    onLocationError,
-    { timeout: 12000, maximumAge: 0 }
-  );
+  showLocModal('Checking your location…', 'Trying again…', false);
+  navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, { timeout: 12000, maximumAge: 0 });
 }
-
 function onLocationSuccess(pos) {
   _customerLat = pos.coords.latitude;
   _customerLng = pos.coords.longitude;
   const dist = haversineKm(_customerLat, _customerLng, KAMPALA_LAT, KAMPALA_LNG);
-
   if (dist > MAX_RADIUS_KM) {
     showLocModal(
       '😕 Outside delivery area',
-      `You appear to be ${Math.round(dist)} km from Kampala. Bite Right currently only delivers within Greater Kampala (within ${MAX_RADIUS_KM} km). Please visit us in Muyenga!`,
+      `You appear to be ${Math.round(dist)} km from Kampala. Bite Right currently only delivers within Greater Kampala (${MAX_RADIUS_KM} km). Please visit us in Muyenga!`,
       false
     );
     return;
   }
-
-  // Within range — proceed to order form
   hideLocModal();
   showOrderForm();
 }
-
 function onLocationError(err) {
-  let msg = 'Could not get your location. ';
-  if (err.code === 1)      msg += 'Location access was denied. Please enable it in your browser settings.';
-  else if (err.code === 2) msg += 'Location unavailable. Please try again.';
-  else if (err.code === 3) msg += 'Location request timed out. Please try again.';
-  showLocModal('Location Error', msg, true);
+  const msgs = {1:'Location access was denied. Please enable it in your browser settings.',
+                2:'Location unavailable. Please try again.',
+                3:'Location request timed out. Please try again.'};
+  showLocModal('Location Error', (msgs[err.code] || 'Unknown error.'), true);
 }
-
 function haversineKm(lat1, lon1, lat2, lon2) {
-  const R = 6371;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-            Math.sin(dLon/2) * Math.sin(dLon/2);
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const R = 6371, dLat = (lat2-lat1)*Math.PI/180, dLon = (lon2-lon1)*Math.PI/180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
-
 function showOrderForm() {
-  document.getElementById('previewItem').textContent =
-    `${_pendingItem}  —  UGX ${_pendingPrice.toLocaleString()}`;
+  document.getElementById('previewItem').textContent = `${_pendingItem}  —  UGX ${_pendingPrice.toLocaleString()}`;
   document.getElementById('orderName').value  = '';
   document.getElementById('orderPhone').value = '';
   document.getElementById('orderFormOverlay').classList.add('open');
@@ -864,30 +904,27 @@ function showOrderForm() {
   document.body.style.overflow = 'hidden';
   setTimeout(() => document.getElementById('orderName').focus(), 350);
 }
-
 function hideOrderForm() {
   document.getElementById('orderFormOverlay').classList.remove('open');
   document.getElementById('orderFormModal').classList.remove('open');
 }
-
 function cancelPreOrder() {
   hideLocModal();
   hideOrderForm();
-  document.body.style.overflow = 'hidden'; // keep category modal open
+  if (document.getElementById('categoryModal').classList.contains('open')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
 }
-
 function submitOrder() {
   const name  = document.getElementById('orderName').value.trim();
   const phone = document.getElementById('orderPhone').value.trim();
+  if (!name || !phone) { alert('Please enter both your name and phone number.'); return; }
 
-  if (!name || !phone) {
-    alert('Please enter both your name and phone number.');
-    return;
-  }
-
-  let locationMsg = 'Kampala area';
+  let locationDetail = 'Kampala area (coordinates unavailable)';
   if (_customerLat !== null && _customerLng !== null) {
-    locationMsg = `https://www.google.com/maps?q=${_customerLat.toFixed(5)},${_customerLng.toFixed(5)}`;
+    locationDetail = `https://www.google.com/maps?q=${_customerLat.toFixed(5)},${_customerLng.toFixed(5)}`;
   }
 
   const msg =
@@ -900,16 +937,18 @@ function submitOrder() {
     `👤 *CUSTOMER DETAILS*\n` +
     `• Name: ${name}\n` +
     `• Phone: ${phone}\n` +
-    `• Location: ${locationMsg}\n\n` +
+    `• Location: ${locationDetail}\n\n` +
     `━━━━━━━━━━━━━━━\n` +
     `⏳ *ACTION REQUIRED*\n` +
     `Confirm availability & payment.`;
 
   hideOrderForm();
   document.body.style.overflow = '';
-
   window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
 }
+
+// ── Kick off menu load ────────────────────────────────
+loadMenu();
 </script>
 
 </body>
