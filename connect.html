@@ -946,60 +946,105 @@ html, body {
 <script>
 /* ═══════════════════════════════════════════
    DYNAMIC OPEN / CLOSED STATUS
-   Hours (EAT, UTC+3):
-     Mon–Sat: 11:00 – 23:00
-     Sun:     12:00 – 22:00
+   Source of truth: index.html Opening Hours
+   Thu: 10:30am – 10:30pm
+   Fri: 10:30am – 12:30am
+   Sat: 10:00am – 12:30am
+   Sun: 10:30am – 10:30pm
+   Mon–Wed: 10:30am – 10:30pm
 ════════════════════════════════════════════ */
-(function updateStatus() {
-  // EAT = UTC+3
+const OPENING_HOURS = {
+  0: { open: 10 * 60 + 30, close: 22 * 60 + 30 },      // Sun
+  1: { open: 10 * 60 + 30, close: 22 * 60 + 30 },      // Mon
+  2: { open: 10 * 60 + 30, close: 22 * 60 + 30 },      // Tue
+  3: { open: 10 * 60 + 30, close: 22 * 60 + 30 },      // Wed
+  4: { open: 10 * 60 + 30, close: 22 * 60 + 30 },      // Thu
+  5: { open: 10 * 60 + 30, close: 24 * 60 + 30 },      // Fri, closes Sat 12:30am
+  6: { open: 10 * 60,      close: 24 * 60 + 30 }       // Sat, closes Sun 12:30am
+};
+
+function getEatNow() {
   const now = new Date();
-  const eatOffset = 3 * 60; // minutes
-  const localOffset = now.getTimezoneOffset(); // minutes behind UTC
-  const eatNow = new Date(now.getTime() + (eatOffset + localOffset) * 60000);
+  const eatOffset = 3 * 60;
+  const localOffset = now.getTimezoneOffset();
+  return new Date(now.getTime() + (eatOffset + localOffset) * 60000);
+}
 
-  const day  = eatNow.getDay(); // 0=Sun, 1=Mon … 6=Sat
-  const hour = eatNow.getHours();
-  const min  = eatNow.getMinutes();
-  const timeVal = hour * 60 + min; // minutes since midnight
+function startOfDay(date) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
 
-  let openMin, closeMin, dayLabel;
+function addMinutes(date, minutes) {
+  return new Date(date.getTime() + minutes * 60000);
+}
 
-  if (day === 0) {
-    // Sunday
-    openMin  = 12 * 60;      // 12:00
-    closeMin = 22 * 60;      // 22:00
-    dayLabel = "Sun 12pm – 10pm";
-  } else {
-    // Mon – Sat
-    openMin  = 11 * 60;      // 11:00
-    closeMin = 23 * 60;      // 23:00
-    dayLabel = "Mon–Sat 11am – 11pm";
+function addDays(date, days) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+function getServiceWindows(now) {
+  const today = startOfDay(now);
+  const windows = [];
+
+  for (let offset = -1; offset <= 7; offset++) {
+    const base = addDays(today, offset);
+    const hours = OPENING_HOURS[base.getDay()];
+    windows.push({
+      openAt: addMinutes(base, hours.open),
+      closeAt: addMinutes(base, hours.close)
+    });
   }
 
-  const isOpen = timeVal >= openMin && timeVal < closeMin;
+  return windows;
+}
 
-  const pill   = document.getElementById("status-pill");
-  const text   = document.getElementById("status-text");
-  const hoursEl= document.getElementById("status-hours");
+function formatTime(date) {
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  const suffix = hours >= 12 ? "pm" : "am";
+  hours = hours % 12 || 12;
+  return `${hours}:${String(minutes).padStart(2, "0")}${suffix}`;
+}
 
-  if (isOpen) {
+function formatCountdown(ms) {
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  if (days > 0) return `${days}d ${hours}h ${String(minutes).padStart(2, "0")}m`;
+  if (hours > 0) return `${hours}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
+  return `${minutes}m ${String(seconds).padStart(2, "0")}s`;
+}
+
+(function updateStatus() {
+  const eatNow = getEatNow();
+  const windows = getServiceWindows(eatNow);
+  const currentWindow = windows.find(window => eatNow >= window.openAt && eatNow < window.closeAt);
+  const nextWindow = windows.find(window => window.openAt > eatNow);
+
+  const pill = document.getElementById("status-pill");
+  const text = document.getElementById("status-text");
+  const hoursEl = document.getElementById("status-hours");
+
+  if (currentWindow) {
     pill.className = "status-pill open";
     text.textContent = "Open Now";
-    // Show closing time
-    const closeH = Math.floor(closeMin / 60);
-    const closeLabel = closeH >= 12 ? (closeH === 12 ? "12pm" : `${closeH-12}pm`) : `${closeH}am`;
-    hoursEl.textContent = `Closes at ${closeLabel}`;
+    hoursEl.textContent = `Closes in ${formatCountdown(currentWindow.closeAt - eatNow)} · ${formatTime(currentWindow.closeAt)}`;
   } else {
     pill.className = "status-pill closed";
     text.textContent = "Closed Now";
-    // Show when we open next
-    const openH = Math.floor(openMin / 60);
-    const openLabel = openH >= 12 ? (openH === 12 ? "12pm" : `${openH-12}pm`) : `${openH}am`;
-    hoursEl.textContent = `Opens ${day === 0 ? "today" : "today"} at ${openLabel}`;
+    hoursEl.textContent = nextWindow
+      ? `Opens in ${formatCountdown(nextWindow.openAt - eatNow)} · ${formatTime(nextWindow.openAt)}`
+      : "Opening hours unavailable";
   }
 
-  // Refresh every minute
-  setTimeout(updateStatus, 60000);
+  setTimeout(updateStatus, 1000);
 })();
 
 
