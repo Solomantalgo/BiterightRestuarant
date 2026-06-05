@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BiteRight — Connect</title>
+<meta name="description" content="Connect with BiteRight Egyptian Shawarma & Grill in Kampala. Order online, call, WhatsApp, or find us on social media.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:       #FF6B00;
+    --orange-light: #FF8C2A;
+    --orange-glow:  #FF6B0055;
+    --amber:        #FFB347;
+    --black:        #050505;
+    --glass-bg:     rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.10);
+    --glass-hover:  rgba(255,255,255,0.08);
+    --text:         #ffffff;
+    --muted:        rgba(255,255,255,0.45);
+    --primary-grad: linear-gradient(135deg, #FF6B00 0%, #FF9A3C 100%);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    min-height: 100vh;
+    background: var(--black);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── ANIMATED BACKGROUND ─── */
+  .bg-scene {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bg-scene::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 110%, rgba(255,107,0,0.45) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 20% 80%,  rgba(255,60,0,0.20)  0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 80% 85%,  rgba(255,140,0,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, #0a0602 0%, #050505 100%);
+    animation: breathe 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes breathe {
+    from { opacity: 0.85; transform: scale(1); }
+    to   { opacity: 1;    transform: scale(1.04); }
+  }
+
+  /* Floating orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: floatOrb linear infinite;
+    pointer-events: none;
+  }
+  .orb1 { width: 280px; height: 280px; background: rgba(255,107,0,0.22); left: -80px; top: 30%; animation-duration: 18s; }
+  .orb2 { width: 200px; height: 200px; background: rgba(255,60,0,0.18);  right:-60px; top: 55%; animation-duration: 14s; animation-delay: -5s; }
+  .orb3 { width: 160px; height: 160px; background: rgba(255,179,0,0.15); left: 30%;  top: 10%; animation-duration: 22s; animation-delay: -9s; }
+  .orb4 { width: 120px; height: 120px; background: rgba(255,107,0,0.12); right:20%;  top: 75%; animation-duration: 16s; animation-delay: -3s; }
+
+  @keyframes floatOrb {
+    0%   { transform: translateY(0px)   rotate(0deg); }
+    33%  { transform: translateY(-30px) rotate(120deg); }
+    66%  { transform: translateY(20px)  rotate(240deg); }
+    100% { transform: translateY(0px)   rotate(360deg); }
+  }
+
+  /* Particle sparks */
+  .sparks { position: absolute; inset: 0; pointer-events: none; }
+  .spark {
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: var(--orange-light);
+    animation: sparkRise linear infinite;
+    opacity: 0;
+  }
+  @keyframes sparkRise {
+    0%   { transform: translateY(0)   translateX(0)   scale(1);   opacity: 0; }
+    15%  { opacity: 1; }
+    80%  { opacity: 0.6; }
+    100% { transform: translateY(-300px) translateX(var(--dx,20px)) scale(0); opacity: 0; }
+  }
+
+  /* ─── LAYOUT ─── */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 48px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .logo-ring {
+    position: relative;
+    width: 160px; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .logo-ring::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 24px;
+    background: conic-gradient(from 0deg, #FF6B00, #FFB347, #FF3D00, #FF6B00);
+    animation: spinRing 5s linear infinite;
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff 0);
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff 0);
+  }
+
+  @keyframes spinRing { to { transform: rotate(360deg); } }
+
+  .logo-ring::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    box-shadow: 0 0 40px rgba(255,107,0,0.4), 0 0 80px rgba(255,107,0,0.15);
+    pointer-events: none;
+  }
+
+  .logo-img {
+    position: relative;
+    z-index: 1;
+    width: 140px; height: 140px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 4px 20px rgba(255,107,0,0.3));
+  }
+
+  .brand-sub {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ─── GLASS CARD WRAPPER ─── */
+  .glass-card {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 24px;
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    padding: 10px;
+    margin-bottom: 14px;
+    box-shadow:
+      0 4px 30px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.07),
+      0 0 0 1px rgba(255,107,0,0.04);
+    animation: fadeUp 0.6s ease both;
+    animation-delay: var(--delay, 0s);
+    overflow: hidden;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── LINK BUTTONS ─── */
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .link-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .link-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    transition: left 0.5s ease;
+    border-radius: inherit;
+  }
+
+  .link-btn:hover::before  { opacity: 1; }
+  .link-btn:hover::after   { left: 160%; }
+  .link-btn:hover          { transform: translateX(4px) scale(1.01); background: rgba(255,255,255,0.05); }
+  .link-btn:active         { transform: scale(0.97); }
+
+  /* Primary (Order Online) */
+  .link-btn.primary {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF9A3C 60%, #FFB347 100%);
+    box-shadow: 0 8px 32px rgba(255,107,0,0.45), 0 2px 8px rgba(255,107,0,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+    border: none;
+  }
+
+  .link-btn.primary::before {
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+    opacity: 1;
+  }
+
+  .link-btn.primary:hover {
+    box-shadow: 0 12px 40px rgba(255,107,0,0.6), 0 4px 16px rgba(255,107,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .link-btn.primary .btn-label { color: #fff; font-weight: 700; font-size: 15px; }
+  .link-btn.primary .btn-sub   { color: rgba(255,255,255,0.75); }
+  .link-btn.primary .icon-wrap { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); }
+  .link-btn.primary .icon-wrap svg { fill: #fff; }
+  .link-btn.primary .arrow     { color: rgba(255,255,255,0.8); }
+
+  /* Icon */
+  .icon-wrap {
+    width: 44px; height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    background: rgba(255,107,0,0.12);
+    border: 1px solid rgba(255,107,0,0.22);
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(255,107,0,0.1), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .link-btn:hover .icon-wrap {
+    background: rgba(255,107,0,0.22);
+    border-color: rgba(255,107,0,0.4);
+    box-shadow: 0 0 16px rgba(255,107,0,0.3);
+  }
+
+  .icon-wrap svg {
+    width: 20px; height: 20px;
+    fill: var(--orange-light);
+    transition: fill 0.2s;
+  }
+
+  /* Text */
+  .btn-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .btn-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.2px;
+  }
+
+  .btn-sub {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.1px;
+  }
+
+  /* Arrow */
+  .arrow {
+    font-size: 22px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1;
+    transition: all 0.25s ease;
+    margin-left: 4px;
+  }
+
+  .link-btn:hover .arrow {
+    color: var(--orange-light);
+    transform: translateX(4px);
+  }
+
+  .link-btn.primary:hover .arrow { color: rgba(255,255,255,0.9); }
+
+  /* Divider within card */
+  .btn-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    margin: 0 16px;
+  }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange-light);
+    padding: 0 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,107,0,0.35));
+  }
+
+  .section-label::after {
+    background: linear-gradient(90deg, rgba(255,107,0,0.35), transparent);
+  }
+
+  /* ─── LOCATION BADGE ─── */
+  .location-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 20px;
+    margin-bottom: 22px;
+    animation: fadeUp 0.5s ease both;
+    animation-delay: 0.15s;
+  }
+
+  .location-badge svg {
+    width: 14px; height: 14px;
+    fill: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .location-badge span {
+    font-size: 11.5px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    margin-top: 20px;
+    text-align: center;
+    animation: fadeUp 0.6s ease both;
+    animation-delay: 0.5s;
+  }
+
+  .footer-tagline {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, rgba(255,107,0,0.6), rgba(255,179,71,0.8), rgba(255,107,0,0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+  }
+
+  /* ─── PULSE DOT ─── */
+  .pulse-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 0 0 rgba(74,222,128,0.4);
+    animation: pulseDot 2s ease-in-out infinite;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+    50%       { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
+  }
+
+  .open-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #4ade80;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    animation: fadeUp 0.5s ease both;
+    animation-delay: 0.1s;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 360px) {
+    .brand-name { font-size: 36px; }
+    .logo-ring  { width: 76px; height: 76px; }
+    .logo-icon  { font-size: 32px; }
+    .wrapper    { padding: 36px 14px 32px; }
+  }
+
+  @media (min-width: 480px) {
+    .wrapper { padding: 60px 24px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background -->
+<div class="bg-scene">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+  <div class="sparks" id="sparks"></div>
+</div>
+
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-ring">
+      <img class="logo-img" src="assets/Biteright.png" alt="BiteRight Logo">
+    </div>
+    <div class="brand-sub">Egyptian Shawarma &amp; Grill &nbsp;·&nbsp; Kampala</div>
+  </div>
+
+  <!-- Location & Status -->
+  <div class="open-badge">
+    <span class="pulse-dot"></span>
+    Open Now
+  </div>
+
+  <div class="location-badge">
+    <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+    <span>Tank Hill Road, Muyenga &nbsp;·&nbsp; Kampala, Uganda</span>
+  </div>
+
+  <!-- Primary CTA -->
+  <div class="glass-card" style="--delay:0.18s; margin-bottom:16px;">
+    <a class="link-btn primary" href="https://biteright-restuarant.vercel.app/menu.html" target="_blank" id="btn-order">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M7 4H17L19 12H5L7 4ZM5 12L3 20H21L19 12M9 20C9 21.1 8.1 22 7 22S5 21.1 5 20 5.9 18 7 18 9 18.9 9 20M19 20C19 21.1 18.1 22 17 22S15 21.1 15 20 15.9 18 17 18 19 18.9 19 20Z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">Order Online</span>
+        <span class="btn-sub">Browse menu &amp; place your order</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+  </div>
+
+  <!-- Contact Actions -->
+  <div class="glass-card" style="--delay:0.26s;">
+    <a class="link-btn" href="tel:+256760492621" id="btn-call">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">Call Us</span>
+        <span class="btn-sub">0760 492 621</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="btn-divider"></div>
+
+    <a class="link-btn" href="https://wa.me/256760492621?text=Hi%20BiteRight!%20I%27d%20like%20to%20place%20an%20order." target="_blank" id="btn-whatsapp">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.6 0-.2 0-.4-.1-.6-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C7 7.5 6.2 8.3 6.2 10c0 1.7 1.2 3.3 1.4 3.6.2.2 2.4 3.7 5.9 5.2 3.5 1.4 3.5.9 4.1.9.6 0 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">WhatsApp Us</span>
+        <span class="btn-sub">Chat &amp; pre-order instantly</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="btn-divider"></div>
+
+    <a class="link-btn" href="#" id="save-contact">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">Save Our Contact</span>
+        <span class="btn-sub">Add BiteRight to your phone</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="btn-divider"></div>
+
+    <a class="link-btn" href="https://www.google.com/maps/dir/?api=1&destination=0.2889,32.5825&travelmode=driving" target="_blank" id="btn-map">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">Find Us</span>
+        <span class="btn-sub">Tank Hill Road, Muyenga · Get directions</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+  </div>
+
+  <!-- Social section label -->
+  <div class="section-label" style="animation: fadeUp 0.6s ease both; animation-delay:0.34s;">Follow &amp; Tag Us</div>
+
+  <!-- Social Links -->
+  <div class="glass-card" style="--delay:0.4s;">
+    <a class="link-btn" href="https://www.instagram.com/biterightmuyenga/" target="_blank" id="btn-instagram">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zM12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.2c-1.8 0-3.2-1.4-3.2-3.2S10.2 8.8 12 8.8s3.2 1.4 3.2 3.2-1.4 3.2-3.2 3.2zm5.2-9.7c-.7 0-1.2.5-1.2 1.2s.5 1.2 1.2 1.2 1.2-.5 1.2-1.2-.5-1.2-1.2-1.2z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">Instagram</span>
+        <span class="btn-sub">@biterightmuyenga</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="btn-divider"></div>
+
+    <a class="link-btn" href="https://www.facebook.com/61582511670311/" target="_blank" id="btn-facebook">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">Facebook</span>
+        <span class="btn-sub">Bite Right</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="btn-divider"></div>
+
+    <a class="link-btn" href="https://vt.tiktok.com/ZSHnND6nU/" target="_blank" id="btn-tiktok">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M19.6 8.2A7.9 7.9 0 0115 6.6V15a5.5 5.5 0 11-5.5-5.5l.5.1V14l-.5-.1a1.5 1.5 0 101.5 1.5V2h4a3.9 3.9 0 004.1 4v2.2z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">TikTok</span>
+        <span class="btn-sub">@biteright</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="btn-divider"></div>
+
+    <a class="link-btn" href="https://biteright-restuarant.vercel.app" target="_blank" id="btn-website">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1 17.9c-3.9-.5-7-3.9-7-7.9 0-.6.1-1.2.2-1.8L9 15v1c0 1.1.9 2 2 2v1.9zm6.9-2.5c-.3-.9-1.1-1.5-2-1.5H15v-3c0-.5-.5-1-1-1H9v-2h2c.5 0 1-.5 1-1V7h2c1.1 0 2-.9 2-2v-.4c2.9 1.2 5 4.1 5 7.4 0 2.1-.8 4-2.1 5.4z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">Visit Our Website</span>
+        <span class="btn-sub">biteright-restuarant.vercel.app</span>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-tagline">Order · Enjoy · Repeat</div>
+    <div class="footer-copy">© 2025 BiteRight &nbsp;·&nbsp; Tank Hill Road, Muyenga, Kampala</div>
+  </div>
+
+</div>
+
+<script>
+  /* ── Save Contact ── */
+  document.getElementById("save-contact").addEventListener("click", function(e) {
+    e.preventDefault();
+    const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:BiteRight Egyptian Shawarma & Grill\nORG:BiteRight\nTEL;TYPE=CELL:+256760492621\nURL:https://biteright-restuarant.vercel.app\nADR;TYPE=WORK:;;Tank Hill Road;Muyenga;Kampala;;Uganda\nNOTE:Authentic Egyptian Shawarma & Grill. Order. Enjoy. Repeat.\nEND:VCARD";
+    const blob = new Blob([vcard], { type: "text/vcard" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "BiteRight.vcf";
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+  });
+
+  /* ── Spark particles ── */
+  (function() {
+    const container = document.getElementById('sparks');
+    const COUNT = 18;
+    for (let i = 0; i < COUNT; i++) {
+      const s = document.createElement('div');
+      s.className = 'spark';
+      const x = Math.random() * 100;
+      const delay = Math.random() * 8;
+      const dur = 4 + Math.random() * 6;
+      const dx = (Math.random() - 0.5) * 60;
+      s.style.cssText = `
+        left:${x}%;
+        bottom:${Math.random() * 30}%;
+        animation-delay:${delay}s;
+        animation-duration:${dur}s;
+        --dx:${dx}px;
+        width:${1 + Math.random() * 2}px;
+        height:${1 + Math.random() * 2}px;
+      `;
+      container.appendChild(s);
+    }
+  })();
+
+  /* ── Ripple on tap ── */
+  document.querySelectorAll('.link-btn').forEach(btn => {
+    btn.addEventListener('pointerdown', function(e) {
+      const r = document.createElement('span');
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 1.5;
+      r.style.cssText = `
+        position:absolute;
+        left:${e.clientX - rect.left - size/2}px;
+        top:${e.clientY - rect.top - size/2}px;
+        width:${size}px; height:${size}px;
+        border-radius:50%;
+        background:rgba(255,107,0,0.15);
+        transform:scale(0);
+        animation:ripple 0.5s ease-out forwards;
+        pointer-events:none;
+      `;
+      this.appendChild(r);
+      setTimeout(() => r.remove(), 600);
+    });
+  });
+
+  /* Inject ripple keyframes */
+  const style = document.createElement('style');
+  style.textContent = `@keyframes ripple{to{transform:scale(1);opacity:0;}}`;
+  document.head.appendChild(style);
+</script>
+
+</body>
+</html>

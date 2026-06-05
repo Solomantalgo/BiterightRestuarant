@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/biteright-connect",
+      "destination": "/connect.html"
+    }
+  ]
+}
