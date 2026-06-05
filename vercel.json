@@ -3,7 +3,8 @@
   "rewrites": [
     {
       "source": "/biteright-connect",
-      "destination": "/connect.html"
+      "destination": "/connect"
     }
   ]
 }
+
