@@ -5,6 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bite Right — Menu</title>
+  <!-- ── Google Analytics 4 ── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ6Q5ETESV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QZ6Q5ETESV');
+    function brTrack(eventName, params) {
+      if (typeof gtag === 'function') gtag('event', eventName, params || {});
+    }
+  </script>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500&family=IM+Fell+English+SC&display=swap"
     rel="stylesheet">
@@ -1896,6 +1907,7 @@
     function addToCart(btn, name, price) {
       cart.push({ name, price });
       total += price;
+      brTrack('add_to_cart', { item_name: name, item_price: price, cart_size: cart.length });
       btn.textContent = '✓ Added';
       btn.classList.add('added');
       setTimeout(() => {
@@ -1947,6 +1959,7 @@
     function placeOrder() {
       if (cart.length === 0) return showToast('Your order is empty!');
 
+      brTrack('order_started', { cart_size: cart.length, cart_total: total });
       _customerLat = null;
       _customerLng = null;
       showLocModal('Checking your location…', 'Please allow location access to continue.', false);
@@ -1987,6 +2000,7 @@
       _customerLng = pos.coords.longitude;
       const dist = haversineKm(_customerLat, _customerLng, KAMPALA_LAT, KAMPALA_LNG);
       if (dist > MAX_RADIUS_KM) {
+        brTrack('outside_delivery_area', { distance_km: Math.round(dist), cart_total: total });
         showLocModal(
           '😕 Outside delivery area',
           `You appear to be ${Math.round(dist)} km from Kampala. Bite Right currently only delivers within Greater Kampala (${MAX_RADIUS_KM} km). Please visit us in Muyenga!`,
@@ -1994,6 +2008,7 @@
         );
         return;
       }
+      brTrack('location_shared', { cart_total: total });
       hideLocModal();
       showOrderForm();
     }
@@ -2003,6 +2018,8 @@
         2: 'Location unavailable. Please try again.',
         3: 'Location request timed out. Please try again.'
       };
+      const reasons = {1:'denied', 2:'unavailable', 3:'timeout'};
+      brTrack('location_error', { reason: reasons[err.code] || 'unknown', cart_total: total });
       showLocModal('Location Error', (msgs[err.code] || 'Unknown error.'), true);
     }
     function haversineKm(lat1, lon1, lat2, lon2) {
@@ -2011,6 +2028,7 @@
       return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
     function showOrderForm() {
+      brTrack('order_form_opened', { cart_size: cart.length, cart_total: total });
       document.getElementById('previewItem').textContent = `Total: UGX ${total.toLocaleString()}`;
       document.getElementById('orderName').value = '';
       document.getElementById('orderPhone').value = '';
@@ -2023,6 +2041,7 @@
       document.getElementById('orderFormModal').classList.remove('open');
     }
     function cancelPreOrder() {
+      brTrack('order_cancelled', { cart_size: cart.length, cart_total: total });
       hideLocModal();
       hideOrderForm();
     }
@@ -2035,6 +2054,8 @@
       if (_customerLat !== null && _customerLng !== null) {
         locationDetail = `https://www.google.com/maps?q=${_customerLat.toFixed(5)},${_customerLng.toFixed(5)}`;
       }
+
+      brTrack('order_submitted', { cart_size: cart.length, cart_total: total, has_location: _customerLat !== null });
 
       let msg = `🟢 *BITE RIGHT — NEW ORDER ALERT*\n\n` +
         `━━━━━━━━━━━━━━━\n` +
@@ -2060,6 +2081,7 @@
       updateCartUI();
       closeCart();
 
+      brTrack('whatsapp_opened', { source: 'menu_page' });
       window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
     }
 

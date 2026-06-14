@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>BiteRight — Order Egyptian Shawarma in Kampala</title>
+<!-- ── Google Analytics 4 ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ6Q5ETESV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QZ6Q5ETESV');
+  function brTrack(eventName, params) {
+    if (typeof gtag === 'function') gtag('event', eventName, params || {});
+  }
+</script>
 <meta name="description" content="BiteRight Egyptian Shawarma & Grill. Order online, WhatsApp us, call now, or get directions. Freshly made. Delivery available. Tank Hill Road, Muyenga, Kampala.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -780,7 +791,7 @@ html, body {
 
     <!-- ── 1. ORDER ONLINE  (primary CTA) ── -->
     <div class="glass-card" style="--delay:0.15s;">
-      <a class="link-btn primary" href="https://biteright-restuarant.vercel.app/menu" target="_blank" id="btn-order" aria-label="Order Online - Browse menu and place your order">
+      <a class="link-btn primary" href="https://biteright-restuarant.vercel.app/menu" target="_blank" id="btn-order" aria-label="Order Online - Browse menu and place your order" onclick="brTrack('connect_link_clicked', {link: 'order_online'})">
         <div class="icon-wrap">
           <!-- Shopping bag icon -->
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -797,7 +808,7 @@ html, body {
 
     <!-- ── 2. WHATSAPP  (standalone prominent button) ── -->
     <div class="glass-card" style="--delay:0.22s;">
-      <a class="link-btn whatsapp" href="https://wa.me/256760492621?text=Hi%20BiteRight!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8C%AF" target="_blank" id="btn-whatsapp" aria-label="WhatsApp BiteRight">
+      <a class="link-btn whatsapp" href="https://wa.me/256760492621?text=Hi%20BiteRight!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%8C%AF" target="_blank" id="btn-whatsapp" aria-label="WhatsApp BiteRight" onclick="brTrack('connect_link_clicked', {link: 'whatsapp'})">
         <div class="icon-wrap">
           <!-- WhatsApp icon -->
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -817,7 +828,7 @@ html, body {
 
       <!-- Call Now -->
       <div class="glass-card">
-        <a class="link-btn call-btn" href="tel:+256760492621" id="btn-call" aria-label="Call BiteRight">
+        <a class="link-btn call-btn" href="tel:+256760492621" id="btn-call" aria-label="Call BiteRight" onclick="brTrack('connect_link_clicked', {link: 'call'})">
           <div class="icon-wrap">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
@@ -832,7 +843,7 @@ html, body {
 
       <!-- Get Directions -->
       <div class="glass-card">
-        <a class="link-btn directions" href="https://www.google.com/maps/dir/?api=1&destination=BiteRight+Egyptian+Shawarma+Tank+Hill+Road+Muyenga+Kampala&travelmode=driving" target="_blank" id="btn-map" aria-label="Get directions to BiteRight">
+        <a class="link-btn directions" href="https://www.google.com/maps/dir/?api=1&destination=BiteRight+Egyptian+Shawarma+Tank+Hill+Road+Muyenga+Kampala&travelmode=driving" target="_blank" id="btn-map" aria-label="Get directions to BiteRight" onclick="brTrack('connect_link_clicked', {link: 'directions'})">
           <div class="icon-wrap">
             <!-- Google Maps pin icon -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -854,7 +865,7 @@ html, body {
     <div class="glass-card" style="--delay:0.44s;">
 
       <!-- Instagram -->
-      <a class="link-btn" href="https://www.instagram.com/biterightmuyenga/" target="_blank" id="btn-instagram">
+      <a class="link-btn" href="https://www.instagram.com/biterightmuyenga/" target="_blank" id="btn-instagram" onclick="brTrack('connect_link_clicked', {link: 'instagram'})">
         <div class="icon-wrap" style="background:rgba(193,53,132,0.14); border-color:rgba(193,53,132,0.28);">
           <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#e1306c;">
             <path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zM12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.2c-1.8 0-3.2-1.4-3.2-3.2S10.2 8.8 12 8.8s3.2 1.4 3.2 3.2-1.4 3.2-3.2 3.2zm5.2-9.7c-.7 0-1.2.5-1.2 1.2s.5 1.2 1.2 1.2 1.2-.5 1.2-1.2-.5-1.2-1.2-1.2z"/>
@@ -870,7 +881,7 @@ html, body {
       <div class="btn-divider"></div>
 
       <!-- Facebook -->
-      <a class="link-btn" href="https://www.facebook.com/61582511670311/" target="_blank" id="btn-facebook">
+      <a class="link-btn" href="https://www.facebook.com/61582511670311/" target="_blank" id="btn-facebook" onclick="brTrack('connect_link_clicked', {link: 'facebook'})">
         <div class="icon-wrap" style="background:rgba(24,119,242,0.13); border-color:rgba(24,119,242,0.28);">
           <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#1877f2;">
             <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
@@ -886,7 +897,7 @@ html, body {
       <div class="btn-divider"></div>
 
       <!-- TikTok -->
-      <a class="link-btn" href="https://vt.tiktok.com/ZSHnND6nU/" target="_blank" id="btn-tiktok">
+      <a class="link-btn" href="https://vt.tiktok.com/ZSHnND6nU/" target="_blank" id="btn-tiktok" onclick="brTrack('connect_link_clicked', {link: 'tiktok'})">
         <div class="icon-wrap" style="background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.15);">
           <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#fff;">
             <path d="M19.6 8.2A7.9 7.9 0 0115 6.6V15a5.5 5.5 0 11-5.5-5.5l.5.1V14l-.5-.1a1.5 1.5 0 101.5 1.5V2h4a3.9 3.9 0 004.1 4v2.2z"/>
@@ -902,7 +913,7 @@ html, body {
       <div class="btn-divider"></div>
 
       <!-- Website -->
-      <a class="link-btn" href="https://biteright-restuarant.vercel.app" target="_blank" id="btn-website">
+      <a class="link-btn" href="https://biteright-restuarant.vercel.app" target="_blank" id="btn-website" onclick="brTrack('connect_link_clicked', {link: 'website'})">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1 17.9c-3.9-.5-7-3.9-7-7.9 0-.6.1-1.2.2-1.8L9 15v1c0 1.1.9 2 2 2v1.9zm6.9-2.5c-.3-.9-1.1-1.5-2-1.5H15v-3c0-.5-.5-1-1-1H9v-2h2c.5 0 1-.5 1-1V7h2c1.1 0 2-.9 2-2v-.4c2.9 1.2 5 4.1 5 7.4 0 2.1-.8 4-2.1 5.4z"/>
@@ -918,7 +929,7 @@ html, body {
       <div class="btn-divider"></div>
 
       <!-- Save Contact -->
-      <a class="link-btn" href="#" id="save-contact">
+      <a class="link-btn" href="#" id="save-contact" onclick="brTrack('connect_link_clicked', {link: 'save_contact'})">
         <div class="icon-wrap">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm-7 3a3 3 0 110 6 3 3 0 010-6zm-4 10a4 4 0 018 0H9z"/>
