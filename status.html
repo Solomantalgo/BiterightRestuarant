@@ -223,7 +223,7 @@ async function fetchOverview() {
   const data = await ga4Report({
     dateRanges: [dateRange()],
     metrics: [
-      { name: 'totalUsers' },
+      { name: 'activeUsers' },
       { name: 'sessions' },
       { name: 'bounceRate' }
     ]
@@ -376,9 +376,9 @@ function renderDashboard({ overview, funnel, pageViews, connectLinks, topItems, 
     <!-- Stat Cards -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-label">Total Visitors</div>
+        <div class="stat-label">Active Visitors</div>
         <div class="stat-value">${overview.users.toLocaleString()}</div>
-        <div class="stat-sub">Unique users · ${rangeLabel()}</div>
+        <div class="stat-sub">Engaged users · ${rangeLabel()}</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Page Views</div>
