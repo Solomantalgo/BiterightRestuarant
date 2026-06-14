@@ -128,8 +128,8 @@ td:first-child{color:var(--white);font-weight:500}
     </div>
     <div class="h-right">
       <div class="range-btns">
-        <button class="range-btn" onclick="setRange(0,this)">Today</button>
-        <button class="range-btn active" onclick="setRange(7,this)">7d</button>
+        <button class="range-btn active" onclick="setRange(0,this)">Today</button>
+        <button class="range-btn" onclick="setRange(7,this)">7d</button>
         <button class="range-btn" onclick="setRange(14,this)">14d</button>
         <button class="range-btn" onclick="setRange(30,this)">30d</button>
         <button class="range-btn" onclick="setRange(90,this)">90d</button>
@@ -154,7 +154,7 @@ td:first-child{color:var(--white);font-weight:500}
 </div>
 
 <script>
-let currentDays = 7;
+let currentDays = 0;
 const rangeLabel = () => currentDays === 0 ? 'today' : `last ${currentDays} days`;
 let charts = {};
 
