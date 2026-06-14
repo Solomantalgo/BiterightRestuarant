@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BiteRight — Analytics Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=Outfit+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0F0D0A;--dark2:#1A1510;--card:#201A12;--card2:#251F16;
+  --amber:#D4863A;--amber2:#F0A455;--amber3:rgba(212,134,58,0.12);
+  --cream:#FBF6EE;--white:#FFFFFF;
+  --muted:rgba(255,255,255,0.38);--muted2:rgba(255,255,255,0.55);
+  --border:rgba(212,134,58,0.15);--border2:rgba(212,134,58,0.28);
+  --green:#2ECC71;--red:#E74C3C;--blue:#3498DB;
+  --font-h:'Cormorant Garamond',serif;--font-b:'Outfit',sans-serif;--font-m:'Outfit Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--dark);color:var(--white);min-height:100vh;overflow-x:hidden}
+
+/* ── Dashboard ── */
+#dashboard{display:block;min-height:100vh}
+header{background:rgba(15,13,10,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:1rem 2.5%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.h-brand{display:flex;align-items:center;gap:0.8rem}
+.h-logo{font-family:var(--font-h);font-size:1.4rem;color:var(--amber2);font-weight:700;line-height:1}
+.h-logo small{display:block;font-family:var(--font-b);font-size:0.58rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-top:1px}
+.h-right{display:flex;align-items:center;gap:1rem}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.live-label{font-size:0.75rem;color:var(--muted2);font-weight:500}
+.range-btns{display:flex;gap:0.4rem}
+.range-btn{background:var(--card);border:1px solid var(--border);color:var(--muted2);padding:0.38rem 0.9rem;border-radius:50px;font-size:0.75rem;font-weight:500;cursor:pointer;font-family:var(--font-b);transition:all 0.2s}
+.range-btn.active,.range-btn:hover{background:var(--amber);color:var(--dark);border-color:var(--amber)}
+.refresh-btn{background:var(--card);border:1px solid var(--border);color:var(--amber2);padding:0.38rem 1rem;border-radius:50px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:var(--font-b);transition:all 0.2s}
+.refresh-btn:hover{background:var(--amber);color:var(--dark)}
+
+main{padding:2rem 2.5%;max-width:1400px;margin:0 auto}
+
+/* ── Stat Cards ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;position:relative;overflow:hidden;transition:border-color 0.2s}
+.stat-card:hover{border-color:var(--border2)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),transparent)}
+.stat-label{font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;margin-bottom:0.6rem}
+.stat-value{font-family:var(--font-h);font-size:2.4rem;font-weight:700;color:var(--white);line-height:1;margin-bottom:0.4rem}
+.stat-sub{font-size:0.74rem;color:var(--muted2)}
+.stat-card.highlight::before{background:linear-gradient(90deg,var(--green),transparent)}
+.stat-card.highlight .stat-value{color:var(--green)}
+.stat-card.warn::before{background:linear-gradient(90deg,var(--red),transparent)}
+.stat-card.warn .stat-value{color:var(--amber2)}
+
+/* ── Funnel ── */
+.section-title{font-family:var(--font-h);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:1rem}
+.section-sub{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;margin-top:-0.6rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.chart-card h3{font-size:0.82rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-bottom:1.2rem}
+.chart-wrap{position:relative;height:220px}
+
+.funnel-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.8rem;margin-bottom:1.5rem}
+.funnel-card h3{font-size:0.82rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-bottom:1.5rem}
+.funnel-row{display:flex;align-items:center;gap:1rem;margin-bottom:0.9rem}
+.funnel-label{width:160px;font-size:0.82rem;color:var(--muted2);font-weight:500;flex-shrink:0}
+.funnel-bar-wrap{flex:1;height:32px;background:rgba(255,255,255,0.05);border-radius:6px;overflow:hidden;position:relative}
+.funnel-bar{height:100%;border-radius:6px;transition:width 0.8s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;padding-left:10px}
+.funnel-bar span{font-size:0.76rem;font-weight:600;color:var(--dark);white-space:nowrap}
+.funnel-count{width:60px;text-align:right;font-family:var(--font-m);font-size:0.85rem;color:var(--white);font-weight:500;flex-shrink:0}
+.funnel-pct{width:44px;text-align:right;font-size:0.74rem;color:var(--muted);flex-shrink:0}
+.funnel-drop{font-size:0.7rem;color:var(--red);display:flex;align-items:center;gap:0.3rem;padding-left:172px;margin-bottom:0.4rem;margin-top:-0.4rem}
+
+/* ── Connect Page Breakdown ── */
+.connect-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.8rem;margin-bottom:1.5rem}
+.connect-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-align:center;transition:border-color 0.2s}
+.connect-item:hover{border-color:var(--border2)}
+.connect-item .ci-icon{font-size:1.4rem;margin-bottom:0.4rem}
+.connect-item .ci-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.3rem}
+.connect-item .ci-val{font-family:var(--font-h);font-size:1.6rem;font-weight:700;color:var(--amber2)}
+
+/* ── Table ── */
+.table-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:1.5rem}
+.table-card h3{font-size:0.82rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;padding:1.3rem 1.5rem;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse}
+th{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;padding:0.7rem 1.5rem;text-align:left;font-weight:500;border-bottom:1px solid var(--border)}
+td{font-size:0.84rem;color:var(--muted2);padding:0.75rem 1.5rem;border-bottom:1px solid rgba(212,134,58,0.06)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(212,134,58,0.04);color:var(--white)}
+td:first-child{color:var(--white);font-weight:500}
+.badge{display:inline-block;padding:0.18rem 0.65rem;border-radius:50px;font-size:0.68rem;font-weight:600}
+.badge.green{background:rgba(46,204,113,0.12);color:var(--green);border:1px solid rgba(46,204,113,0.25)}
+.badge.red{background:rgba(231,76,60,0.12);color:var(--red);border:1px solid rgba(231,76,60,0.25)}
+.badge.amber{background:rgba(212,134,58,0.12);color:var(--amber2);border:1px solid rgba(212,134,58,0.25)}
+
+/* ── Loading ── */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4rem;gap:1rem;color:var(--muted);font-size:0.88rem}
+.spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--amber);border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── Empty ── */
+.empty{padding:3rem;text-align:center;color:var(--muted);font-size:0.88rem}
+.empty strong{display:block;color:var(--amber2);font-size:1rem;margin-bottom:0.4rem}
+
+/* ── Footer ── */
+.dash-footer{text-align:center;padding:2rem;font-size:0.74rem;color:var(--muted);border-top:1px solid var(--border);margin-top:1rem}
+.dash-footer strong{color:var(--amber2)}
+
+@media(max-width:768px){
+  .two-col{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  header{flex-wrap:wrap;gap:0.8rem}
+  .range-btns{order:3;width:100%}
+  .funnel-label{width:110px}
+  .funnel-drop{padding-left:122px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     DASHBOARD
+══════════════════════════════════ -->
+<div id="dashboard">
+  <header>
+    <div class="h-brand">
+      <div class="h-logo">Bite Right <small>Analytics Dashboard</small></div>
+    </div>
+    <div class="h-right">
+      <div class="range-btns">
+        <button class="range-btn active" onclick="setRange(7,this)">7d</button>
+        <button class="range-btn" onclick="setRange(14,this)">14d</button>
+        <button class="range-btn" onclick="setRange(30,this)">30d</button>
+        <button class="range-btn" onclick="setRange(90,this)">90d</button>
+      </div>
+      <button class="refresh-btn" onclick="loadAll()">↻ Refresh</button>
+      <div style="display:flex;align-items:center;gap:0.4rem">
+        <div class="live-dot"></div>
+        <span class="live-label">Live</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="dashContent">
+      <div class="loading"><div class="spinner"></div>Loading analytics…</div>
+    </div>
+  </main>
+
+  <div class="dash-footer">
+    BiteRight Analytics · Property <strong>541574321</strong> · Data from Google Analytics 4 · Built by <strong>Solomantalgo</strong>
+  </div>
+</div>
+
+<script>
+let currentDays = 7;
+let charts = {};
+
+// ── Auto Load on DOM Content Loaded ──────────
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadAll();
+});
+
+// ── GA4 API ──────────────────────────────────
+async function ga4Report(body) {
+  const res = await fetch('/api/report', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+  return data;
+}
+
+function dateRange() {
+  return { startDate: `${currentDays}daysAgo`, endDate: 'today' };
+}
+
+function getVal(row, idx) {
+  return row?.metricValues?.[idx]?.value || '0';
+}
+function getDim(row, idx) {
+  return row?.dimensionValues?.[idx]?.value || '';
+}
+
+// ── Load All ─────────────────────────────────
+async function setRange(days, btn) {
+  currentDays = days;
+  document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  await loadAll();
+}
+
+async function loadAll() {
+  document.getElementById('dashContent').innerHTML = '<div class="loading"><div class="spinner"></div>Fetching data from GA4…</div>';
+  Object.values(charts).forEach(c => c.destroy());
+  charts = {};
+  try {
+    const [overview, funnel, pageViews, connectLinks, topItems, dailyOrders] = await Promise.all([
+      fetchOverview(),
+      fetchFunnel(),
+      fetchPageViews(),
+      fetchConnectLinks(),
+      fetchTopItems(),
+      fetchDailyOrders()
+    ]);
+    renderDashboard({ overview, funnel, pageViews, connectLinks, topItems, dailyOrders });
+  } catch(err) {
+    document.getElementById('dashContent').innerHTML = `
+      <div class="empty">
+        <strong>Could not load data</strong>
+        ${err.message}<br><br>
+        Make sure the service account email is added to GA4 as a Viewer.
+      </div>`;
+  }
+}
+
+async function fetchOverview() {
+  const data = await ga4Report({
+    dateRanges: [dateRange()],
+    metrics: [
+      { name: 'totalUsers' },
+      { name: 'sessions' },
+      { name: 'bounceRate' }
+    ]
+  });
+  const row = data.rows?.[0];
+  return {
+    users: parseInt(getVal(row,0)),
+    sessions: parseInt(getVal(row,1)),
+    bounceRate: parseFloat(getVal(row,2))
+  };
+}
+
+async function fetchFunnel() {
+  const data = await ga4Report({
+    dateRanges: [dateRange()],
+    dimensions: [{ name: 'eventName' }],
+    metrics: [{ name: 'eventCount' }],
+    dimensionFilter: {
+      filter: {
+        fieldName: 'eventName',
+        inListFilter: {
+          values: ['page_view','order_started','location_shared','location_error','order_form_opened','order_submitted','whatsapp_opened','order_cancelled','outside_delivery_area','reservation_submitted']
+        }
+      }
+    }
+  });
+  const map = {};
+  (data.rows || []).forEach(r => { map[getDim(r,0)] = parseInt(getVal(r,0)); });
+  return map;
+}
+
+async function fetchPageViews() {
+  const data = await ga4Report({
+    dateRanges: [dateRange()],
+    dimensions: [{ name: 'pagePath' }],
+    metrics: [{ name: 'screenPageViews' }, { name: 'totalUsers' }],
+    orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+    limit: 10
+  });
+  return (data.rows || []).map(r => ({
+    path: getDim(r,0),
+    views: parseInt(getVal(r,0)),
+    users: parseInt(getVal(r,1))
+  }));
+}
+
+async function fetchConnectLinks() {
+  const data = await ga4Report({
+    dateRanges: [dateRange()],
+    dimensions: [{ name: 'customEvent:link' }],
+    metrics: [{ name: 'eventCount' }],
+    dimensionFilter: {
+      filter: { fieldName: 'eventName', stringFilter: { value: 'connect_link_clicked' } }
+    }
+  });
+  const map = {};
+  (data.rows || []).forEach(r => { map[getDim(r,0)] = parseInt(getVal(r,0)); });
+  return map;
+}
+
+async function fetchTopItems() {
+  const data = await ga4Report({
+    dateRanges: [dateRange()],
+    dimensions: [{ name: 'customEvent:item_name' }],
+    metrics: [{ name: 'eventCount' }],
+    dimensionFilter: {
+      filter: { fieldName: 'eventName', stringFilter: { value: 'order_started' } }
+    },
+    orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+    limit: 10
+  });
+  return (data.rows || []).map(r => ({
+    name: getDim(r,0),
+    count: parseInt(getVal(r,0))
+  })).filter(r => r.name && r.name !== '(not set)');
+}
+
+async function fetchDailyOrders() {
+  const data = await ga4Report({
+    dateRanges: [dateRange()],
+    dimensions: [{ name: 'date' }, { name: 'eventName' }],
+    metrics: [{ name: 'eventCount' }],
+    dimensionFilter: {
+      filter: {
+        fieldName: 'eventName',
+        inListFilter: { values: ['page_view','whatsapp_opened','order_cancelled'] }
+      }
+    }
+  });
+  const byDate = {};
+  (data.rows || []).forEach(r => {
+    const date = getDim(r,0);
+    const event = getDim(r,1);
+    const count = parseInt(getVal(r,0));
+    if (!byDate[date]) byDate[date] = { page_view:0, whatsapp_opened:0, order_cancelled:0 };
+    byDate[date][event] = count;
+  });
+  return byDate;
+}
+
+// ── Render ────────────────────────────────────
+function renderDashboard({ overview, funnel, pageViews, connectLinks, topItems, dailyOrders }) {
+  const pv = funnel.page_view || 0;
+  const os = funnel.order_started || 0;
+  const ls = funnel.location_shared || 0;
+  const fo = funnel.order_form_opened || 0;
+  const sub = funnel.order_submitted || 0;
+  const wa = funnel.whatsapp_opened || 0;
+  const cancelled = funnel.order_cancelled || 0;
+  const locErr = funnel.location_error || 0;
+  const outside = funnel.outside_delivery_area || 0;
+  const reservations = funnel.reservation_submitted || 0;
+
+  const convRate = pv > 0 ? ((wa / pv) * 100).toFixed(1) : '0.0';
+  const abandonRate = os > 0 ? (((os - wa) / os) * 100).toFixed(1) : '0.0';
+
+  // Daily chart data
+  const dates = Object.keys(dailyOrders).sort();
+  const labels = dates.map(d => {
+    const s = d.toString();
+    return s.slice(4,6) + '/' + s.slice(6,8);
+  });
+  const pvData = dates.map(d => dailyOrders[d]?.page_view || 0);
+  const waData = dates.map(d => dailyOrders[d]?.whatsapp_opened || 0);
+  const cancelData = dates.map(d => dailyOrders[d]?.order_cancelled || 0);
+
+  const connectIcons = { whatsapp:'💬', order_online:'🛍️', call:'📞', directions:'📍', instagram:'📸', facebook:'👍', tiktok:'🎵', website:'🌐', save_contact:'👤' };
+  const connectLabels = { whatsapp:'WhatsApp', order_online:'Order Online', call:'Call', directions:'Directions', instagram:'Instagram', facebook:'Facebook', tiktok:'TikTok', website:'Website', save_contact:'Save Contact' };
+
+  document.getElementById('dashContent').innerHTML = `
+
+    <!-- Stat Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Visitors</div>
+        <div class="stat-value">${overview.users.toLocaleString()}</div>
+        <div class="stat-sub">Unique users · last ${currentDays} days</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Page Views</div>
+        <div class="stat-value">${pv.toLocaleString()}</div>
+        <div class="stat-sub">Across all pages</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-label">Completed Orders</div>
+        <div class="stat-value">${wa.toLocaleString()}</div>
+        <div class="stat-sub">WhatsApp opened with order</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Conversion Rate</div>
+        <div class="stat-value">${convRate}%</div>
+        <div class="stat-sub">Visitors who ordered</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="stat-label">Abandoned Orders</div>
+        <div class="stat-value">${cancelled.toLocaleString()}</div>
+        <div class="stat-sub">${abandonRate}% of order attempts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Bounce Rate</div>
+        <div class="stat-value">${(overview.bounceRate * 100).toFixed(0)}%</div>
+        <div class="stat-sub">Left without interacting</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Reservations</div>
+        <div class="stat-value">${reservations.toLocaleString()}</div>
+        <div class="stat-sub">Table booking requests</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Location Errors</div>
+        <div class="stat-value">${(locErr + outside).toLocaleString()}</div>
+        <div class="stat-sub">Denied (${locErr}) · Out of range (${outside})</div>
+      </div>
+    </div>
+
+    <!-- Order Funnel -->
+    <h2 class="section-title">Order Funnel</h2>
+    <p class="section-sub">How many people go from viewing the site to actually placing an order</p>
+    <div class="funnel-card">
+      <h3>Step-by-step drop-off</h3>
+      ${renderFunnelRow('Visited site', pv, pv, '#F0A455')}
+      ${renderFunnelDrop(pv, os)}
+      ${renderFunnelRow('Tapped Order Now', os, pv, '#D4863A')}
+      ${renderFunnelDrop(os, ls + locErr + outside)}
+      ${renderFunnelRow('Location step', ls + locErr + outside, pv, '#B8722E')}
+      ${renderFunnelDrop(ls, fo)}
+      ${renderFunnelRow('Filled form', fo, pv, '#9C5E26')}
+      ${renderFunnelDrop(fo, wa)}
+      ${renderFunnelRow('Sent to WhatsApp ✅', wa, pv, '#2ECC71')}
+    </div>
+
+    <!-- Charts -->
+    <div class="two-col">
+      <div class="chart-card">
+        <h3>Daily traffic vs orders (${currentDays}d)</h3>
+        <div class="chart-wrap"><canvas id="lineChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Order outcomes</h3>
+        <div class="chart-wrap"><canvas id="donutChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Connect Page -->
+    <h2 class="section-title">Connect Page Taps</h2>
+    <p class="section-sub">Which buttons people clicked on the connect page</p>
+    <div class="connect-grid">
+      ${Object.entries(connectIcons).map(([key, icon]) => `
+        <div class="connect-item">
+          <div class="ci-icon">${icon}</div>
+          <div class="ci-label">${connectLabels[key]}</div>
+          <div class="ci-val">${(connectLinks[key] || 0).toLocaleString()}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <!-- Top Ordered Items -->
+    ${topItems.length > 0 ? `
+    <div class="table-card">
+      <h3>Most ordered items</h3>
+      <table>
+        <thead><tr><th>#</th><th>Item</th><th>Times ordered</th><th>Share</th></tr></thead>
+        <tbody>
+          ${topItems.map((item, i) => `
+            <tr>
+              <td style="color:var(--muted);font-size:0.78rem">${i+1}</td>
+              <td>${item.name}</td>
+              <td><span class="badge green">${item.count}</span></td>
+              <td style="color:var(--muted)">${os > 0 ? ((item.count/os)*100).toFixed(1) : 0}%</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>` : ''}
+
+    <!-- Page breakdown -->
+    <div class="table-card">
+      <h3>Page breakdown</h3>
+      <table>
+        <thead><tr><th>Page</th><th>Views</th><th>Users</th></tr></thead>
+        <tbody>
+          ${pageViews.map(p => `
+            <tr>
+              <td>${p.path === '/' ? 'Home (index.html)' : p.path}</td>
+              <td>${p.views.toLocaleString()}</td>
+              <td>${p.users.toLocaleString()}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  // Line chart
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  charts.line = new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Page Views', data: pvData, borderColor: '#F0A455', backgroundColor: 'rgba(240,164,85,0.1)', tension: 0.4, fill: true, pointRadius: 3 },
+        { label: 'WhatsApp Orders', data: waData, borderColor: '#2ECC71', backgroundColor: 'rgba(46,204,113,0.1)', tension: 0.4, fill: true, pointRadius: 3 },
+        { label: 'Cancelled', data: cancelData, borderColor: '#E74C3C', backgroundColor: 'rgba(231,76,60,0.08)', tension: 0.4, fill: true, pointRadius: 3 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: 'rgba(255,255,255,0.55)', font: { size: 11, family: 'Outfit' }, boxWidth: 10 } } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.35)', font: { size: 10 } } },
+        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.35)', font: { size: 10 } }, beginAtZero: true }
+      }
+    }
+  });
+
+  // Donut chart
+  const donutCtx = document.getElementById('donutChart').getContext('2d');
+  const bounced = Math.max(0, overview.users - os);
+  charts.donut = new Chart(donutCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Completed order', 'Cancelled', 'Location issue', 'Bounced (no action)'],
+      datasets: [{
+        data: [wa, cancelled, locErr + outside, bounced],
+        backgroundColor: ['#2ECC71','#E74C3C','#F0A455','rgba(255,255,255,0.1)'],
+        borderColor: '#1A1510', borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '65%',
+      plugins: { legend: { position: 'bottom', labels: { color: 'rgba(255,255,255,0.55)', font: { size: 11, family: 'Outfit' }, boxWidth: 10, padding: 12 } } }
+    }
+  });
+}
+
+function renderFunnelRow(label, count, total, color) {
+  const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+  return `
+    <div class="funnel-row">
+      <div class="funnel-label">${label}</div>
+      <div class="funnel-bar-wrap">
+        <div class="funnel-bar" style="width:${pct}%;background:${color}">
+          ${pct > 12 ? `<span>${pct}%</span>` : ''}
+        </div>
+      </div>
+      <div class="funnel-count">${count.toLocaleString()}</div>
+      <div class="funnel-pct">${pct}%</div>
+    </div>`;
+}
+
+function renderFunnelDrop(from, to) {
+  if (!from || !to) return '';
+  const dropped = from - to;
+  const pct = from > 0 ? Math.round((dropped / from) * 100) : 0;
+  if (dropped <= 0) return '';
+  return `<div class="funnel-drop">▼ ${dropped.toLocaleString()} dropped off here (${pct}%)</div>`;
+}
+</script>
+</body>
+</html>
