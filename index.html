@@ -2634,12 +2634,18 @@
     }
 
     function approveLocationShare() {
-      hideLocModal();
-      continueCheckout();
-
       if (!navigator.geolocation) {
+        continueCheckout();
         return;
       }
+
+      let finished = false;
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        hideLocModal();
+        continueCheckout();
+      };
 
       const successHandler = (pos) => {
         _customerLat = pos.coords.latitude;
@@ -2656,6 +2662,7 @@
         } else {
           brTrack('location_shared', { item_name: _pendingItem });
         }
+        finish();
       };
 
       const errorHandler = (err) => {
@@ -2665,13 +2672,16 @@
         } else {
           brTrack('location_error', { reason: reasons[err.code] || 'unknown', item_name: _pendingItem });
         }
+        finish();
       };
 
       navigator.geolocation.getCurrentPosition(successHandler, errorHandler, {
-        timeout: 5000,
+        timeout: 8000,
         maximumAge: 0,
         enableHighAccuracy: true
       });
+
+      setTimeout(finish, 9000);
     }
 
     function declineLocationShare() {
