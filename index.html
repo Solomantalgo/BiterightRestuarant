@@ -1368,7 +1368,7 @@
       position: fixed;
       inset: 0;
       background: rgba(15, 13, 10, 0.88);
-      z-index: 500;
+      z-index: 3000;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s
@@ -1384,7 +1384,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -44%);
-      z-index: 501;
+      z-index: 3001;
       background: var(--dark2);
       border: 1px solid var(--border);
       border-radius: 22px;
@@ -2093,8 +2093,8 @@
     <p class="pre-sub" id="locMsg">Please allow location access to continue.</p>
     <div class="pre-actions">
       <button class="pre-btn-cancel" onclick="cancelPreOrder()">Cancel</button>
-      <button class="pre-btn-retry" id="locRetryBtn" onclick="retryLocation()" style="display:none">Retry</button>
-      <button class="pre-btn-skip" id="locSkipBtn" onclick="skipLocation()" style="display:none">Skip & Order</button>
+      <button class="pre-btn-retry" id="locRetryBtn" onclick="approveLocationShare()" style="display:none">Yes, share location</button>
+      <button class="pre-btn-skip" id="locSkipBtn" onclick="declineLocationShare()" style="display:none">No thanks, continue</button>
     </div>
   </div>
 
@@ -2573,89 +2573,180 @@
     let _pendingPrice = 0;
     let _customerLat = null;
     let _customerLng = null;
+    let _checkoutMode = 'cart';
 
     function startOrder(itemName, itemPrice) {
       _pendingItem = itemName;
       _pendingPrice = itemPrice;
       _customerLat = null;
       _customerLng = null;
+      _checkoutMode = 'single_item';
       brTrack('order_started', { item_name: itemName, item_price: itemPrice });
       history.pushState({ modal: 'preorder' }, '');
-      showLocModal('Checking your location…', 'Please allow location access to continue.', false);
-
-      if (!navigator.geolocation) {
-        showLocModal('Location not supported', 'Your browser does not support location services.', false);
-        return;
-      }
-      navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, {
-        timeout: 12000,
-        maximumAge: 0,
-        enableHighAccuracy: true
-      });
+      showLocationConsentModal();
     }
 
-    function showLocModal(title, msg, showRetry) {
-      document.getElementById('locModal').querySelector('.pre-title').textContent = title;
-      document.getElementById('locMsg').textContent = msg;
-      document.getElementById('locRetryBtn').style.display = showRetry ? 'inline-block' : 'none';
+    function showLocationConsentModal() {
+      closeCart();
+      closeCategory();
+      const modal = document.getElementById('locModal');
+      const shareBtn = document.getElementById('locRetryBtn');
+      const skipBtn = document.getElementById('locSkipBtn');
+      modal.querySelector('.pre-title').textContent = 'Share your location?';
+      document.getElementById('locMsg').textContent = 'We use it to confirm delivery availability. You can still continue without sharing.';
+      shareBtn.textContent = 'Yes, share location';
+      shareBtn.style.display = 'inline-block';
+      skipBtn.textContent = 'No thanks, continue';
+      skipBtn.style.display = 'inline-block';
       document.getElementById('locOverlay').classList.add('open');
-      document.getElementById('locModal').classList.add('open');
+      modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
+
+    function showLocationStatusModal(title, msg, showShare, showSkip) {
+      closeCart();
+      closeCategory();
+      const modal = document.getElementById('locModal');
+      const shareBtn = document.getElementById('locRetryBtn');
+      const skipBtn = document.getElementById('locSkipBtn');
+      modal.querySelector('.pre-title').textContent = title;
+      document.getElementById('locMsg').textContent = msg;
+      shareBtn.textContent = 'Yes, share location';
+      shareBtn.style.display = showShare ? 'inline-block' : 'none';
+      skipBtn.textContent = 'No thanks, continue';
+      skipBtn.style.display = showSkip ? 'inline-block' : 'none';
+      document.getElementById('locOverlay').classList.add('open');
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
     function hideLocModal() {
       document.getElementById('locOverlay').classList.remove('open');
       document.getElementById('locModal').classList.remove('open');
     }
-    function retryLocation() {
-      showLocModal('Checking your location…', 'Trying again…', false);
-      navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError, {
-        timeout: 12000,
+
+    function continueCheckout() {
+      if (_checkoutMode === 'cart') {
+        openCartCheckoutWhatsapp();
+      } else {
+        openOrderWhatsApp();
+      }
+    }
+
+    function approveLocationShare() {
+      hideLocModal();
+      continueCheckout();
+
+      if (!navigator.geolocation) {
+        return;
+      }
+
+      const successHandler = (pos) => {
+        _customerLat = pos.coords.latitude;
+        _customerLng = pos.coords.longitude;
+        const dist = haversineKm(_customerLat, _customerLng, KAMPALA_LAT, KAMPALA_LNG);
+        if (dist > MAX_RADIUS_KM) {
+          brTrack('outside_delivery_area', {
+            distance_km: Math.round(dist),
+            item_name: _checkoutMode === 'cart' ? null : _pendingItem,
+            cart_total: _checkoutMode === 'cart' ? cartTotal : null
+          });
+        } else if (_checkoutMode === 'cart') {
+          brTrack('location_shared', { cart_total: cartTotal });
+        } else {
+          brTrack('location_shared', { item_name: _pendingItem });
+        }
+      };
+
+      const errorHandler = (err) => {
+        const reasons = { 1: 'denied', 2: 'unavailable', 3: 'timeout' };
+        if (_checkoutMode === 'cart') {
+          brTrack('location_error', { reason: reasons[err.code] || 'unknown', cart_total: cartTotal });
+        } else {
+          brTrack('location_error', { reason: reasons[err.code] || 'unknown', item_name: _pendingItem });
+        }
+      };
+
+      navigator.geolocation.getCurrentPosition(successHandler, errorHandler, {
+        timeout: 5000,
         maximumAge: 0,
         enableHighAccuracy: true
       });
     }
+
+    function declineLocationShare() {
+      hideLocModal();
+      continueCheckout();
+    }
+
     function onLocationSuccess(pos) {
       _customerLat = pos.coords.latitude;
       _customerLng = pos.coords.longitude;
       const dist = haversineKm(_customerLat, _customerLng, KAMPALA_LAT, KAMPALA_LNG);
       if (dist > MAX_RADIUS_KM) {
         brTrack('outside_delivery_area', { distance_km: Math.round(dist), item_name: _pendingItem });
-        showLocModal(
+        showLocationStatusModal(
           '😕 Outside delivery area',
           `You appear to be ${Math.round(dist)} km from Kampala. Bite Right currently only delivers within Greater Kampala (${MAX_RADIUS_KM} km). Please visit us in Muyenga!`,
-          false
+          true,
+          true
         );
         return;
       }
       brTrack('location_shared', { item_name: _pendingItem });
-      hideLocModal();
-      showOrderForm();
+      openOrderWhatsApp();
     }
+
     function onLocationError(err) {
       const msgs = {
-        1: 'Location access was denied. Please enable it in your browser settings.',
-        2: 'Location unavailable. Please try again.',
-        3: 'Location request timed out. Please try again.'
+        1: 'Location access was denied. You can still continue without sharing.',
+        2: 'Location is unavailable right now. You can still continue without sharing.',
+        3: 'Location timed out. You can still continue without sharing.'
       };
       const reasons = { 1: 'denied', 2: 'unavailable', 3: 'timeout' };
       brTrack('location_error', { reason: reasons[err.code] || 'unknown', item_name: _pendingItem });
-      showLocModal('Location Error', (msgs[err.code] || 'Unknown error.'), true);
+      showLocationStatusModal('Location unavailable', (msgs[err.code] || 'Unknown error.'), true, true);
     }
+
     function haversineKm(lat1, lon1, lat2, lon2) {
       const R = 6371, dLat = (lat2 - lat1) * Math.PI / 180, dLon = (lon2 - lon1) * Math.PI / 180;
       const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
       return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
-    function showOrderForm() {
-      brTrack('order_form_opened', { item_name: _pendingItem, item_price: _pendingPrice });
-      document.getElementById('previewItem').textContent = `${_pendingItem}  —  UGX ${_pendingPrice.toLocaleString()}`;
-      document.getElementById('orderName').value = '';
-      document.getElementById('orderPhone').value = '';
-      document.getElementById('orderFormOverlay').classList.add('open');
-      document.getElementById('orderFormModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => document.getElementById('orderName').focus(), 350);
+
+    function openWhatsAppLink(url) {
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!newWindow) {
+        window.location.href = url;
+      }
     }
+
+    function openOrderWhatsApp() {
+      let locationDetail = 'Kampala area (coordinates unavailable)';
+      if (_customerLat !== null && _customerLng !== null) {
+        locationDetail = `https://www.google.com/maps?q=${_customerLat.toFixed(5)},${_customerLng.toFixed(5)}`;
+      }
+
+      const msg =
+        `🟢 *BITE RIGHT — NEW ORDER ALERT*\n\n` +
+        `━━━━━━━━━━━━━━━\n` +
+        `🧾 *ORDER DETAILS*\n` +
+        `• Item: ${_pendingItem}\n` +
+        `• Price: UGX ${_pendingPrice.toLocaleString()}\n\n` +
+        `━━━━━━━━━━━━━━━\n` +
+        `📍 *LOCATION*\n` +
+        `• ${locationDetail}\n\n` +
+        `━━━━━━━━━━━━━━━\n` +
+        `⏳ *ACTION REQUIRED*\n` +
+        `Confirm availability & payment.`;
+
+      hideLocModal();
+      document.body.style.overflow = '';
+      brTrack('click_order_whatsapp', { source: 'single_item' });
+      brTrack('whatsapp_opened', { source: 'single_item' });
+      openWhatsAppLink(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`);
+    }
+
     function hideOrderForm() {
       document.getElementById('orderFormOverlay').classList.remove('open');
       document.getElementById('orderFormModal').classList.remove('open');
@@ -2727,19 +2818,8 @@
       brTrack('order_started', { cart_size: cart.length, cart_total: cartTotal });
       _customerLat = null;
       _customerLng = null;
-      showLocModal('Checking your location…', 'Please allow location access to continue.', false);
-      document.getElementById('locSkipBtn').style.display = 'inline-block';
-
-      if (!navigator.geolocation) {
-        showLocModal('Location not supported', 'Your browser does not support location services.', true);
-        document.getElementById('locSkipBtn').style.display = 'inline-block';
-        return;
-      }
-      navigator.geolocation.getCurrentPosition(onLocationSuccessCart, onLocationErrorCart, {
-        timeout: 12000,
-        maximumAge: 0,
-        enableHighAccuracy: true
-      });
+      _checkoutMode = 'cart';
+      showLocationConsentModal();
     }
 
     function onLocationSuccessCart(pos) {
@@ -2748,34 +2828,32 @@
       const dist = haversineKm(_customerLat, _customerLng, KAMPALA_LAT, KAMPALA_LNG);
       if (dist > MAX_RADIUS_KM) {
         brTrack('outside_delivery_area', { distance_km: Math.round(dist), cart_total: cartTotal });
-        showLocModal(
+        showLocationStatusModal(
           '😕 Outside delivery area',
           `You appear to be ${Math.round(dist)} km from Kampala. Bite Right currently only delivers within Greater Kampala (${MAX_RADIUS_KM} km). Please visit us in Muyenga!`,
-          false
+          true,
+          true
         );
-        document.getElementById('locSkipBtn').style.display = 'inline-block';
         return;
       }
       brTrack('location_shared', { cart_total: cartTotal });
-      hideLocModal();
       openCartCheckoutWhatsapp();
     }
 
     function onLocationErrorCart(err) {
       const msgs = {
-        1: 'Location access was denied. Please continue without location or retry.',
-        2: 'Location unavailable. Please continue without location or retry.',
-        3: 'Location request timed out. Please continue without location or retry.'
+        1: 'Location access was denied. You can still continue without sharing.',
+        2: 'Location unavailable. You can still continue without sharing.',
+        3: 'Location timed out. You can still continue without sharing.'
       };
       const reasons = { 1: 'denied', 2: 'unavailable', 3: 'timeout' };
       brTrack('location_error', { reason: reasons[err.code] || 'unknown', cart_total: cartTotal });
-      showLocModal('Location Error', (msgs[err.code] || 'Unknown error.'), true);
-      document.getElementById('locSkipBtn').style.display = 'inline-block';
+      showLocationStatusModal('Location unavailable', (msgs[err.code] || 'Unknown error.'), true, true);
     }
 
     function skipLocation() {
       hideLocModal();
-      openCartCheckoutWhatsapp();
+      continueCheckout();
     }
 
     function openCartCheckoutWhatsapp() {
@@ -2804,7 +2882,7 @@
       updateCartUI();
       brTrack('click_order_whatsapp', { source: 'menu_cart' });
       brTrack('whatsapp_opened', { source: 'menu_cart' });
-      window.open(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`, '_blank');
+      openWhatsAppLink(`https://wa.me/256760492621?text=${encodeURIComponent(msg)}`);
     }
 
     function showToast(msg) {
