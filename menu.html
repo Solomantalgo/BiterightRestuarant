@@ -9,7 +9,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ6Q5ETESV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-QZ6Q5ETESV');
     function brTrack(eventName, params) {
@@ -1440,7 +1440,8 @@
   <div class="menu-tools">
     <label class="search-wrap" for="menuSearch">
       <span>⌕</span>
-      <input id="menuSearch" type="search" placeholder="Search Menu..." autocomplete="off" oninput="filterMenu(this.value)">
+      <input id="menuSearch" type="search" placeholder="Search Menu..." autocomplete="off"
+        oninput="filterMenu(this.value)">
     </label>
   </div>
 
@@ -1461,13 +1462,21 @@
   </main>
 
   <!-- Lightbox Modal -->
-  <div id="lightboxOverlay" style="position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:2100; opacity:0; pointer-events:none; transition:opacity 0.3s;" onclick="closeLightbox()"></div>
-  <div id="lightboxModal" style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:2101; opacity:0; pointer-events:none; transition:opacity 0.3s, transform 0.3s; width:min(90vw, 500px); background:var(--dark-2); border-radius:12px; overflow:hidden; border:1px solid var(--border); display:flex; flex-direction:column;">
-    <div style="padding:16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
-      <h3 id="lightboxTitle" style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--cream); margin:0; font-weight:600;"></h3>
-      <button onclick="closeLightbox()" style="background:none; border:none; color:var(--muted); font-size:24px; cursor:pointer; line-height:1;">&times;</button>
+  <div id="lightboxOverlay"
+    style="position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:2100; opacity:0; pointer-events:none; transition:opacity 0.3s;"
+    onclick="closeLightbox()"></div>
+  <div id="lightboxModal"
+    style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:2101; opacity:0; pointer-events:none; transition:opacity 0.3s, transform 0.3s; width:min(90vw, 500px); background:var(--dark-2); border-radius:12px; overflow:hidden; border:1px solid var(--border); display:flex; flex-direction:column;">
+    <div
+      style="padding:16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+      <h3 id="lightboxTitle"
+        style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--cream); margin:0; font-weight:600;">
+      </h3>
+      <button onclick="closeLightbox()"
+        style="background:none; border:none; color:var(--muted); font-size:24px; cursor:pointer; line-height:1;">&times;</button>
     </div>
-    <div style="width:100%; height:auto; max-height:70vh; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#000;">
+    <div
+      style="width:100%; height:auto; max-height:70vh; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#000;">
       <img id="lightboxImg" src="" style="width:100%; height:100%; object-fit:contain;">
     </div>
   </div>
@@ -1517,7 +1526,7 @@
     </div>
     <div class="cart-footer">
       <div class="cart-total">
-      <span>Total</span>
+        <span>Total</span>
         <span class="cart-total-price" id="cartTotal">UGX 0</span>
       </div>
       <button class="checkout-btn" onclick="placeOrder()">Send Order to WhatsApp</button>
@@ -2018,7 +2027,7 @@
         2: 'Location unavailable. Please try again.',
         3: 'Location request timed out. Please try again.'
       };
-      const reasons = {1:'denied', 2:'unavailable', 3:'timeout'};
+      const reasons = { 1: 'denied', 2: 'unavailable', 3: 'timeout' };
       brTrack('location_error', { reason: reasons[err.code] || 'unknown', cart_total: total });
       showLocModal('Location Error', (msgs[err.code] || 'Unknown error.'), true);
     }

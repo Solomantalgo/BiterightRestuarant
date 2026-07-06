@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BiteRight Menu</title>
+  <style>
+    @page { size: A4 landscape; margin: 0; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #141414;
+      color: #fff8e8;
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      width: 297mm;
+      height: 210mm;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      background:
+        radial-gradient(circle at 20% 12%, rgba(246, 160, 15, .18), transparent 23%),
+        radial-gradient(circle at 78% 78%, rgba(150, 20, 0, .18), transparent 26%),
+        linear-gradient(135deg, #171717 0%, #080808 62%, #1b1208 100%);
+    }
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 9mm 9mm;
+      opacity: .18;
+      pointer-events: none;
+    }
+    .spread { display: grid; grid-template-columns: 1fr 1fr; }
+    .panel {
+      position: relative;
+      height: 100%;
+      padding: 14mm 12mm 10mm;
+      border-right: 1px solid rgba(255,255,255,.16);
+    }
+    .panel:last-child { border-right: 0; }
+    .brand {
+      font-size: 18mm;
+      line-height: .82;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: 0;
+      text-shadow: 0 2px 0 #000;
+    }
+    .brand span, .price, .accent { color: #f5a10f; }
+    .tagline {
+      margin-top: 4mm;
+      color: #ffba31;
+      font-size: 3.8mm;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .cover-title {
+      margin-top: 13mm;
+      font-size: 28mm;
+      line-height: .85;
+      font-weight: 950;
+      color: #f5a10f;
+      text-transform: uppercase;
+    }
+    .cover-sub {
+      width: 72mm;
+      margin-top: 4mm;
+      font-size: 4.4mm;
+      line-height: 1.35;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .food-crop {
+      position: absolute;
+      overflow: hidden;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.72));
+    }
+    .food-crop img {
+      position: absolute;
+      width: 580mm;
+      height: auto;
+    }
+    .cover-food { right: -12mm; bottom: 16mm; width: 150mm; height: 68mm; border-radius: 0; }
+    .cover-food img { left: 0; top: -98mm; }
+    .footer-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 17mm;
+      background: linear-gradient(90deg, #f0a10d, #ffb421);
+      color: #111;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      gap: 3mm;
+      padding: 0 9mm;
+      font-size: 4.1mm;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .footer-bar small { display: block; font-size: 2.8mm; font-weight: 800; }
+    .section-title {
+      display: inline-block;
+      min-width: 58mm;
+      margin-bottom: 7mm;
+      padding: 2.6mm 8mm 2.2mm;
+      background: #f5a10f;
+      color: #111;
+      font-size: 7mm;
+      line-height: 1;
+      font-weight: 950;
+      text-align: center;
+      text-transform: uppercase;
+      transform: skew(-6deg);
+      box-shadow: 0 2mm 0 rgba(0,0,0,.38);
+    }
+    .section-title span { display: block; transform: skew(6deg); }
+    .menu-list { display: grid; gap: 3.2mm; position: relative; z-index: 2; }
+    .item { break-inside: avoid; }
+    .item-line {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 2mm;
+      align-items: end;
+      font-size: 4.2mm;
+      font-weight: 850;
+    }
+    .dots {
+      height: 1px;
+      border-bottom: 1px dotted rgba(255, 177, 31, .7);
+      transform: translateY(-1.1mm);
+    }
+    .price {
+      white-space: nowrap;
+      font-size: 4mm;
+      font-weight: 950;
+    }
+    .price small { color: #fff8e8; font-size: 2.8mm; margin-right: 1.2mm; }
+    .desc {
+      max-width: 88mm;
+      margin-top: .8mm;
+      color: #f2e6d0;
+      font-size: 3.1mm;
+      line-height: 1.25;
+    }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 9mm; }
+    .hero-page {
+      display: grid;
+      grid-template-columns: 128mm 1fr;
+      gap: 12mm;
+      padding: 13mm;
+      align-items: stretch;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding: 7mm 0 0;
+    }
+    .eyebrow {
+      color: #f5a10f;
+      font-size: 4mm;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .hero-copy h1 {
+      margin: 5mm 0 6mm;
+      font-size: 18mm;
+      line-height: .92;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    .hero-copy p {
+      width: 115mm;
+      margin: 0;
+      font-size: 5mm;
+      line-height: 1.35;
+      font-weight: 800;
+      color: #fff3d4;
+    }
+    .chef-frame {
+      position: relative;
+      overflow: hidden;
+      border: 1.4mm solid #f5a10f;
+      box-shadow: 0 8mm 22mm rgba(0,0,0,.48);
+      background: #21170c;
+    }
+    .chef-frame img {
+      position: absolute;
+      width: 620mm;
+      height: auto;
+      left: -6mm;
+      top: -104mm;
+    }
+    .chef-frame::after {
+      content: "temporary image";
+      position: absolute;
+      right: 4mm;
+      bottom: 4mm;
+      padding: 1.5mm 3mm;
+      background: rgba(0,0,0,.72);
+      color: #fff;
+      font-size: 2.8mm;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .callout {
+      margin-top: 10mm;
+      display: inline-block;
+      padding: 4mm 7mm;
+      background: #f5a10f;
+      color: #111;
+      font-size: 8mm;
+      font-weight: 950;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+    .round-food { right: 10mm; bottom: 22mm; width: 58mm; height: 58mm; border-radius: 50%; border: 1mm solid #f5a10f; }
+    .round-food img { left: -310mm; top: -76mm; }
+  </style>
+</head>
+<body>
+  <section class="page spread">
+    <div class="panel">
+      <div class="brand">Bite<span>Right</span></div>
+      <div class="tagline">Fresh. Grilled. Delicious.</div>
+      <div class="cover-title">Menu</div>
+      <div class="cover-sub">Shawarma • Grilled Chicken • Burgers • Platters & More</div>
+      <div class="food-crop cover-food"><img src="ChatGPT%20Image%20Jun%2024%2C%202026%2C%2009_34_53%20PM.png" alt=""></div>
+      <div class="footer-bar">
+        <div>0760 492 621 <small>Call / WhatsApp to order</small></div>
+        <div>Open Daily <small>10:00AM - 11:00PM</small></div>
+        <div>Delivery <small>Available</small></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="brand" style="font-size:13mm;text-align:center;">Bite<span>Right</span></div>
+      <div style="text-align:center;margin:3mm 0 8mm;font-size:4mm;font-weight:800;">Great food. Great taste. Always fresh.</div>
+      <div class="section-title"><span>Best Sellers</span></div>
+      <div class="menu-list">
+        <div class="item"><div class="item-line"><b>Chicken Shawarma Platter</b><i class="dots"></i><span class="price"><small>UGX</small>32,000</span></div><div class="desc">Chips, salad, garlic, chilli, pita bread</div></div>
+        <div class="item"><div class="item-line"><b>BiteRight Wrap</b><i class="dots"></i><span class="price"><small>UGX</small>20,000</span></div><div class="desc">Large wrap of your choice with chips and salad</div></div>
+        <div class="item"><div class="item-line"><b>Grilled Whole Chicken</b><i class="dots"></i><span class="price"><small>UGX</small>48,000</span></div><div class="desc">Salad, chips, garlic sauce, chilli</div></div>
+        <div class="item"><div class="item-line"><b>Chicken Burger</b><i class="dots"></i><span class="price"><small>UGX</small>22,000</span></div><div class="desc">Juicy chicken fillet with fresh veggies</div></div>
+        <div class="item"><div class="item-line"><b>Mixed Shawarma Platter</b><i class="dots"></i><span class="price"><small>UGX</small>35,000</span></div><div class="desc">Chicken, beef, tahina, garlic, chilli, chips, pita bread</div></div>
+      </div>
+      <div class="food-crop round-food"><img src="ChatGPT%20Image%20Jun%2024%2C%202026%2C%2009_34_53%20PM.png" alt=""></div>
+      <div class="footer-bar">
+        <div>Fresh <small>Ingredients</small></div>
+        <div>Quality <small>& Taste</small></div>
+        <div>Fast <small>Service</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page hero-page">
+    <div class="chef-frame"><img src="ChatGPT%20Image%20Jun%2024%2C%202026%2C%2009_34_53%20PM.png" alt="Temporary chef visual"></div>
+    <div class="hero-copy">
+      <div class="eyebrow">Fresh from the grill</div>
+      <h1>Shawarma made while you wait</h1>
+      <p>Hot wraps, juicy fillings, fresh salads, and signature sauces prepared the BiteRight way.</p>
+      <div class="callout">Roll it. Grill it. Bite right.</div>
+    </div>
+  </section>
+
+  <section class="page spread">
+    <div class="panel">
+      <div class="section-title"><span>Salads & Starters</span></div>
+      <div class="menu-list">
+        <div class="item"><div class="item-line"><b>Beef sausage with chips</b><i class="dots"></i><span class="price"><small>UGX</small>20,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Chicken sausage with chips</b><i class="dots"></i><span class="price"><small>UGX</small>20,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Hummus</b><i class="dots"></i><span class="price"><small>UGX</small>17,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Falafel</b><i class="dots"></i><span class="price"><small>UGX</small>22,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Fattoush</b><i class="dots"></i><span class="price"><small>UGX</small>17,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Green salad</b><i class="dots"></i><span class="price"><small>UGX</small>15,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Baba Ganoush</b><i class="dots"></i><span class="price"><small>UGX</small>17,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Tahina</b><i class="dots"></i><span class="price"><small>UGX</small>5,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Garlic sauce</b><i class="dots"></i><span class="price"><small>UGX</small>5,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Chilli sauce</b><i class="dots"></i><span class="price"><small>UGX</small>2,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Pickles</b><i class="dots"></i><span class="price"><small>UGX</small>5,000</span></div></div>
+      </div>
+      <div style="margin-top:12mm" class="section-title"><span>Soup</span></div>
+      <div class="menu-list">
+        <div class="item"><div class="item-line"><b>Soup</b><i class="dots"></i><span class="price"><small>UGX</small>8,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Soup with beans</b><i class="dots"></i><span class="price"><small>UGX</small>15,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Soup kewala / Mulokoni</b><i class="dots"></i><span class="price"><small>UGX</small>15,000</span></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="section-title"><span>Wraps</span></div>
+      <div class="menu-list">
+        <div class="item"><div class="item-line"><b>Chicken wrap</b><i class="dots"></i><span class="price"><small>UGX</small>14,000</span></div><div class="desc">Garlic sauce, lettuce, tomatoes, pickles, chips</div></div>
+        <div class="item"><div class="item-line"><b>Beef wrap</b><i class="dots"></i><span class="price"><small>UGX</small>16,000</span></div><div class="desc">Tahina, lettuce, tomatoes, onions, pickles, chips, parsley</div></div>
+        <div class="item"><div class="item-line"><b>Mixed wrap</b><i class="dots"></i><span class="price"><small>UGX</small>14,000</span></div><div class="desc">Tahina, lettuce, tomatoes, onions, pickles, chips, parsley</div></div>
+        <div class="item"><div class="item-line"><b>Crisp wrap</b><i class="dots"></i><span class="price"><small>UGX</small>14,000</span></div><div class="desc">Garlic sauce, pickles, chips</div></div>
+        <div class="item"><div class="item-line"><b>Falafel wrap</b><i class="dots"></i><span class="price"><small>UGX</small>10,000</span></div><div class="desc">Tomatoes, lettuce, tahina, parsley</div></div>
+        <div class="item"><div class="item-line"><b>Chips wrap</b><i class="dots"></i><span class="price"><small>UGX</small>14,000</span></div><div class="desc">Chips, tomatoes, onions, lettuce, pickles, ketchup</div></div>
+        <div class="item"><div class="item-line"><b>Kufta wrap</b><i class="dots"></i><span class="price"><small>UGX</small>16,000</span></div><div class="desc">Kebab wrap, lettuce, tomatoes, onions, tahina and parsley</div></div>
+        <div class="item"><div class="item-line"><b>Toowuk wrap</b><i class="dots"></i><span class="price"><small>UGX</small>14,000</span></div><div class="desc">Garlic sauce, lettuce, pickles and chips</div></div>
+        <div class="item"><div class="item-line"><b>Bite right wrap</b><i class="dots"></i><span class="price"><small>UGX</small>20,000</span></div><div class="desc">Large wrap of your choice with chips and salad</div></div>
+        <div class="item"><div class="item-line"><b>Liver sub</b><i class="dots"></i><span class="price"><small>UGX</small>14,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Fish sub</b><i class="dots"></i><span class="price"><small>UGX</small>18,000</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page spread">
+    <div class="panel">
+      <div class="section-title"><span>Platters</span></div>
+      <div class="two-col">
+        <div class="menu-list">
+          <div class="item"><div class="item-line"><b>Chicken shawarma platter</b><i class="dots"></i><span class="price"><small>UGX</small>32,000</span></div><div class="desc">Chips, salad, garlic, chilli, pita bread</div></div>
+          <div class="item"><div class="item-line"><b>Beef shawarma platter</b><i class="dots"></i><span class="price"><small>UGX</small>28,000</span></div><div class="desc">Tahina, salad, chilli, chips, pita bread</div></div>
+          <div class="item"><div class="item-line"><b>Chicken shawarma salad</b><i class="dots"></i><span class="price"><small>UGX</small>34,000</span></div><div class="desc">Tahina, garlic sauce, salad</div></div>
+          <div class="item"><div class="item-line"><b>Hummus platter with Shawarma</b><i class="dots"></i><span class="price"><small>UGX</small>36,000</span></div><div class="desc">Chicken/beef salad, pita bread</div></div>
+          <div class="item"><div class="item-line"><b>Mixed shawarma platter</b><i class="dots"></i><span class="price"><small>UGX</small>35,000</span></div><div class="desc">Chicken, beef, tahina, garlic, chilli, chips, pita bread</div></div>
+        </div>
+        <div class="menu-list">
+          <div class="item"><div class="item-line"><b>Chicken strip platter</b><i class="dots"></i><span class="price"><small>UGX</small>24,000</span></div><div class="desc">Salad, chips, garlic sauce, chilli</div></div>
+          <div class="item"><div class="item-line"><b>Chicken wings platter</b><i class="dots"></i><span class="price"><small>UGX</small>33,000</span></div><div class="desc">Salad, chips, garlic sauce, chilli</div></div>
+          <div class="item"><div class="item-line"><b>Fish platter</b><i class="dots"></i><span class="price"><small>UGX</small>30,000</span></div><div class="desc">Salad, chips, garlic sauce, chilli</div></div>
+          <div class="item"><div class="item-line"><b>Grilled whole chicken</b><i class="dots"></i><span class="price"><small>UGX</small>48,000</span></div><div class="desc">Salad, chips, garlic sauce, chilli</div></div>
+          <div class="item"><div class="item-line"><b>Grilled half chicken</b><i class="dots"></i><span class="price"><small>UGX</small>27,000</span></div><div class="desc">Salad, chips, garlic sauce, chilli</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="section-title"><span>Plates & Specials</span></div>
+      <div class="menu-list">
+        <div class="item"><div class="item-line"><b>Kufta plate</b><i class="dots"></i><span class="price"><small>UGX</small>24,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Liver platter</b><i class="dots"></i><span class="price"><small>UGX</small>24,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Plate of the day chicken</b><i class="dots"></i><span class="price"><small>UGX</small>20,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Plate of the day beef</b><i class="dots"></i><span class="price"><small>UGX</small>22,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Kewala plate / Mulokoni</b><i class="dots"></i><span class="price"><small>UGX</small>35,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Grilled whole chicken with rice</b><i class="dots"></i><span class="price"><small>UGX</small>60,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Grilled half chicken with rice</b><i class="dots"></i><span class="price"><small>UGX</small>30,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Shawarma with rice</b><i class="dots"></i><span class="price"><small>UGX</small>26,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Egyptian breakfast</b><i class="dots"></i><span class="price"><small>UGX</small>15,000</span></div></div>
+      </div>
+      <div style="margin-top:10mm" class="section-title"><span>Extras</span></div>
+      <div class="menu-list">
+        <div class="item"><div class="item-line"><b>1kg liver</b><i class="dots"></i><span class="price"><small>UGX</small>65,000</span></div></div>
+        <div class="item"><div class="item-line"><b>1kg kufta</b><i class="dots"></i><span class="price"><small>UGX</small>65,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Grilled chicken liver per kg</b><i class="dots"></i><span class="price"><small>UGX</small>20,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Seek toowuk platter</b><i class="dots"></i><span class="price"><small>UGX</small>24,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Whole chicken plain</b><i class="dots"></i><span class="price"><small>UGX</small>20,000</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page spread">
+    <div class="panel">
+      <div class="section-title"><span>Burgers</span></div>
+      <div class="menu-list">
+        <div class="item"><div class="item-line"><b>Beef burger</b><i class="dots"></i><span class="price"><small>UGX</small>20,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Chicken burger</b><i class="dots"></i><span class="price"><small>UGX</small>22,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Beef burger with eggs</b><i class="dots"></i><span class="price"><small>UGX</small>18,000</span></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="section-title"><span>Juices</span></div>
+      <div class="menu-list">
+        <div class="item"><div class="item-line"><b>Orange, pineapple, Passion juice</b><i class="dots"></i><span class="price"><small>UGX</small>10,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Avocado juice</b><i class="dots"></i><span class="price"><small>UGX</small>15,000</span></div></div>
+        <div class="item"><div class="item-line"><b>Cocktail</b><i class="dots"></i><span class="price"><small>UGX</small>12,000</span></div></div>
+      </div>
+      <div class="food-crop round-food"><img src="ChatGPT%20Image%20Jun%2024%2C%202026%2C%2009_34_53%20PM.png" alt=""></div>
+      <div class="footer-bar">
+        <div>0760 492 621 <small>Call / WhatsApp to order</small></div>
+        <div>Open Daily <small>10:00AM - 11:00PM</small></div>
+        <div>Thank You <small>For choosing BiteRight</small></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
