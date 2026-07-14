@@ -89,13 +89,23 @@ module.exports = async (req, res) => {
     
     const requestBody = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
+    // PIN Verification
+    const providedPin = requestBody?.pin;
+    const expectedPin = process.env.STATUS_PIN || '1234';
+    if (providedPin !== expectedPin) {
+      return res.status(401).json({ error: 'Unauthorized: Invalid PIN' });
+    }
+
+    // Clean request body for Google Analytics API (remove the pin)
+    const { pin: _, ...gaRequestBody } = requestBody;
+
     const apiRes = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${PROPERTY_ID}:runReport`, {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(gaRequestBody)
     });
 
     const apiData = await apiRes.json();

@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BiteRight — Analytics Dashboard</title>
+<title>Analytics Status Dashboard | Bite Right Restaurant Muyenga</title>
+<meta name="description" content="Real-time analytics status and dashboard for Bite Right Restaurant in Muyenga, Kampala. View order traffic and conversion funnel.">
+<meta name="keywords" content="Bite Right Status, Bite Right Analytics, Restaurant Metrics Kampala, Bite Right Dashboard">
+<link rel="canonical" href="https://solomantalgo.online/status">
+<!-- Open Graph Tags -->
+<meta property="og:title" content="Analytics Status Dashboard | Bite Right Restaurant Muyenga">
+<meta property="og:description" content="Real-time analytics status and dashboard for Bite Right Restaurant in Muyenga, Kampala. Check order traffic and conversion funnel.">
+<meta property="og:image" content="assets/Biteright.jpeg">
+<meta property="og:url" content="https://solomantalgo.online/status">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=Outfit+Mono:wght@400;500&display=swap');
@@ -114,14 +122,196 @@ td:first-child{color:var(--white);font-weight:500}
   .funnel-label{width:110px}
   .funnel-drop{padding-left:122px}
 }
+
+/* ── PIN Security Screen ── */
+#pinScreen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1A1510 0%, #0F0D0A 100%);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-b);
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+#pinScreen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.pin-card {
+  background: rgba(32, 26, 18, 0.45);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 380px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  animation: pinCardFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes pinCardFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.pin-card.shake {
+  animation: shake 0.4s ease;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.pin-header h2 {
+  font-family: var(--font-h);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+.pin-header p {
+  font-size: 0.8rem;
+  color: var(--muted2);
+  margin-bottom: 1.8rem;
+}
+.pin-logo {
+  font-family: var(--font-h);
+  font-size: 1.5rem;
+  color: var(--amber2);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1.2rem;
+}
+.pin-logo small {
+  display: block;
+  font-family: var(--font-b);
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.pin-dot-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+.pin-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pin-dot.active {
+  background: var(--amber2);
+  border-color: var(--amber2);
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(240, 164, 85, 0.5);
+}
+.pin-error {
+  color: var(--red);
+  font-size: 0.76rem;
+  min-height: 1.2rem;
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.pin-error.visible {
+  opacity: 1;
+}
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  justify-items: center;
+}
+.pin-keypad button {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(32, 26, 18, 0.6);
+  color: var(--white);
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: var(--font-b);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+.pin-keypad button:hover {
+  background: var(--amber);
+  color: var(--dark);
+  border-color: var(--amber);
+  transform: scale(1.08);
+}
+.pin-keypad button:active {
+  transform: scale(0.95);
+}
+.pin-keypad button.keypad-action {
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.02);
+  border-color: transparent;
+  color: var(--muted2);
+}
+.pin-keypad button.keypad-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
 </style>
 </head>
 <body>
 
 <!-- ══════════════════════════════════
+     PIN SECURITY SCREEN
+══════════════════════════════════ -->
+<div id="pinScreen">
+  <div class="pin-card">
+    <div class="pin-header">
+      <div class="pin-logo">Bite Right <small>Analytics Security</small></div>
+      <h2>Enter Security PIN</h2>
+      <p>Enter the 4-digit PIN to access dashboard analytics</p>
+    </div>
+    <div class="pin-input-area">
+      <div class="pin-dot-wrap">
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+      </div>
+      <div class="pin-error" id="pinError">Invalid PIN. Please try again.</div>
+    </div>
+    <div class="pin-keypad">
+      <button onclick="pressPin('1')">1</button>
+      <button onclick="pressPin('2')">2</button>
+      <button onclick="pressPin('3')">3</button>
+      <button onclick="pressPin('4')">4</button>
+      <button onclick="pressPin('5')">5</button>
+      <button onclick="pressPin('6')">6</button>
+      <button onclick="pressPin('7')">7</button>
+      <button onclick="pressPin('8')">8</button>
+      <button onclick="pressPin('9')">9</button>
+      <button class="keypad-action" onclick="pressPin('clear')">Clear</button>
+      <button onclick="pressPin('0')">0</button>
+      <button class="keypad-action" onclick="pressPin('backspace')">⌫</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
      DASHBOARD
 ══════════════════════════════════ -->
-<div id="dashboard">
+<div id="dashboard" style="display: none;">
   <header>
     <div class="h-brand">
       <div class="h-logo">Bite Right <small>Analytics Dashboard</small></div>
@@ -157,19 +347,154 @@ td:first-child{color:var(--white);font-weight:500}
 let currentDays = 0;
 const rangeLabel = () => currentDays === 0 ? 'today' : `last ${currentDays} days`;
 let charts = {};
+let pinBuffer = '';
+
+// ── Auth Handling ────────────────────────────
+function initAuth() {
+  const isAuth = sessionStorage.getItem('status_authenticated') === 'true';
+  const pinScreen = document.getElementById('pinScreen');
+  const dashboard = document.getElementById('dashboard');
+  
+  if (isAuth) {
+    if (pinScreen) pinScreen.classList.add('hidden');
+    if (dashboard) dashboard.style.display = 'block';
+    loadAll();
+  } else {
+    if (pinScreen) pinScreen.classList.remove('hidden');
+    if (dashboard) dashboard.style.display = 'none';
+    resetPinDisplay();
+  }
+}
+
+function updatePinDots() {
+  const dots = document.querySelectorAll('.pin-dot');
+  dots.forEach((dot, index) => {
+    if (index < pinBuffer.length) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+}
+
+function resetPinDisplay() {
+  pinBuffer = '';
+  updatePinDots();
+  const error = document.getElementById('pinError');
+  const card = document.querySelector('.pin-card');
+  if (error) error.classList.remove('visible');
+  if (card) card.classList.remove('shake');
+}
+
+async function pressPin(key) {
+  const error = document.getElementById('pinError');
+  const card = document.querySelector('.pin-card');
+  if (error) error.classList.remove('visible');
+  if (card) card.classList.remove('shake');
+  
+  if (key === 'clear') {
+    pinBuffer = '';
+    updatePinDots();
+    return;
+  }
+  
+  if (key === 'backspace') {
+    pinBuffer = pinBuffer.slice(0, -1);
+    updatePinDots();
+    return;
+  }
+  
+  if (pinBuffer.length >= 4) return;
+  
+  pinBuffer += key;
+  updatePinDots();
+  
+  if (pinBuffer.length === 4) {
+    await verifyPin(pinBuffer);
+  }
+}
+
+async function verifyPin(pin) {
+  try {
+    const res = await fetch('/api/report', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        pin,
+        dateRange: { startDate: 'today', endDate: 'today' },
+        metrics: [{ name: 'activeUsers' }]
+      })
+    });
+    
+    if (res.status === 200) {
+      sessionStorage.setItem('status_authenticated', 'true');
+      sessionStorage.setItem('status_pin', pin);
+      
+      const pinScreen = document.getElementById('pinScreen');
+      const dashboard = document.getElementById('dashboard');
+      
+      if (pinScreen) pinScreen.classList.add('hidden');
+      if (dashboard) dashboard.style.display = 'block';
+      setTimeout(() => {
+        loadAll();
+      }, 300);
+    } else {
+      handleInvalidPin();
+    }
+  } catch (err) {
+    console.error(err);
+    handleInvalidPin();
+  }
+}
+
+function handleInvalidPin() {
+  const card = document.querySelector('.pin-card');
+  const error = document.getElementById('pinError');
+  
+  if (card) card.classList.add('shake');
+  if (error) error.classList.add('visible');
+  
+  setTimeout(() => {
+    pinBuffer = '';
+    updatePinDots();
+  }, 350);
+}
+
+// Listen to keyboard inputs
+window.addEventListener('keydown', (e) => {
+  const isAuth = sessionStorage.getItem('status_authenticated') === 'true';
+  if (isAuth) return;
+  
+  if (e.key >= '0' && e.key <= '9') {
+    pressPin(e.key);
+  } else if (e.key === 'Backspace') {
+    pressPin('backspace');
+  } else if (e.key === 'Escape' || e.key === 'Delete') {
+    pressPin('clear');
+  }
+});
 
 // ── Auto Load on DOM Content Loaded ──────────
-window.addEventListener('DOMContentLoaded', async () => {
-  await loadAll();
+window.addEventListener('DOMContentLoaded', () => {
+  initAuth();
 });
 
 // ── GA4 API ──────────────────────────────────
 async function ga4Report(body) {
+  const pin = sessionStorage.getItem('status_pin');
   const res = await fetch('/api/report', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
+    body: JSON.stringify({ ...body, pin })
   });
+  
+  if (res.status === 401) {
+    sessionStorage.removeItem('status_authenticated');
+    sessionStorage.removeItem('status_pin');
+    initAuth();
+    throw new Error('Session expired or PIN invalid. Please enter PIN again.');
+  }
+  
   const data = await res.json();
   if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
   return data;

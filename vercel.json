@@ -1,5 +1,17 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/menu",
+      "destination": "/OrderNow",
+      "permanent": true
+    },
+    {
+      "source": "/menu.html",
+      "destination": "/OrderNow",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/biteright-connect",
