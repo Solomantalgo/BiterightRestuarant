@@ -421,7 +421,7 @@ async function verifyPin(pin) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         pin,
-        dateRange: { startDate: 'today', endDate: 'today' },
+        dateRanges: [{ startDate: 'today', endDate: 'today' }],
         metrics: [{ name: 'activeUsers' }]
       })
     });
